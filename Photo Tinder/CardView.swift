@@ -6,22 +6,28 @@
 //
 
 import SwiftUI
+import Combine
+import Photos
 
 struct CardView: View {
     @State var card: Card
-    // MARK: - Drawing Constant
-    let cardGradient = Gradient(colors: [Color.black.opacity(0.0), Color.black.opacity(0.5)])
+    @ObservedObject var imageLoader: ImageLoader
+    @State var image = UIImage()
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            Image(card.imageName)
+            
+            Image(uiImage: image)
                 .resizable()
                 .clipped()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(8)
-            
                 .padding()
                 .foregroundColor(.white)
+                .onReceive(imageLoader.didChange) { image in
+                    self.image = image
+                }
+            
             
             HStack {
                 Image("yes")
@@ -71,11 +77,41 @@ struct CardView: View {
     }
 }
 
+class ImageLoader: ObservableObject {
+    var didChange = PassthroughSubject<UIImage, Never>()
+    var image = UIImage() {
+        didSet {
+            didChange.send(image)
+        }
+    }
 
-
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView(card: Card.data[0])
-            .previewLayout(.sizeThatFits)
+    init(asset: PHAsset) {
+        fetchImageAsset(asset, targetSize: CGSize(width: 300, height: 300), completionHandler: nil)
+    }
+    
+    func fetchImageAsset(_ asset: PHAsset?, targetSize size: CGSize, contentMode: PHImageContentMode = .aspectFill, options: PHImageRequestOptions? = nil, completionHandler: ((Bool) -> Void)?) {
+        guard let asset = asset else {
+            completionHandler?(true)
+            return
+        }
+        
+        let resultHandler: (UIImage?, [AnyHashable: Any]?) -> Void = { image, info in
+            guard let image = image else {
+                completionHandler?(true)
+                return
+            }
+            DispatchQueue.main.async {
+                self.image = image
+            }
+            completionHandler?(true)
+        }
+        
+        PHImageManager.default().requestImage(
+            for: asset,
+               targetSize: size,
+               contentMode: contentMode,
+               options: options,
+               resultHandler: resultHandler)
     }
 }
+

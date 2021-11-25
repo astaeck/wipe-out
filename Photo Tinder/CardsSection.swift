@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct CardsSection: View {
+    @ObservedObject var viewModel: CardsViewModel
+
     var body: some View {
         ZStack{
-            ForEach(Card.data.reversed()) { card in
-                CardView(card: card)
+            ForEach(viewModel.cards) { card in
+                CardView(card: card, imageLoader: ImageLoader(asset: card.asset))
             }
+        }
+        .onAppear {
+            viewModel.fetchPhotos()
         }
         .padding(8)
         

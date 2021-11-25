@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E407825274F458800FF8E4F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E407824274F458800FF8E4F /* Info.plist */; };
+		1E407827274F484000FF8E4F /* CardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E407826274F484000FF8E4F /* CardsViewModel.swift */; };
+		1E40782B274F49DB00FF8E4F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E407829274F49DB00FF8E4F /* Photos.framework */; };
+		1E40782C274F49DB00FF8E4F /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E40782A274F49DB00FF8E4F /* PhotosUI.framework */; };
+		1E40782E274F501A00FF8E4F /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40782D274F501A00FF8E4F /* Image+Extension.swift */; };
 		1EF45ACA274D689D00DB6124 /* Photo_TinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */; };
 		1EF45ACC274D689D00DB6124 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45ACB274D689D00DB6124 /* ContentView.swift */; };
 		1EF45ACE274D689E00DB6124 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF45ACD274D689E00DB6124 /* Assets.xcassets */; };
@@ -17,6 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E407824274F458800FF8E4F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../../../Downloads/swiftui.builds-master/spotify-home/SpotifyClone/Info.plist"; sourceTree = "<group>"; };
+		1E407826274F484000FF8E4F /* CardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewModel.swift; sourceTree = "<group>"; };
+		1E407829274F49DB00FF8E4F /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		1E40782A274F49DB00FF8E4F /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		1E40782D274F501A00FF8E4F /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		1EF45AC6274D689D00DB6124 /* Photo Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Tinder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_TinderApp.swift; sourceTree = "<group>"; };
 		1EF45ACB274D689D00DB6124 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,17 +42,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E40782B274F49DB00FF8E4F /* Photos.framework in Frameworks */,
+				1E40782C274F49DB00FF8E4F /* PhotosUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E407828274F49DB00FF8E4F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E407829274F49DB00FF8E4F /* Photos.framework */,
+				1E40782A274F49DB00FF8E4F /* PhotosUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1EF45ABD274D689D00DB6124 = {
 			isa = PBXGroup;
 			children = (
 				1EF45AC8274D689D00DB6124 /* Photo Tinder */,
 				1EF45AC7274D689D00DB6124 /* Products */,
+				1E407828274F49DB00FF8E4F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,11 +80,14 @@
 			isa = PBXGroup;
 			children = (
 				1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */,
+				1E407826274F484000FF8E4F /* CardsViewModel.swift */,
+				1E40782D274F501A00FF8E4F /* Image+Extension.swift */,
 				1EF45ACB274D689D00DB6124 /* ContentView.swift */,
 				1EF45ADB274F38B300DB6124 /* CardsSection.swift */,
 				1EF45AD7274F37F300DB6124 /* CardView.swift */,
 				1EF45AD9274F381C00DB6124 /* Card.swift */,
 				1EF45ACD274D689E00DB6124 /* Assets.xcassets */,
+				1E407824274F458800FF8E4F /* Info.plist */,
 				1EF45ACF274D689E00DB6124 /* Preview Content */,
 			);
 			path = "Photo Tinder";
@@ -136,6 +161,7 @@
 			files = (
 				1EF45AD1274D689E00DB6124 /* Preview Assets.xcassets in Resources */,
 				1EF45ACE274D689E00DB6124 /* Assets.xcassets in Resources */,
+				1E407825274F458800FF8E4F /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +173,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EF45ACC274D689D00DB6124 /* ContentView.swift in Sources */,
+				1E40782E274F501A00FF8E4F /* Image+Extension.swift in Sources */,
 				1EF45AD8274F37F300DB6124 /* CardView.swift in Sources */,
+				1E407827274F484000FF8E4F /* CardsViewModel.swift in Sources */,
 				1EF45ACA274D689D00DB6124 /* Photo_TinderApp.swift in Sources */,
 				1EF45ADC274F38B300DB6124 /* CardsSection.swift in Sources */,
 				1EF45ADA274F381C00DB6124 /* Card.swift in Sources */,
