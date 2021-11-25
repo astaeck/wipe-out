@@ -6,33 +6,37 @@
 //
 
 import Photos
+import SwiftUI
 
 class CardsViewModel: ObservableObject {
     
     private var allPhotos = PHFetchResult<PHAsset>()
     @Published var cards = [Card]()
     
-    init() {
+    func fetchPhotos() {
         guard PHPhotoLibrary.authorizationStatus() != .authorized else {
           return
         }
 
         PHPhotoLibrary.requestAuthorization { [weak self] status in
+            guard let self = self else { return }
             if status == .authorized {
-                self?.fetchPhotos()
+                let allPhotosOptions = PHFetchOptions()
+                allPhotosOptions.sortDescriptors = [
+                  NSSortDescriptor(
+                    key: "creationDate",
+                    ascending: false)
+                ]
+
+                self.allPhotos = PHAsset.fetchAssets(with: allPhotosOptions)
+                DispatchQueue.main.async {
+                    
+                    self.allPhotos.enumerateObjects { (object, _, _) -> Void in
+                        let card = Card(asset: object)
+                        self.cards.append(card)
+                    }
+                }
             }
         }
-    }
-    
-    func fetchPhotos() {
-        let allPhotosOptions = PHFetchOptions()
-        allPhotosOptions.sortDescriptors = [
-          NSSortDescriptor(
-            key: "creationDate",
-            ascending: false)
-        ]
-
-        allPhotos = PHAsset.fetchAssets(with: allPhotosOptions)
-        cards = [Card(asset: allPhotos[0])]
     }
 }

@@ -27,6 +27,6 @@ struct CardsSection: View {
 
 struct CardsSection_Previews: PreviewProvider {
     static var previews: some View {
-        CardsSection()
+        CardsSection(viewModel: CardsViewModel())
     }
 }
