@@ -17,6 +17,7 @@
 		1EF45AD8274F37F300DB6124 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45AD7274F37F300DB6124 /* CardView.swift */; };
 		1EF45ADA274F381C00DB6124 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45AD9274F381C00DB6124 /* Card.swift */; };
 		1EF45ADC274F38B300DB6124 /* CardsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45ADB274F38B300DB6124 /* CardsSection.swift */; };
+		1EF9D428275178C600F75C12 /* VideoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF9D427275178C600F75C12 /* VideoLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		1EF45AD7274F37F300DB6124 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		1EF45AD9274F381C00DB6124 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		1EF45ADB274F38B300DB6124 /* CardsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSection.swift; sourceTree = "<group>"; };
+		1EF9D427275178C600F75C12 /* VideoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				1EF45ACB274D689D00DB6124 /* ContentView.swift */,
 				1EF45ADB274F38B300DB6124 /* CardsSection.swift */,
 				1EF45AD7274F37F300DB6124 /* CardView.swift */,
+				1EF9D427275178C600F75C12 /* VideoLoader.swift */,
 				1E1428572750797000ED0F77 /* ImageLoader.swift */,
 				1EF45AD9274F381C00DB6124 /* Card.swift */,
 				1EF45ACD274D689E00DB6124 /* Assets.xcassets */,
@@ -160,6 +163,7 @@
 				1EF45AD8274F37F300DB6124 /* CardView.swift in Sources */,
 				1E407827274F484000FF8E4F /* CardsViewModel.swift in Sources */,
 				1EF45ACA274D689D00DB6124 /* Photo_TinderApp.swift in Sources */,
+				1EF9D428275178C600F75C12 /* VideoLoader.swift in Sources */,
 				1EF45ADC274F38B300DB6124 /* CardsSection.swift in Sources */,
 				1E1428582750797000ED0F77 /* ImageLoader.swift in Sources */,
 				1EF45ADA274F381C00DB6124 /* Card.swift in Sources */,

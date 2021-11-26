@@ -10,32 +10,28 @@ import Photos
 import SwiftUI
 
 class ImageLoader: ObservableObject {
+    private let imageManager: PHImageManager
+    private let asset: PHAsset
     var didChange = PassthroughSubject<UIImage, Never>()
-    var image = UIImage() {
+    private var image = UIImage() {
         didSet {
             didChange.send(image)
         }
     }
 
-    init(asset: PHAsset) {
-        fetchImageAsset(asset, targetSize: CGSize(width: 4032, height: 4032), completionHandler: nil)
+    init(asset: PHAsset, imageManager: PHImageManager = PHImageManager.default()) {
+        self.imageManager = imageManager
+        self.asset = asset
+        fetchImageAsset(targetSize: CGSize(width: 4032, height: 4032))
     }
     
-    func fetchImageAsset(_ asset: PHAsset?, targetSize size: CGSize, contentMode: PHImageContentMode = .aspectFill, options: PHImageRequestOptions? = nil, completionHandler: ((Bool) -> Void)?) {
-        guard let asset = asset else {
-            completionHandler?(true)
-            return
-        }
+    private func fetchImageAsset(targetSize size: CGSize, contentMode: PHImageContentMode = .aspectFill, options: PHImageRequestOptions? = nil) {
         
         let resultHandler: (UIImage?, [AnyHashable: Any]?) -> Void = { image, info in
-            guard let image = image else {
-                completionHandler?(true)
-                return
-            }
+            guard let image = image else { return }
             DispatchQueue.main.async {
                 self.image = image
             }
-            completionHandler?(true)
         }
         
         PHImageManager.default().requestImage(

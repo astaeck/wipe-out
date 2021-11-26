@@ -8,26 +8,35 @@
 import SwiftUI
 import Combine
 import Photos
+import AVKit
 
 struct CardView: View {
     @State var card: Card
     @ObservedObject var imageLoader: ImageLoader
+    @ObservedObject var videoLoader: VideoLoader
     @State var image = UIImage()
+    @State var videoURL = AVURLAsset(url: URL(string: "https://bit.ly/swswift")!)
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            
-            Image(uiImage: image)
-                .resizable()
-                .clipped()
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(8)
-                .padding()
-                .foregroundColor(.white)
-                .onReceive(imageLoader.didChange) { image in
-                    self.image = image
-                }
-            
+            if card.asset.mediaType == .video {
+                VideoPlayer(player: AVPlayer(url: videoURL.url))
+                    .onReceive(videoLoader.didChange) { videoURL in
+                        self.videoURL = videoURL
+                    }
+                
+            } else {
+                Image(uiImage: image)
+                    .resizable()
+                    .clipped()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(8)
+                    .padding()
+                    .foregroundColor(.white)
+                    .onReceive(imageLoader.didChange) { image in
+                        self.image = image
+                    }
+            }
             
             HStack {
                 Image("yes")

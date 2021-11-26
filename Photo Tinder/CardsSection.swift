@@ -13,7 +13,9 @@ struct CardsSection: View {
     var body: some View {
         ZStack{
             ForEach(viewModel.cards.reversed()) { card in
-                CardView(card: card, imageLoader: ImageLoader(asset: card.asset))
+                CardView(card: card,
+                         imageLoader: ImageLoader(asset: card.asset),
+                         videoLoader: VideoLoader(asset: card.asset))
             }
         }
         .onAppear {
