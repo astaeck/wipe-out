@@ -10,6 +10,7 @@ import Photos
 
 struct Card: Identifiable {
     let id = UUID()
+    let index: Int
     let asset: PHAsset
     /// Card x position
     var x: CGFloat = 0.0
