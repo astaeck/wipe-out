@@ -16,17 +16,23 @@ struct CardView: View {
     @ObservedObject var videoLoader: VideoLoader
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        ZStack(alignment: .center) {
             if card.asset.mediaType == .video {
                 AsyncContentView(source: videoLoader) { videoURL in
                     VideoPlayer(player: AVPlayer(url: videoURL.url))
+                        .frame(width: 300, height: 400)
+                        .clipped()
+                        .cornerRadius(8)
+                        .padding()
+                        .foregroundColor(.white)
                 }
             } else {
                 AsyncContentView(source: imageLoader) { image in
                     Image(uiImage: image)
                         .resizable()
+                        .scaledToFill()
+                        .frame(width: 300, height: 400)
                         .clipped()
-                        .aspectRatio(contentMode: .fit)
                         .cornerRadius(8)
                         .padding()
                         .foregroundColor(.white)
