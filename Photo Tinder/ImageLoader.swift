@@ -9,36 +9,36 @@ import Combine
 import Photos
 import SwiftUI
 
-class ImageLoader: ObservableObject {
+class ImageLoader: LoadableObject {
+
+    typealias Output = UIImage
+    @Published private(set) var state: LoadingState<UIImage> = .idle
     private let imageManager: PHImageManager
     private let asset: PHAsset
-    var didChange = PassthroughSubject<UIImage, Never>()
-    private var image = UIImage() {
-        didSet {
-            didChange.send(image)
-        }
-    }
 
     init(asset: PHAsset, imageManager: PHImageManager = PHImageManager.default()) {
         self.imageManager = imageManager
         self.asset = asset
-        fetchImageAsset(targetSize: CGSize(width: 4032, height: 4032))
     }
     
-    private func fetchImageAsset(targetSize size: CGSize, contentMode: PHImageContentMode = .aspectFill, options: PHImageRequestOptions? = nil) {
-        
+    func load() {
+        state = .loading
+
         let resultHandler: (UIImage?, [AnyHashable: Any]?) -> Void = { image, info in
-            guard let image = image else { return }
+            guard let image = image else {
+                self.state = .failed("Image download failed")
+                return
+            }
             DispatchQueue.main.async {
-                self.image = image
+                self.state = .loaded(image)
             }
         }
         
         PHImageManager.default().requestImage(
             for: asset,
-               targetSize: size,
-               contentMode: contentMode,
-               options: options,
+               targetSize: CGSize(width: 4032, height: 4032),
+               contentMode: .aspectFit,
+               options: nil,
                resultHandler: resultHandler)
     }
 }

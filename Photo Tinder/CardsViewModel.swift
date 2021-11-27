@@ -8,12 +8,15 @@
 import Photos
 import SwiftUI
 
-class CardsViewModel: ObservableObject {
+class CardsViewModel: LoadableObject {
     
-    private var allAssets = PHFetchResult<PHAsset>()
-    @Published private(set) var cards = [Card]()
+    typealias Output = [Card]
+
+    @Published private(set) var state: LoadingState<[Card]> = .idle
     
-    func fetchAssets() {
+    func load() {
+        state = .loading
+
         getPermissionIfNecessary { granted in
           guard granted else { return }
             let allPhotosOptions = PHFetchOptions()
@@ -23,13 +26,13 @@ class CardsViewModel: ObservableObject {
                     ascending: false)
             ]
             allPhotosOptions.fetchLimit = 100
-            self.allAssets = PHAsset.fetchAssets(with: allPhotosOptions)
-
+            let allAssets = PHAsset.fetchAssets(with: allPhotosOptions)
+            var cards = [Card]()
             DispatchQueue.main.async {
-                self.allAssets.enumerateObjects { (object, index, _) -> Void in
-                    let card = Card(index: index, asset: object)
-                    self.cards.append(card)
+                allAssets.enumerateObjects { (object, index, _) -> Void in
+                    cards.append(Card(index: index, asset: object))
                 }
+                self.state = .loaded(cards)
             }
         }
     }

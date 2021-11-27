@@ -10,6 +10,10 @@
 		1E1428582750797000ED0F77 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1428572750797000ED0F77 /* ImageLoader.swift */; };
 		1E407827274F484000FF8E4F /* CardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E407826274F484000FF8E4F /* CardsViewModel.swift */; };
 		1E40782E274F501A00FF8E4F /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40782D274F501A00FF8E4F /* Image+Extension.swift */; };
+		1E71A72A2751EA7600F97169 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A7292751EA7600F97169 /* LoadingState.swift */; };
+		1E71A72C2751F08500F97169 /* ErrorAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72B2751F08500F97169 /* ErrorAlertView.swift */; };
+		1E71A72E2751FDD800F97169 /* LoadableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72D2751FDD800F97169 /* LoadableObject.swift */; };
+		1E71A7302751FDF200F97169 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72F2751FDF200F97169 /* AsyncContentView.swift */; };
 		1EF45ACA274D689D00DB6124 /* Photo_TinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */; };
 		1EF45ACC274D689D00DB6124 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45ACB274D689D00DB6124 /* ContentView.swift */; };
 		1EF45ACE274D689E00DB6124 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF45ACD274D689E00DB6124 /* Assets.xcassets */; };
@@ -24,6 +28,10 @@
 		1E1428572750797000ED0F77 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		1E407826274F484000FF8E4F /* CardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewModel.swift; sourceTree = "<group>"; };
 		1E40782D274F501A00FF8E4F /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
+		1E71A7292751EA7600F97169 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		1E71A72B2751F08500F97169 /* ErrorAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertView.swift; sourceTree = "<group>"; };
+		1E71A72D2751FDD800F97169 /* LoadableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableObject.swift; sourceTree = "<group>"; };
+		1E71A72F2751FDF200F97169 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		1EF45AC6274D689D00DB6124 /* Photo Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Tinder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_TinderApp.swift; sourceTree = "<group>"; };
 		1EF45ACB274D689D00DB6124 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +54,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E71A7312751FE0500F97169 /* Generic Loading */ = {
+			isa = PBXGroup;
+			children = (
+				1E71A72F2751FDF200F97169 /* AsyncContentView.swift */,
+				1E71A72B2751F08500F97169 /* ErrorAlertView.swift */,
+				1E71A7292751EA7600F97169 /* LoadingState.swift */,
+				1E71A72D2751FDD800F97169 /* LoadableObject.swift */,
+			);
+			path = "Generic Loading";
+			sourceTree = "<group>";
+		};
+		1E71A7322751FE5E00F97169 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1EF45ACD274D689E00DB6124 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		1EF45ABD274D689D00DB6124 = {
 			isa = PBXGroup;
 			children = (
@@ -65,16 +92,17 @@
 		1EF45AC8274D689D00DB6124 /* Photo Tinder */ = {
 			isa = PBXGroup;
 			children = (
-				1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */,
-				1E407826274F484000FF8E4F /* CardsViewModel.swift */,
-				1E40782D274F501A00FF8E4F /* Image+Extension.swift */,
-				1EF45ACB274D689D00DB6124 /* ContentView.swift */,
 				1EF45ADB274F38B300DB6124 /* CardsSection.swift */,
+				1E407826274F484000FF8E4F /* CardsViewModel.swift */,
 				1EF45AD7274F37F300DB6124 /* CardView.swift */,
-				1EF9D427275178C600F75C12 /* VideoLoader.swift */,
-				1E1428572750797000ED0F77 /* ImageLoader.swift */,
 				1EF45AD9274F381C00DB6124 /* Card.swift */,
-				1EF45ACD274D689E00DB6124 /* Assets.xcassets */,
+				1EF45ACB274D689D00DB6124 /* ContentView.swift */,
+				1E40782D274F501A00FF8E4F /* Image+Extension.swift */,
+				1E1428572750797000ED0F77 /* ImageLoader.swift */,
+				1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */,
+				1EF9D427275178C600F75C12 /* VideoLoader.swift */,
+				1E71A7312751FE0500F97169 /* Generic Loading */,
+				1E71A7322751FE5E00F97169 /* Resources */,
 				1EF45ACF274D689E00DB6124 /* Preview Content */,
 			);
 			path = "Photo Tinder";
@@ -160,6 +188,9 @@
 			files = (
 				1EF45ACC274D689D00DB6124 /* ContentView.swift in Sources */,
 				1E40782E274F501A00FF8E4F /* Image+Extension.swift in Sources */,
+				1E71A7302751FDF200F97169 /* AsyncContentView.swift in Sources */,
+				1E71A72E2751FDD800F97169 /* LoadableObject.swift in Sources */,
+				1E71A72A2751EA7600F97169 /* LoadingState.swift in Sources */,
 				1EF45AD8274F37F300DB6124 /* CardView.swift in Sources */,
 				1E407827274F484000FF8E4F /* CardsViewModel.swift in Sources */,
 				1EF45ACA274D689D00DB6124 /* Photo_TinderApp.swift in Sources */,
@@ -167,6 +198,7 @@
 				1EF45ADC274F38B300DB6124 /* CardsSection.swift in Sources */,
 				1E1428582750797000ED0F77 /* ImageLoader.swift in Sources */,
 				1EF45ADA274F381C00DB6124 /* Card.swift in Sources */,
+				1E71A72C2751F08500F97169 /* ErrorAlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
