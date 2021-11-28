@@ -11,9 +11,31 @@ import SwiftUI
 class CardsViewModel: LoadableObject {
     
     typealias Output = [Card]
-
     @Published private(set) var state: LoadingState<[Card]> = .idle
+    var assetsToDelete: [PHAsset] = []
+
+    private let photoLibrary: PHPhotoLibrary
+
+    init(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.shared()) {
+        self.photoLibrary = photoLibrary
+    }
+
+    func addToDeletionSelection(asset: PHAsset) {
+        self.assetsToDelete.append(asset)
+        print(assetsToDelete.count)
+    }
     
+    func deleteAssets() {
+        photoLibrary.performChanges({
+            PHAssetChangeRequest.deleteAssets(self.assetsToDelete as NSArray)
+            self.resetSelection()
+        })
+    }
+    
+    func resetSelection() {
+        assetsToDelete.removeAll()
+    }
+
     func load() {
         state = .loading
 
