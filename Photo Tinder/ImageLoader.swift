@@ -13,10 +13,10 @@ class ImageLoader: LoadableObject {
 
     typealias Output = UIImage
     @Published private(set) var state: LoadingState<UIImage> = .idle
-    private let imageManager: PHImageManager
+    private let imageManager: PHCachingImageManager
     private let asset: PHAsset
 
-    init(asset: PHAsset, imageManager: PHImageManager = PHImageManager.default()) {
+    init(asset: PHAsset, imageManager: PHCachingImageManager = PHCachingImageManager()) {
         self.imageManager = imageManager
         self.asset = asset
     }
@@ -34,7 +34,7 @@ class ImageLoader: LoadableObject {
             }
         }
         
-        PHImageManager.default().requestImage(
+        imageManager.requestImage(
             for: asset,
                targetSize: CGSize(width: 4032, height: 4032),
                contentMode: .aspectFit,
