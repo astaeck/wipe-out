@@ -12,8 +12,7 @@ class CardsViewModel: LoadableObject {
     
     typealias Output = [Card]
     @Published private(set) var state: LoadingState<[Card]> = .idle
-    var assetsToDelete: [PHAsset] = []
-
+    private var assetsToDelete: [PHAsset] = []
     private let photoLibrary: PHPhotoLibrary
 
     init(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.shared()) {
@@ -28,16 +27,22 @@ class CardsViewModel: LoadableObject {
     func deleteAssets() {
         photoLibrary.performChanges({
             PHAssetChangeRequest.deleteAssets(self.assetsToDelete as NSArray)
-            self.resetSelection()
+        }, completionHandler: {success, _ in
+            if success {
+                self.assetsToDelete.removeAll()
+            }
         })
     }
     
     func resetSelection() {
         assetsToDelete.removeAll()
+        load()
     }
 
     func load() {
-        state = .loading
+        DispatchQueue.main.async {
+            self.state = .loading
+        }
 
         getPermissionIfNecessary { granted in
           guard granted else { return }
