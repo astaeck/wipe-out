@@ -12,13 +12,11 @@ struct FooterSection: View {
 
     var body: some View {
         HStack() {
-            Button(action: viewModel.deleteAssets) {
-                Text("Delete")
-            }
+            Button("Delete", action: viewModel.deleteAssets)
+                .buttonStyle(CustomButtonStyle())
             Spacer()
-            Button(action: viewModel.resetSelection) {
-                Text("Reset")
-            }
+            Button("Reset", action: viewModel.resetSelection)
+              .buttonStyle(CustomButtonStyle())
         }.padding([.horizontal, .bottom])
     }
 }
