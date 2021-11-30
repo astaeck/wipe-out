@@ -35,6 +35,7 @@ class CardsViewModel: LoadableObject {
     }
     
     func resetSelection() {
+        guard assetsToDelete.count != 0 else { return }
         assetsToDelete.removeAll()
         load()
     }
@@ -53,12 +54,13 @@ class CardsViewModel: LoadableObject {
                     ascending: false)
             ]
             allPhotosOptions.fetchLimit = 100
-            let allAssets = PHAsset.fetchAssets(with: allPhotosOptions)
-            var cards = [Card]()
+            let fetchedAssets = PHAsset.fetchAssets(with: allPhotosOptions)
+            var allAssets: [PHAsset] = []
+            fetchedAssets.enumerateObjects { (object, _, _) -> Void in
+                allAssets.append(object)
+            }
             DispatchQueue.main.async {
-                allAssets.enumerateObjects { (object, index, _) -> Void in
-                    cards.append(Card(index: index, asset: object))
-                }
+                let cards = allAssets.map { Card(asset: $0) }
                 self.state = .loaded(cards)
             }
         }
