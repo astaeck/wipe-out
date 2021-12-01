@@ -12,7 +12,7 @@ class CardsViewModel: LoadableObject {
     
     typealias Output = [Card]
     @Published private(set) var state: LoadingState<[Card]> = .idle
-    private var assetsToDelete: [PHAsset] = []
+    @Published private(set) var assetsToDelete: [PHAsset] = []
     private let photoLibrary: PHPhotoLibrary
 
     init(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.shared()) {
@@ -21,7 +21,6 @@ class CardsViewModel: LoadableObject {
 
     func addToDeletionSelection(asset: PHAsset) {
         self.assetsToDelete.append(asset)
-        print(assetsToDelete.count)
     }
     
     func deleteAssets() {

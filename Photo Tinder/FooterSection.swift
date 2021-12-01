@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FooterSection: View {
-    @StateObject var viewModel: CardsViewModel
+    @ObservedObject var viewModel: CardsViewModel
 
     var body: some View {
         HStack() {

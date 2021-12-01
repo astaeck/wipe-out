@@ -14,7 +14,7 @@ struct CardView: View {
     @State var card: Card
     @ObservedObject var imageLoader: ImageLoader
     @ObservedObject var videoLoader: VideoLoader
-    @ObservedObject var viewModel: CardsViewModel
+    var viewModel: CardsViewModel
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -63,7 +63,6 @@ struct CardView: View {
                 .onChanged { value in
                     withAnimation(.default) {
                         card.x = value.translation.width
-                        // MARK: - BUG 5
                         card.y = value.translation.height
                         card.degree = 7 * (value.translation.width > 0 ? 1 : -1)
                     }
@@ -78,11 +77,13 @@ struct CardView: View {
                         case (-100)...(-1):
                             card.x = 0; card.degree = 0; card.y = 0
                         case let x where x < -100:
-                            self.viewModel.addToDeletionSelection(asset: card.asset)
                             card.x  = -500; card.degree = -12
                         default:
                             card.x = 0; card.y = 0
                         }
+                    }
+                    if card.x < 0 {
+                        viewModel.addToDeletionSelection(asset: card.asset)
                     }
                 }
         )
