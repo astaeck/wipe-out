@@ -9,8 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
+        NavigationView {
             CardsSection(viewModel: CardsViewModel())
+                .navigationTitle("Welcome")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    NavigationLink("Show selected", destination: EmptyView())
+                }
         }
     }
 }

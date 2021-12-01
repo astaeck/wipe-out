@@ -23,6 +23,7 @@ struct CardsSection: View {
                 }
             }
             .padding()
+            .zIndex(1.0)
             FooterSection(viewModel: viewModel)
         }
     }
