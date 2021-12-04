@@ -8,10 +8,18 @@
 import UIKit
 import Photos
 
-struct Card: Identifiable, Hashable {
+class Card: ObservableObject, Identifiable {
+    
     let id = UUID()
     let asset: PHAsset
-    var x: CGFloat = 0.0
-    var y: CGFloat = 0.0
-    var degree: Double = 0.0
+    @Published var x: CGFloat
+    @Published var y: CGFloat
+    @Published var degree: Double
+    
+    init(asset: PHAsset, x: CGFloat = 0.0, y: CGFloat = 0.0, degree: CGFloat = 0.0) {
+        self.asset = asset
+        self.x = x
+        self.y = y
+        self.degree = degree
+    }
 }

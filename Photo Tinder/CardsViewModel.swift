@@ -28,7 +28,7 @@ class CardsViewModel: LoadableObject {
     
     func resetSelectedCard(withID id: UUID) {
         guard let index = cardsToDelete.firstIndex(where: { $0.id == id }) else { return }
-        var card = cardsToDelete[index]
+        let card = cardsToDelete[index]
         cardsToDelete.remove(at: index)
         card.x = 0
         card.y = 0
@@ -51,7 +51,7 @@ class CardsViewModel: LoadableObject {
     func resetLast() {
         guard
             cardsToDelete.count != 0,
-            var card = cardsToDelete.last
+            let card = cardsToDelete.last
         else { return }
         cardsToDelete.removeLast()
         card.x = 0

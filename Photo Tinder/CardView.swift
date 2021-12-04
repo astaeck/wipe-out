@@ -11,7 +11,7 @@ import Photos
 import AVKit
 
 struct CardView: View {
-    @State var card: Card
+    @ObservedObject var card: Card
     @ObservedObject var imageLoader: ImageLoader
     @ObservedObject var videoLoader: VideoLoader
     var viewModel: CardsViewModel

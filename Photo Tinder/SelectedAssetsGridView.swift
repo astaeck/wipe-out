@@ -19,7 +19,7 @@ struct SelectedAssetsGridView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: layout, spacing: 10) {
-                ForEach(viewModel.cardsToDelete, id: \.self) { card in
+                ForEach(viewModel.cardsToDelete) { card in
                     AsyncContentView(source: ImageLoader(asset: card.asset)) { image in
                         Image(uiImage: image)
                             .resizable()
