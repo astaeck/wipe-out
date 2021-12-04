@@ -15,7 +15,7 @@ struct FooterSection: View {
             Button("Delete", action: viewModel.deleteAssets)
                 .buttonStyle(CustomButtonStyle())
             Spacer()
-            Button("Reset", action: viewModel.resetSelection)
+            Button("Reset", action: viewModel.resetLast)
               .buttonStyle(CustomButtonStyle())
         }.padding([.horizontal, .bottom])
     }

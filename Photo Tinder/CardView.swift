@@ -83,7 +83,7 @@ struct CardView: View {
                         }
                     }
                     if card.x < 0 {
-                        viewModel.addToDeletionSelection(asset: card.asset)
+                        viewModel.selectCardForDeletion(withID: card.id)
                     }
                 }
         )

@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-struct Card: Identifiable {
+struct Card: Identifiable, Hashable {
     let id = UUID()
     let asset: PHAsset
     var x: CGFloat = 0.0

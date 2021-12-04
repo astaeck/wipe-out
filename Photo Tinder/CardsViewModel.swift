@@ -12,31 +12,52 @@ class CardsViewModel: LoadableObject {
     
     typealias Output = [Card]
     @Published private(set) var state: LoadingState<[Card]> = .idle
-    @Published private(set) var assetsToDelete: [PHAsset] = []
+    private(set) var cardsToDelete: [Card] = []
+    private var cards: [Card] = []
     private let photoLibrary: PHPhotoLibrary
 
     init(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.shared()) {
         self.photoLibrary = photoLibrary
     }
 
-    func addToDeletionSelection(asset: PHAsset) {
-        self.assetsToDelete.append(asset)
+    func selectCardForDeletion(withID id: UUID) {
+        guard let index = cards.firstIndex(where: { $0.id == id }) else { return }
+        cardsToDelete.append(cards[index])
+        cards.remove(at: index)
+    }
+    
+    func resetSelectedCard(withID id: UUID) {
+        guard let index = cardsToDelete.firstIndex(where: { $0.id == id }) else { return }
+        var card = cardsToDelete[index]
+        cardsToDelete.remove(at: index)
+        card.x = 0
+        card.y = 0
+        card.degree = 0
+        cards.append(card)
     }
     
     func deleteAssets() {
+        guard cardsToDelete.count != 0 else { return }
+        let assetsToDelete = cardsToDelete.map { $0.asset }
         photoLibrary.performChanges({
-            PHAssetChangeRequest.deleteAssets(self.assetsToDelete as NSArray)
+            PHAssetChangeRequest.deleteAssets(assetsToDelete as NSArray)
         }, completionHandler: {success, _ in
             if success {
-                self.assetsToDelete.removeAll()
+                self.cardsToDelete.removeAll()
             }
         })
     }
     
-    func resetSelection() {
-        guard assetsToDelete.count != 0 else { return }
-        assetsToDelete.removeAll()
-        load()
+    func resetLast() {
+        guard
+            cardsToDelete.count != 0,
+            var card = cardsToDelete.last
+        else { return }
+        cardsToDelete.removeLast()
+        card.x = 0
+        card.y = 0
+        card.degree = 0
+        cards.append(card)
     }
 
     func load() {
@@ -59,8 +80,8 @@ class CardsViewModel: LoadableObject {
                 allAssets.append(object)
             }
             DispatchQueue.main.async {
-                let cards = allAssets.map { Card(asset: $0) }
-                self.state = .loaded(cards)
+                self.cards = allAssets.map { Card(asset: $0) }
+                self.state = .loaded(self.cards)
             }
         }
     }

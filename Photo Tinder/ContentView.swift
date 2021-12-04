@@ -22,7 +22,7 @@ struct ContentView: View {
             .navigationTitle("All Photos")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                NavigationLink("Show selected", destination: SelectedCardsView(assets: viewModel.assetsToDelete))
+                NavigationLink("Show selected", destination: SelectedAssetsGridView(viewModel: viewModel))
             }
         }
     }
