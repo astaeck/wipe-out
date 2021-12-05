@@ -23,7 +23,16 @@ class CardsViewModel: LoadableObject {
     func selectCardForDeletion(withID id: UUID) {
         guard let index = cards.firstIndex(where: { $0.id == id }) else { return }
         cardsToDelete.append(cards[index])
-        cards.remove(at: index)
+    }
+    
+    func resetAll() {
+        cardsToDelete.forEach { resetSelectedCard(withID: $0.id) }
+        cardsToDelete.removeAll()
+    }
+    
+    func resetLast() {
+        guard let card = cardsToDelete.last else { return }
+        resetSelectedCard(withID: card.id)
     }
     
     func resetSelectedCard(withID id: UUID) {
@@ -33,7 +42,6 @@ class CardsViewModel: LoadableObject {
         card.x = 0
         card.y = 0
         card.degree = 0
-        cards.append(card)
     }
     
     func deleteAssets() {
@@ -46,18 +54,6 @@ class CardsViewModel: LoadableObject {
                 self.cardsToDelete.removeAll()
             }
         })
-    }
-    
-    func resetLast() {
-        guard
-            cardsToDelete.count != 0,
-            let card = cardsToDelete.last
-        else { return }
-        cardsToDelete.removeLast()
-        card.x = 0
-        card.y = 0
-        card.degree = 0
-        cards.append(card)
     }
 
     func load() {
