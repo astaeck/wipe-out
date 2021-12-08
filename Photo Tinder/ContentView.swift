@@ -20,7 +20,6 @@ struct ContentView: View {
                 FooterSection(viewModel: viewModel)
             }
             .navigationTitle("All Photos")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 NavigationLink("Show selected", destination: SelectedAssetsGridView(viewModel: viewModel))
             }
