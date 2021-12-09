@@ -12,8 +12,7 @@ class CardsViewModel: LoadableObject {
     
     typealias Output = [Card]
     @Published private(set) var state: LoadingState<[Card]> = .idle
-    private(set) var cardsToDelete: [Card] = []
-    private var cards: [Card] = []
+    var cards: [Card] = []
     private let photoLibrary: PHPhotoLibrary
 
     init(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.shared()) {
@@ -22,36 +21,37 @@ class CardsViewModel: LoadableObject {
 
     func selectCardForDeletion(withID id: UUID) {
         guard let index = cards.firstIndex(where: { $0.id == id }) else { return }
-        cardsToDelete.append(cards[index])
+        let card = cards[index]
+        card.isSelected = true
     }
     
     func resetAll() {
-        cardsToDelete.forEach { resetSelectedCard(withID: $0.id) }
-        cardsToDelete.removeAll()
+        cards.forEach { $0.isSelected = false }
     }
     
     func resetLast() {
-        guard let card = cardsToDelete.last else { return }
+        guard let card = cards.reversed().last else { return }
         resetSelectedCard(withID: card.id)
     }
     
     func resetSelectedCard(withID id: UUID) {
-        guard let index = cardsToDelete.firstIndex(where: { $0.id == id }) else { return }
-        let card = cardsToDelete[index]
-        cardsToDelete.remove(at: index)
+        guard let index = cards.firstIndex(where: { $0.id == id }) else { return }
+        let card = cards[index]
         card.x = 0
         card.y = 0
         card.degree = 0
+        card.isSelected.toggle()
     }
     
     func deleteAssets() {
+        let cardsToDelete = cards.filter { $0.isSelected }
         guard cardsToDelete.count != 0 else { return }
         let assetsToDelete = cardsToDelete.map { $0.asset }
         photoLibrary.performChanges({
             PHAssetChangeRequest.deleteAssets(assetsToDelete as NSArray)
         }, completionHandler: {success, _ in
             if success {
-                self.cardsToDelete.removeAll()
+                self.cards = self.cards.filter { $0.isSelected }
             }
         })
     }

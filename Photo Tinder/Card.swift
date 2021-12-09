@@ -15,11 +15,17 @@ class Card: ObservableObject, Identifiable {
     @Published var x: CGFloat
     @Published var y: CGFloat
     @Published var degree: Double
+    @Published var isSelected: Bool
     
-    init(asset: PHAsset, x: CGFloat = 0.0, y: CGFloat = 0.0, degree: CGFloat = 0.0) {
+    init(asset: PHAsset,
+         x: CGFloat = 0.0,
+         y: CGFloat = 0.0,
+         degree: CGFloat = 0.0,
+         isSelected: Bool = false) {
         self.asset = asset
         self.x = x
         self.y = y
         self.degree = degree
+        self.isSelected = isSelected
     }
 }
