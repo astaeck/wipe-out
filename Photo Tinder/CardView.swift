@@ -14,8 +14,8 @@ struct CardView: View {
     @ObservedObject var card: Card
     @ObservedObject var imageLoader: ImageLoader
     @ObservedObject var videoLoader: VideoLoader
-    var viewModel: CardsViewModel
-    
+    @EnvironmentObject var viewModel: CardsViewModel
+
     var body: some View {
         ZStack(alignment: .center) {
             if card.asset.mediaType == .video {

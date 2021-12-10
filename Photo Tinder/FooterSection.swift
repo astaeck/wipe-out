@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FooterSection: View {
-    @ObservedObject var viewModel: CardsViewModel
+    @EnvironmentObject var viewModel: CardsViewModel
 
     var body: some View {
         HStack() {
@@ -23,6 +23,8 @@ struct FooterSection: View {
 
 struct FooterSection_Previews: PreviewProvider {
     static var previews: some View {
-        FooterSection(viewModel: CardsViewModel())
+        FooterSection()
+            .environmentObject(CardsViewModel())
+
     }
 }

@@ -26,11 +26,11 @@ class CardsViewModel: LoadableObject {
     }
     
     func resetAll() {
-        cards.forEach { $0.isSelected = false }
+        cards.forEach { resetSelectedCard(withID: $0.id) }
     }
     
     func resetLast() {
-        guard let card = cards.reversed().last else { return }
+        guard let card = cards.reversed().first(where: { $0.x < 0 }) else { return }
         resetSelectedCard(withID: card.id)
     }
     

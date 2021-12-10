@@ -9,7 +9,7 @@ import SwiftUI
 import Photos
 
 struct SelectedAssetsGridView: View {
-    @ObservedObject var viewModel: CardsViewModel
+    @EnvironmentObject var viewModel: CardsViewModel
 
     // MARK: - Drawing Constant
     let cardGradient = Gradient(colors: [Color.black.opacity(0.0), Color.black.opacity(0.5)])

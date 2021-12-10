@@ -9,26 +9,27 @@ import SwiftUI
 import Photos
 
 struct ContentView: View {
-    @ObservedObject var viewModel = CardsViewModel()
 
     var body: some View {
         NavigationView {
             VStack {
-                CardsSection(viewModel: viewModel)
+                CardsSection()
                 .padding()
                 .zIndex(1.0)
-                FooterSection(viewModel: viewModel)
+                FooterSection()
             }
             .navigationTitle("All Photos")
             .toolbar {
-                NavigationLink("Show selected", destination: SelectedAssetsGridView(viewModel: viewModel))
+                NavigationLink("Show selected", destination: SelectedAssetsGridView())
             }
         }
+        .environmentObject(CardsViewModel())
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(CardsViewModel())
     }
 }
