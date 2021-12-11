@@ -70,7 +70,7 @@ class CardsViewModel: LoadableObject {
                     key: "creationDate",
                     ascending: false)
             ]
-            allPhotosOptions.fetchLimit = 100
+            allPhotosOptions.fetchLimit = 500
             let fetchedAssets = PHAsset.fetchAssets(with: allPhotosOptions)
             var allAssets: [PHAsset] = []
             fetchedAssets.enumerateObjects { (object, _, _) -> Void in
