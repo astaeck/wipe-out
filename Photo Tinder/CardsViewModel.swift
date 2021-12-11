@@ -12,7 +12,7 @@ class CardsViewModel: LoadableObject {
     
     typealias Output = [Card]
     @Published private(set) var state: LoadingState<[Card]> = .idle
-    var cards: [Card] = []
+    @Published var cards: [Card] = []
     private let photoLibrary: PHPhotoLibrary
 
     init(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.shared()) {
@@ -40,7 +40,8 @@ class CardsViewModel: LoadableObject {
         card.x = 0
         card.y = 0
         card.degree = 0
-        card.isSelected.toggle()
+        card.isSelected = false
+        cards[index] = card
     }
     
     func deleteAssets() {
