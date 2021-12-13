@@ -17,6 +17,7 @@ struct ContentView: View {
                 .padding([.horizontal, .bottom])
                 CardsSection()
                 .padding()
+                .zIndex(1.0)
                 FooterSection()
                 Spacer()
             }
