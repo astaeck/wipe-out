@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Photos
 
 struct CardsSection: View {
     @EnvironmentObject var viewModel: CardsViewModel

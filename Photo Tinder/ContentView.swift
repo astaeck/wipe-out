@@ -13,10 +13,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
+                SubtitleSection()
+                .padding([.horizontal, .bottom])
                 CardsSection()
                 .padding()
-                .zIndex(1.0)
                 FooterSection()
+                Spacer()
             }
             .navigationTitle("All Photos")
             .toolbar {
