@@ -78,11 +78,16 @@ class CardsViewModel: LoadableObject {
             }
             DispatchQueue.main.async {
                 self.cards = allAssets.map { Card(asset: $0) }
-                self.state = .loaded(self.cards)
+                self.state = .loaded(self.cards.reversed())
             }
         }
     }
     
+    func reverseOrder() {
+        cards = cards.reversed()
+        state = .loaded(cards)
+    }
+
     private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {
         guard PHPhotoLibrary.authorizationStatus() != .authorized else {
             completionHandler(true)

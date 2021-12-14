@@ -55,7 +55,7 @@ struct SelectedAssetsGridView: View {
             }
         }
         .padding([.horizontal, .top])
-        .navigationTitle("Selection")
+        .navigationTitle("Selected")
         .toolbar {
             Button("Deselect All", action: viewModel.resetAll)
         }

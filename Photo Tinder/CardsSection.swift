@@ -13,7 +13,7 @@ struct CardsSection: View {
     var body: some View {
         AsyncContentView(source: viewModel) { cards in
             ZStack{
-                ForEach(cards.reversed()) { card in
+                ForEach(cards) { card in
                     CardView(card: card,
                              imageLoader: ImageLoader(asset: card.asset),
                              videoLoader: VideoLoader(asset: card.asset))
