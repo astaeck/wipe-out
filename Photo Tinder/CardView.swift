@@ -11,51 +11,70 @@ import Photos
 import AVKit
 
 struct CardView: View {
+    static let dateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }()
     @ObservedObject var card: Card
     @ObservedObject var imageLoader: ImageLoader
     @ObservedObject var videoLoader: VideoLoader
     @EnvironmentObject var viewModel: CardsViewModel
+    @State var dateIsVisible: Bool = true
+    
+    init(card: Card) {
+        self.card = card
+        self.imageLoader = ImageLoader(asset: card.asset)
+        self.videoLoader = VideoLoader(asset: card.asset)
+    }
 
     var body: some View {
-        ZStack(alignment: .center) {
-            if card.asset.mediaType == .video {
-                AsyncContentView(source: videoLoader) { videoURL in
-                    VideoPlayer(player: AVPlayer(url: videoURL.url))
-                        .frame(width: 300, height: 400)
-                        .clipped()
-                        .cornerRadius(8)
-                        .padding()
-                        .foregroundColor(.white)
+        VStack {
+            if let date = card.asset.creationDate {
+                Text("\(date, formatter: Self.dateFormat)")
+                    .padding(15)
+                    .background(Color.white)
+                    .opacity(dateIsVisible ? 1.0 : 0.0)
+            }
+            ZStack(alignment: .center) {
+                if card.asset.mediaType == .video {
+                    AsyncContentView(source: videoLoader) { videoURL in
+                        VideoPlayer(player: AVPlayer(url: videoURL.url))
+                            .frame(width: 300, height: 400)
+                            .clipped()
+                            .cornerRadius(8)
+                            .padding()
+                            .foregroundColor(.white)
+                    }
+                } else {
+                    AsyncContentView(source: imageLoader) { image in
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 300, height: 400)
+                            .clipped()
+                            .cornerRadius(8)
+                            .padding()
+                            .foregroundColor(.white)
+                    }
                 }
-            } else {
-                AsyncContentView(source: imageLoader) { image in
-                    Image(uiImage: image)
+                
+                HStack {
+                    Image("yes")
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: 300, height: 400)
-                        .clipped()
-                        .cornerRadius(8)
-                        .padding()
-                        .foregroundColor(.white)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:150)
+                        .opacity(Double(card.x/10 - 1))
+                    Spacer()
+                    Image("nope")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:150)
+                        .opacity(Double(card.x/10 * -1 - 1))
                 }
+                
             }
-            
-            HStack {
-                Image("yes")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width:150)
-                    .opacity(Double(card.x/10 - 1))
-                Spacer()
-                Image("nope")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width:150)
-                    .opacity(Double(card.x/10 * -1 - 1))
-            }
-            
         }
-        
         .offset(x: card.x, y: card.y)
         .rotationEffect(.init(degrees: card.degree))
         .gesture (
@@ -65,6 +84,7 @@ struct CardView: View {
                         card.x = value.translation.width
                         card.y = value.translation.height
                         card.degree = 7 * (value.translation.width > 0 ? 1 : -1)
+                        dateIsVisible = !(card.x > 0 || card.x < 0)
                     }
                 }
                 .onEnded { (value) in
@@ -81,6 +101,7 @@ struct CardView: View {
                         default:
                             card.x = 0; card.y = 0
                         }
+                        dateIsVisible = !(card.x > 0 || card.x < 0)
                     }
                     if card.x < 0 {
                         viewModel.selectCardForDeletion(withID: card.id)
