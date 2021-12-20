@@ -30,7 +30,7 @@ class CardsViewModel: LoadableObject {
     }
     
     func resetLast() {
-        guard let card = cards.reversed().first(where: { $0.x < 0 }) else { return }
+        guard let card = cards.first(where: { $0.x < 0 }) else { return }
         resetSelectedCard(withID: card.id)
     }
     
