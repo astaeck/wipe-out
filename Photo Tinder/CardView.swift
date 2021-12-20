@@ -66,21 +66,13 @@ struct CardView: View {
                             .foregroundColor(.white)
                     }
                 }
-                
-                HStack {
-                    Image("yes")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width:150)
-                        .opacity(Double(card.x/10 - 1))
-                    Spacer()
-                    Image("nope")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width:150)
-                        .opacity(Double(card.x/10 * -1 - 1))
-                }
-                
+            }
+            ZStack {
+                Text("✅")
+                    .opacity(Double(card.x/10 - 1))
+                Spacer()
+                Text("❌")
+                    .opacity(Double(card.x/10 * -1 - 1))
             }
         }
         .offset(x: card.x, y: card.y)
