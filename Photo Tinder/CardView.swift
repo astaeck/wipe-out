@@ -19,23 +19,31 @@ struct CardView: View {
     @ObservedObject var card: Card
     @ObservedObject var imageLoader: ImageLoader
     @ObservedObject var videoLoader: VideoLoader
+    @ObservedObject var locationLoader: LocationLoader
     @EnvironmentObject var viewModel: CardsViewModel
-    @State var dateIsVisible: Bool = true
+    @State var labelIsVisible: Bool = true
     
     init(card: Card) {
         self.card = card
         self.imageLoader = ImageLoader(asset: card.asset)
         self.videoLoader = VideoLoader(asset: card.asset)
+        self.locationLoader = LocationLoader(location: card.asset.location)
     }
 
     var body: some View {
         VStack {
-            if let date = card.asset.creationDate {
-                Text("\(date, formatter: Self.dateFormat)")
-                    .padding(15)
-                    .background(Color.white)
-                    .opacity(dateIsVisible ? 1.0 : 0.0)
+            VStack {
+                AsyncContentView(source: locationLoader) { locationName in
+                    Text(locationName)
+                }
+                if let date = card.asset.creationDate {
+                    Text("\(date, formatter: Self.dateFormat)")
+                }
             }
+            .frame(width: 300, height: 50)
+            .background(Color.white)
+            .opacity(labelIsVisible ? 1.0 : 0.0)
+            
             ZStack(alignment: .center) {
                 if card.asset.mediaType == .video {
                     AsyncContentView(source: videoLoader) { videoURL in
@@ -84,7 +92,7 @@ struct CardView: View {
                         card.x = value.translation.width
                         card.y = value.translation.height
                         card.degree = 7 * (value.translation.width > 0 ? 1 : -1)
-                        dateIsVisible = !(card.x > 0 || card.x < 0)
+                        labelIsVisible = !(card.x > 0 || card.x < 0)
                     }
                 }
                 .onEnded { (value) in
@@ -101,7 +109,7 @@ struct CardView: View {
                         default:
                             card.x = 0; card.y = 0
                         }
-                        dateIsVisible = !(card.x > 0 || card.x < 0)
+                        labelIsVisible = !(card.x > 0 || card.x < 0)
                     }
                     if card.x < 0 {
                         viewModel.selectCardForDeletion(withID: card.id)
@@ -110,4 +118,3 @@ struct CardView: View {
         )
     }
 }
-

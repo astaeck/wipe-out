@@ -17,6 +17,7 @@
 		1E71A7302751FDF200F97169 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72F2751FDF200F97169 /* AsyncContentView.swift */; };
 		1EA5D5052766F132007E0FE1 /* NavigationHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5D5042766F132007E0FE1 /* NavigationHeaderSection.swift */; };
 		1EBCF8B52758081B00195BCA /* SelectedAssetsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */; };
+		1EBEF6C9277005130078C60F /* LocationLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEF6C8277005130078C60F /* LocationLoader.swift */; };
 		1EF45ACA274D689D00DB6124 /* Photo_TinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */; };
 		1EF45ACC274D689D00DB6124 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45ACB274D689D00DB6124 /* ContentView.swift */; };
 		1EF45ACE274D689E00DB6124 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF45ACD274D689E00DB6124 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		1E71A72F2751FDF200F97169 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		1EA5D5042766F132007E0FE1 /* NavigationHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderSection.swift; sourceTree = "<group>"; };
 		1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAssetsGridView.swift; sourceTree = "<group>"; };
+		1EBEF6C8277005130078C60F /* LocationLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLoader.swift; sourceTree = "<group>"; };
 		1EF45AC6274D689D00DB6124 /* Photo Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Tinder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_TinderApp.swift; sourceTree = "<group>"; };
 		1EF45ACB274D689D00DB6124 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				1EF45ACB274D689D00DB6124 /* ContentView.swift */,
 				1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */,
 				1E1428572750797000ED0F77 /* ImageLoader.swift */,
+				1EBEF6C8277005130078C60F /* LocationLoader.swift */,
 				1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */,
 				1EF9D427275178C600F75C12 /* VideoLoader.swift */,
 				1E71A7312751FE0500F97169 /* Generic Loading */,
@@ -200,6 +203,7 @@
 				1E71A7302751FDF200F97169 /* AsyncContentView.swift in Sources */,
 				1E71A72E2751FDD800F97169 /* LoadableObject.swift in Sources */,
 				1EBCF8B52758081B00195BCA /* SelectedAssetsGridView.swift in Sources */,
+				1EBEF6C9277005130078C60F /* LocationLoader.swift in Sources */,
 				1E269BC02753F24800DCD06E /* FooterSection.swift in Sources */,
 				1E71A72A2751EA7600F97169 /* LoadingState.swift in Sources */,
 				1EF45AD8274F37F300DB6124 /* CardView.swift in Sources */,

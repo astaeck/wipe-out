@@ -5,7 +5,6 @@
 //  Created by Angelina Staeck on 25.11.21.
 //
 
-import Combine
 import Photos
 import SwiftUI
 
@@ -34,8 +33,7 @@ class ImageLoader: LoadableObject {
             }
         }
         
-        imageManager.requestImage(
-            for: asset,
+        imageManager.requestImage(for: asset,
                targetSize: CGSize(width: 4032, height: 4032),
                contentMode: .aspectFit,
                options: nil,

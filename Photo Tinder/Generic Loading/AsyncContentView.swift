@@ -23,7 +23,6 @@ struct AsyncContentView<Source: LoadableObject, Content: View>: View {
             Color.clear.onAppear(perform: source.load)
         case .loading:
             ProgressView()
-                .frame(width: 300, height: 400)
         case .failed(let text):
             ErrorAlertView(retryHandler: source.load, title: text)
         case .loaded(let output):
