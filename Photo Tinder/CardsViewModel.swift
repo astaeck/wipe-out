@@ -18,11 +18,17 @@ class CardsViewModel: LoadableObject {
     init(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.shared()) {
         self.photoLibrary = photoLibrary
     }
-
-    func selectCardForDeletion(withID id: UUID) {
-        guard let index = cards.firstIndex(where: { $0.id == id }) else { return }
-        let card = cards[index]
-        card.isSelected = true
+    
+    func handleSwipe(forCard card: Card) {
+        guard let index = cards.firstIndex(where: { $0.id == card.id }) else { return }
+        
+        if card.x < 0 {
+            let card = cards[index]
+            card.isSelected = true
+        }
+        guard index < cards.count else { return }
+        let nextCard = cards[index + 1]
+        nextCard.isEnabled = true
     }
     
     func resetAll() {
@@ -80,6 +86,7 @@ class CardsViewModel: LoadableObject {
             }
             DispatchQueue.main.async {
                 self.cards = allAssets.map { Card(asset: $0) }
+                self.cards.first?.isEnabled = true
                 self.state = .loaded(self.cards.reversed())
             }
         }

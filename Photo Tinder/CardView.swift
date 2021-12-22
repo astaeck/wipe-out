@@ -57,9 +57,7 @@ struct CardView: View {
                     }
                     labelIsVisible = !(card.x > 0 || card.x < 0)
                 }
-                if card.x < 0 {
-                    viewModel.selectCardForDeletion(withID: card.id)
-                }
+                viewModel.handleSwipe(forCard: card)
             }
         
         let magnificationGesture = MagnificationGesture()
@@ -123,6 +121,6 @@ struct CardView: View {
         }
         .offset(x: card.x, y: card.y)
         .rotationEffect(.init(degrees: card.degree))
-        .gesture(swipeBeforeMagnificationGesture)
+        .gesture(card.isEnabled ? swipeBeforeMagnificationGesture : nil)
     }
 }
