@@ -22,6 +22,7 @@ struct CardView: View {
     @ObservedObject var locationLoader: LocationLoader
     @EnvironmentObject var viewModel: CardsViewModel
     @State var labelIsVisible: Bool = true
+    @State var scale: CGFloat = 1.0
     
     init(card: Card) {
         self.card = card
@@ -31,6 +32,48 @@ struct CardView: View {
     }
 
     var body: some View {
+        let swipeGesture = DragGesture()
+            .onChanged { value in
+                withAnimation(.default) {
+                    card.x = value.translation.width
+                    card.y = value.translation.height
+                    card.degree = 7 * (value.translation.width > 0 ? 1 : -1)
+                    labelIsVisible = !(card.x > 0 || card.x < 0)
+                }
+            }
+            .onEnded { (value) in
+                withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
+                    switch value.translation.width {
+                    case 0...100:
+                        card.x = 0; card.degree = 0; card.y = 0
+                    case let x where x > 100:
+                        card.x = 500; card.degree = 12
+                    case (-100)...(-1):
+                        card.x = 0; card.degree = 0; card.y = 0
+                    case let x where x < -100:
+                        card.x  = -500; card.degree = -12
+                    default:
+                        card.x = 0; card.y = 0
+                    }
+                    labelIsVisible = !(card.x > 0 || card.x < 0)
+                }
+                if card.x < 0 {
+                    viewModel.selectCardForDeletion(withID: card.id)
+                }
+            }
+        
+        let magnificationGesture = MagnificationGesture()
+            .onChanged { value in
+                self.scale = value.magnitude
+            }
+            .onEnded { val in
+                withAnimation {
+                    self.scale = 1.0
+                }
+            }
+        
+        let swipeBeforeMagnificationGesture = swipeGesture.exclusively(before: magnificationGesture)
+        
         VStack {
             VStack {
                 AsyncContentView(source: locationLoader) { locationName in
@@ -67,6 +110,9 @@ struct CardView: View {
                     }
                 }
             }
+            .scaleEffect(scale)
+            .zIndex(1.0)
+            
             ZStack {
                 Text("✅")
                     .opacity(Double(card.x/10 - 1))
@@ -77,36 +123,6 @@ struct CardView: View {
         }
         .offset(x: card.x, y: card.y)
         .rotationEffect(.init(degrees: card.degree))
-        .gesture (
-            DragGesture()
-                .onChanged { value in
-                    withAnimation(.default) {
-                        card.x = value.translation.width
-                        card.y = value.translation.height
-                        card.degree = 7 * (value.translation.width > 0 ? 1 : -1)
-                        labelIsVisible = !(card.x > 0 || card.x < 0)
-                    }
-                }
-                .onEnded { (value) in
-                    withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
-                        switch value.translation.width {
-                        case 0...100:
-                            card.x = 0; card.degree = 0; card.y = 0
-                        case let x where x > 100:
-                            card.x = 500; card.degree = 12
-                        case (-100)...(-1):
-                            card.x = 0; card.degree = 0; card.y = 0
-                        case let x where x < -100:
-                            card.x  = -500; card.degree = -12
-                        default:
-                            card.x = 0; card.y = 0
-                        }
-                        labelIsVisible = !(card.x > 0 || card.x < 0)
-                    }
-                    if card.x < 0 {
-                        viewModel.selectCardForDeletion(withID: card.id)
-                    }
-                }
-        )
+        .gesture(swipeBeforeMagnificationGesture)
     }
 }
