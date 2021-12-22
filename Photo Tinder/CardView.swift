@@ -41,7 +41,7 @@ struct CardView: View {
                 }
             }
             .frame(width: 300, height: 50)
-            .background(Color.white)
+            .background(Color(UIColor.systemBackground))
             .opacity(labelIsVisible ? 1.0 : 0.0)
             
             ZStack(alignment: .center) {

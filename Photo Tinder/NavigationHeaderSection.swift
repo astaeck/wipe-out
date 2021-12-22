@@ -13,6 +13,7 @@ struct NavigationHeaderSection: View {
     var body: some View {
         HStack {
             Text("\(viewModel.cards.count)").font(.headline)
+                .padding(.top)
             Spacer()
         }
         .toolbar {

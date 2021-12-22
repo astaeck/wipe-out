@@ -14,7 +14,7 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 NavigationHeaderSection()
-                .padding([.horizontal, .bottom])
+                .padding(.horizontal)
                 CardsSection()
                 .padding()
                 .zIndex(1.0)

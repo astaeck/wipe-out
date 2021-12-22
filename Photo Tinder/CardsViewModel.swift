@@ -30,7 +30,7 @@ class CardsViewModel: LoadableObject {
     }
     
     func resetLast() {
-        guard let card = cards.first(where: { $0.x < 0 }) else { return }
+        guard let card = cards.reversed().first(where: { $0.x != 0 }) else { return }
         resetSelectedCard(withID: card.id)
     }
     
@@ -70,11 +70,13 @@ class CardsViewModel: LoadableObject {
                     key: "creationDate",
                     ascending: false)
             ]
-            allPhotosOptions.fetchLimit = 500
+
+            //TODO: Remove fetch limit when paginated image download implemented
+            allPhotosOptions.fetchLimit = 50
             let fetchedAssets = PHAsset.fetchAssets(with: allPhotosOptions)
             var allAssets: [PHAsset] = []
-            fetchedAssets.enumerateObjects { (object, _, _) -> Void in
-                allAssets.append(object)
+            fetchedAssets.enumerateObjects { (asset, _, _) -> Void in
+                allAssets.append(asset)
             }
             DispatchQueue.main.async {
                 self.cards = allAssets.map { Card(asset: $0) }
