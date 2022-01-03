@@ -90,6 +90,7 @@ struct CardView: View {
                     AsyncContentView(source: videoLoader) { videoURL in
                         VideoPlayer(player: AVPlayer(url: videoURL.url))
                             .frame(width: 300, height: 400)
+                            .background(.white)
                             .clipped()
                             .cornerRadius(8)
                             .padding()
@@ -99,8 +100,9 @@ struct CardView: View {
                     AsyncContentView(source: imageLoader) { image in
                         Image(uiImage: image)
                             .resizable()
-                            .scaledToFill()
+                            .scaledToFit()
                             .frame(width: 300, height: 400)
+                            .background(.white)
                             .clipped()
                             .cornerRadius(8)
                             .padding()
