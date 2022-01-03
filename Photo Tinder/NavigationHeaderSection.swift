@@ -12,7 +12,7 @@ struct NavigationHeaderSection: View {
 
     var body: some View {
         HStack {
-            Text("\(viewModel.cards.count)").font(.headline)
+            Text("\(viewModel.numberOfAssets)").font(.headline)
                 .padding(.top)
             Spacer()
         }

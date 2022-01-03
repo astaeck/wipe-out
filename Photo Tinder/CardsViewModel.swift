@@ -7,6 +7,7 @@
 
 import Photos
 import SwiftUI
+import AVKit
 
 class CardsViewModel: LoadableObject {
     
@@ -14,20 +15,32 @@ class CardsViewModel: LoadableObject {
     @Published private(set) var state: LoadingState<[Card]> = .idle
     @Published var cards: [Card] = []
     private let photoLibrary: PHPhotoLibrary
+    private var allAssets: [PHAsset] = []
+    private var paginationIndex = 0
+    
+    var numberOfAssets: Int {
+        allAssets.count
+    }
 
     init(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.shared()) {
         self.photoLibrary = photoLibrary
     }
     
     func handleSwipe(forCard card: Card) {
-        guard let index = cards.firstIndex(where: { $0.id == card.id }) else { return }
+        guard var index = cards.firstIndex(where: { $0.id == card.id }) else { return }
         
         if card.x < 0 {
             let card = cards[index]
             card.isSelected = true
         }
-        guard index < cards.count else { return }
-        let nextCard = cards[index + 1]
+        index += 1
+        
+        guard index < cards.count else {
+            createCards()
+            return
+        }
+        
+        let nextCard = cards[index]
         nextCard.isEnabled = true
     }
     
@@ -71,23 +84,14 @@ class CardsViewModel: LoadableObject {
         getPermissionIfNecessary { granted in
           guard granted else { return }
             let allPhotosOptions = PHFetchOptions()
-            allPhotosOptions.sortDescriptors = [
-                NSSortDescriptor(
-                    key: "creationDate",
-                    ascending: false)
-            ]
+            allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
 
-            //TODO: Remove fetch limit when paginated image download implemented
-            allPhotosOptions.fetchLimit = 50
             let fetchedAssets = PHAsset.fetchAssets(with: allPhotosOptions)
-            var allAssets: [PHAsset] = []
             fetchedAssets.enumerateObjects { (asset, _, _) -> Void in
-                allAssets.append(asset)
+                self.allAssets.append(asset)
             }
             DispatchQueue.main.async {
-                self.cards = allAssets.map { Card(asset: $0) }
-                self.cards.first?.isEnabled = true
-                self.state = .loaded(self.cards.reversed())
+                self.createCards()
             }
         }
     }
@@ -95,6 +99,18 @@ class CardsViewModel: LoadableObject {
     func reverseOrder() {
         cards = cards.reversed()
         state = .loaded(cards)
+    }
+    
+    private func createCards() {
+        let newCards = (paginationIndex..<paginationIndex + 25).map { Card(asset: self.allAssets[$0]) }
+        cards.append(contentsOf: newCards)
+        if paginationIndex < 1 {
+            cards.first?.isEnabled = true
+        } else {
+            cards[paginationIndex].isEnabled = true
+        }
+        state = .loaded(cards.reversed())
+        paginationIndex += 25
     }
 
     private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {
