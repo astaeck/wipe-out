@@ -73,40 +73,37 @@ struct CardView: View {
         let swipeBeforeMagnificationGesture = swipeGesture.exclusively(before: magnificationGesture)
         
         VStack {
-            VStack {
-                AsyncContentView(source: locationLoader) { locationName in
-                    Text(locationName)
-                }
-                if let date = card.asset.creationDate {
-                    Text("\(date, formatter: Self.dateFormat)")
-                }
-            }
-            .frame(width: 300, height: 50)
-            .background(Color(UIColor.systemBackground))
-            .opacity(labelIsVisible ? 1.0 : 0.0)
-            
-            ZStack(alignment: .center) {
-                if card.asset.mediaType == .video {
-                    AsyncContentView(source: videoLoader) { videoURL in
-                        VideoPlayer(player: AVPlayer(url: videoURL.url))
-                            .frame(width: 300, height: 400)
-                            .background(.white)
-                            .clipped()
-                            .cornerRadius(8)
-                            .padding()
-                            .foregroundColor(.white)
-                    }
-                } else {
-                    AsyncContentView(source: imageLoader) { image in
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 300, height: 400)
-                            .background(.white)
-                            .clipped()
-                            .cornerRadius(8)
-                            .padding()
-                            .foregroundColor(.white)
+            GeometryReader { geometry in
+                ZStack(alignment: .center) {
+                    Spacer()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .background(Color(UIColor.systemBackground))
+                        .opacity(labelIsVisible ? 1.0 : 0.0)
+
+                    VStack {
+                        AsyncContentView(source: locationLoader) { locationName in
+                            Text(locationName)
+                        }
+                        if let date = card.asset.creationDate {
+                            Text("\(date, formatter: Self.dateFormat)")
+                        }
+                        ZStack {
+                            AsyncContentView(source: imageLoader) { image in
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipped()
+                                    .cornerRadius(8)
+                                    .foregroundColor(.white)
+                                if card.asset.mediaType == .video {
+                                    Button {
+                                        viewModel.openVideoPlayer()
+                                    } label: {
+                                        Text("▶️")
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

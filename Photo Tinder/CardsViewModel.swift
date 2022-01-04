@@ -101,6 +101,10 @@ class CardsViewModel: LoadableObject {
         state = .loaded(cards)
     }
     
+    func openVideoPlayer() {
+        
+    }
+    
     private func createCards() {
         let newCards = (paginationIndex..<paginationIndex + 25).map { Card(asset: self.allAssets[$0]) }
         cards.append(contentsOf: newCards)
