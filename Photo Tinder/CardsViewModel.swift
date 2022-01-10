@@ -71,7 +71,9 @@ class CardsViewModel: LoadableObject {
             PHAssetChangeRequest.deleteAssets(assetsToDelete as NSArray)
         }, completionHandler: {success, _ in
             if success {
-                self.cards = self.cards.filter { $0.isSelected }
+                DispatchQueue.main.async {
+                    self.cards = self.cards.filter { $0.isSelected == false }
+                }
             }
         })
     }
@@ -99,10 +101,6 @@ class CardsViewModel: LoadableObject {
     func reverseOrder() {
         cards = cards.reversed()
         state = .loaded(cards)
-    }
-    
-    func openVideoPlayer() {
-        
     }
     
     private func createCards() {
