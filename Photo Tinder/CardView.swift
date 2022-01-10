@@ -38,7 +38,7 @@ struct CardView: View {
                     card.x = value.translation.width
                     card.y = value.translation.height
                     card.degree = 7 * (value.translation.width > 0 ? 1 : -1)
-                    labelIsVisible = !(card.x > 0 || card.x < 0)
+                    labelIsVisible = card.x == 0
                 }
             }
             .onEnded { (value) in
@@ -55,7 +55,7 @@ struct CardView: View {
                     default:
                         card.x = 0; card.y = 0
                     }
-                    labelIsVisible = !(card.x > 0 || card.x < 0)
+                    labelIsVisible = true
                 }
                 viewModel.handleSwipe(forCard: card)
             }
@@ -79,15 +79,27 @@ struct CardView: View {
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .background(Color(UIColor.systemBackground))
                         .opacity(labelIsVisible ? 1.0 : 0.0)
-
+                    
                     VStack {
-                        AsyncContentView(source: locationLoader) { locationName in
-                            Text(locationName)
+                        VStack {
+                            AsyncContentView(source: locationLoader) { locationName in
+                                Text(locationName)
+                            }
+                            if let date = card.asset.creationDate {
+                                Text("\(date, formatter: Self.dateFormat)")
+                            }
                         }
-                        if let date = card.asset.creationDate {
-                            Text("\(date, formatter: Self.dateFormat)")
-                        }
+                        .opacity(labelIsVisible ? 1.0 : 0.0)
+                        
                         ZStack {
+                            if card.asset.mediaType == .video {
+                                AsyncContentView(source: videoLoader) { videoURL in
+                                    VideoPlayer(player: AVPlayer(url: videoURL.url))
+                                        .clipped()
+                                        .cornerRadius(8)
+                                        .foregroundColor(.white)
+                                }
+                            }
                             AsyncContentView(source: imageLoader) { image in
                                 Image(uiImage: image)
                                     .resizable()
@@ -95,13 +107,7 @@ struct CardView: View {
                                     .clipped()
                                     .cornerRadius(8)
                                     .foregroundColor(.white)
-                                if card.asset.mediaType == .video {
-                                    Button {
-                                        viewModel.openVideoPlayer()
-                                    } label: {
-                                        Text("▶️")
-                                    }
-                                }
+                                    .opacity(labelIsVisible && card.asset.mediaType == .video ? 0.0 : 1.0)
                             }
                         }
                     }
