@@ -13,7 +13,7 @@ class CardsViewModel: LoadableObject {
     
     typealias Output = [Card]
     @Published private(set) var state: LoadingState<[Card]> = .idle
-    @Published var cards: [Card] = []
+    private(set) var cards: [Card] = []
     private let photoLibrary: PHPhotoLibrary
     private var allAssets: [PHAsset] = []
     private var paginationIndex = 0
@@ -40,8 +40,10 @@ class CardsViewModel: LoadableObject {
             return
         }
         
-        let nextCard = cards[index]
-        nextCard.isEnabled = true
+        if card.x < 0 || card.x > 0 {
+            let nextCard = cards[index]
+            nextCard.isEnabled = true
+        }
     }
     
     func resetAll() {
