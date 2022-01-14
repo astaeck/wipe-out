@@ -27,28 +27,34 @@ class LocationLoader: LoadableObject {
     func load() {
         state = .loading
         
-        getLocationName(location: location) { name in
+        getLocationName(location: location)
+    }
+    
+    private func getLocationName(location: CLLocation?) {
+        guard let location = location else { return print("YO") }
+
+        reverseGeocodeLocation(location: location) { name in
             DispatchQueue.main.async {
                 self.state = .loaded(name)
             }
         }
     }
     
-    private func getLocationName(location: CLLocation?, completion: @escaping (String) -> Void) {
-        guard let location = location else { return completion("YO") }
+    private func reverseGeocodeLocation(location: CLLocation, completion: @escaping (String) -> Void) {
         let locationKey = "\(location.coordinate.latitude)\(location.coordinate.longitude)"
         if let cachedLocation = userDefaults.value(forKey: locationKey) as? String {
             print("cached location")
             return completion(cachedLocation)
         }
         print("reverse geocoding")
-        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, _ in
-            guard let placemark = placemarks?.first?.locality else {
-                self?.getLocationName(location: location, completion: completion)
-                return
+        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
+            if let placemark = placemarks?.first?.locality, error == nil {
+                self?.userDefaults.set(placemark, forKey: locationKey)
+                return completion(placemark)
             }
-            self?.userDefaults.set(placemark, forKey: locationKey)
-            completion(placemark)
+            completion(" ")
+            // TODO: add recursive or async queue fetching when failes
+            // self?.getLocationName(location: location)
         }
     }
 }
