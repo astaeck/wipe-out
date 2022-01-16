@@ -17,6 +17,7 @@ class CardsViewModel: LoadableObject {
     private let photoLibrary: PHPhotoLibrary
     private var allAssets: [PHAsset] = []
     private var paginationIndex = 0
+    private var canResetLastCard = true
     
     var numberOfAssets: Int {
         allAssets.count
@@ -44,6 +45,7 @@ class CardsViewModel: LoadableObject {
             let nextCard = cards[index]
             nextCard.isEnabled = true
         }
+        canResetLastCard = true
     }
     
     func resetAll() {
@@ -51,7 +53,8 @@ class CardsViewModel: LoadableObject {
     }
     
     func resetLast() {
-        guard let card = cards.reversed().first(where: { $0.x != 0 }) else { return }
+        guard canResetLastCard,
+              let card = cards.reversed().first(where: { $0.x != 0 }) else { return }
         resetSelectedCard(withID: card.id)
     }
     
@@ -63,6 +66,7 @@ class CardsViewModel: LoadableObject {
         card.degree = 0
         card.isSelected = false
         cards[index] = card
+        canResetLastCard = false
     }
     
     func deleteAssets() {
