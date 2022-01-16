@@ -20,13 +20,6 @@ struct NavigationHeaderSection: View {
             ToolbarItem(placement: .primaryAction) {
                 NavigationLink("🗑", destination: SelectedAssetsGridView())
             }
-            ToolbarItem {
-                Button(action: {
-                    viewModel.reverseOrder()
-                }, label: {
-                    Text("🔄")
-                })
-            }
         }
         .navigationTitle("All Photos")
     }

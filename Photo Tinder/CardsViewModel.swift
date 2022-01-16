@@ -36,7 +36,7 @@ class CardsViewModel: LoadableObject {
         index += 1
         
         guard index < cards.count else {
-            createCards()
+            loadMoreCards()
             return
         }
         
@@ -100,9 +100,12 @@ class CardsViewModel: LoadableObject {
         }
     }
     
-    func reverseOrder() {
-        cards = cards.reversed()
-        state = .loaded(cards)
+    private func loadMoreCards() {
+        let newCards = (paginationIndex..<paginationIndex + 25).map { Card(asset: self.allAssets[$0]) }
+        newCards.first?.isEnabled = true
+        cards.append(contentsOf: newCards)
+        state = .loaded(newCards.reversed())
+        paginationIndex += 25
     }
     
     private func createCards() {

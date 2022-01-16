@@ -25,7 +25,7 @@ class ImageLoader: LoadableObject {
 
         let resultHandler: (UIImage?, [AnyHashable: Any]?) -> Void = { image, info in
             guard let image = image else {
-                self.state = .failed("Image download failed")
+                //self.state = .failed("Image download failed")
                 return
             }
             DispatchQueue.main.async {

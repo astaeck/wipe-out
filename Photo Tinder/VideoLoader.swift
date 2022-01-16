@@ -24,7 +24,7 @@ class VideoLoader: LoadableObject {
     func load() {
         state = .loading
 
-        let resultHandler: (AVAsset?, AVAudioMix?, [AnyHashable : Any]?) -> Void = { video, audioMix, info in
+        let resultHandler: (AVAsset?, AVAudioMix?, [AnyHashable : Any]?) -> Void = { video, _ , _ in
             guard let video = video as? AVURLAsset else { return }
             DispatchQueue.main.async {
                 self.state = .loaded(video)
