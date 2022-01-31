@@ -16,7 +16,7 @@ class CardsViewModel: LoadableObject {
     private(set) var cards: [Card] = []
     private let photoLibrary: PHPhotoLibrary
     private var allAssets: [PHAsset] = []
-    private var paginationIndex = 0
+    private let paginationIndex = 25
     private var canResetLastCard = true
     
     var numberOfAssets: Int {
@@ -105,23 +105,26 @@ class CardsViewModel: LoadableObject {
     }
     
     private func loadMoreCards() {
-        let newCards = (paginationIndex..<paginationIndex + 25).map { Card(asset: self.allAssets[$0]) }
+        let newCards = (cards.count..<cards.count + paginationIndex).map { Card(asset: self.allAssets[$0]) }
         newCards.first?.isEnabled = true
         cards.append(contentsOf: newCards)
         state = .loaded(newCards.reversed())
-        paginationIndex += 25
     }
     
     private func createCards() {
-        let newCards = (paginationIndex..<paginationIndex + 25).map { Card(asset: self.allAssets[$0]) }
+        var newCards: [Card] = []
+        if allAssets.count < paginationIndex {
+            newCards = allAssets.map { Card(asset: $0) }
+        } else {
+            newCards = (cards.count..<cards.count + paginationIndex).map { Card(asset: self.allAssets[$0]) }
+        }
         cards.append(contentsOf: newCards)
-        if paginationIndex < 1 {
+        if cards.count <= paginationIndex {
             cards.first?.isEnabled = true
         } else {
             cards[paginationIndex].isEnabled = true
         }
         state = .loaded(cards.reversed())
-        paginationIndex += 25
     }
 
     private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {
