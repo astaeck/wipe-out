@@ -11,6 +11,7 @@
 		1E1C5FA32756BAA900790DDE /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1C5FA22756BAA900790DDE /* CustomButtonStyle.swift */; };
 		1E269BC02753F24800DCD06E /* FooterSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E269BBF2753F24800DCD06E /* FooterSection.swift */; };
 		1E407827274F484000FF8E4F /* CardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E407826274F484000FF8E4F /* CardsViewModel.swift */; };
+		1E626FD027A8370D00F3554F /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E626FCF27A8370D00F3554F /* CardStackView.swift */; };
 		1E71A72A2751EA7600F97169 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A7292751EA7600F97169 /* LoadingState.swift */; };
 		1E71A72C2751F08500F97169 /* ErrorAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72B2751F08500F97169 /* ErrorAlertView.swift */; };
 		1E71A72E2751FDD800F97169 /* LoadableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72D2751FDD800F97169 /* LoadableObject.swift */; };
@@ -33,6 +34,7 @@
 		1E1C5FA22756BAA900790DDE /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		1E269BBF2753F24800DCD06E /* FooterSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterSection.swift; sourceTree = "<group>"; };
 		1E407826274F484000FF8E4F /* CardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewModel.swift; sourceTree = "<group>"; };
+		1E626FCF27A8370D00F3554F /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
 		1E71A7292751EA7600F97169 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		1E71A72B2751F08500F97169 /* ErrorAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertView.swift; sourceTree = "<group>"; };
 		1E71A72D2751FDD800F97169 /* LoadableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableObject.swift; sourceTree = "<group>"; };
@@ -62,6 +64,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E626FCE27A836A300F3554F /* ContentLoaders */ = {
+			isa = PBXGroup;
+			children = (
+				1E1428572750797000ED0F77 /* ImageLoader.swift */,
+				1EBEF6C8277005130078C60F /* LocationLoader.swift */,
+				1EF9D427275178C600F75C12 /* VideoLoader.swift */,
+			);
+			path = ContentLoaders;
+			sourceTree = "<group>";
+		};
 		1E71A7312751FE0500F97169 /* Generic Loading */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,11 +120,10 @@
 				1E1C5FA22756BAA900790DDE /* CustomButtonStyle.swift */,
 				1EF45AD9274F381C00DB6124 /* Card.swift */,
 				1EF45ACB274D689D00DB6124 /* ContentView.swift */,
+				1E626FCF27A8370D00F3554F /* CardStackView.swift */,
 				1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */,
-				1E1428572750797000ED0F77 /* ImageLoader.swift */,
-				1EBEF6C8277005130078C60F /* LocationLoader.swift */,
 				1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */,
-				1EF9D427275178C600F75C12 /* VideoLoader.swift */,
+				1E626FCE27A836A300F3554F /* ContentLoaders */,
 				1E71A7312751FE0500F97169 /* Generic Loading */,
 				1E71A7322751FE5E00F97169 /* Resources */,
 				1EF45ACF274D689E00DB6124 /* Preview Content */,
@@ -201,6 +212,7 @@
 				1EF45ACC274D689D00DB6124 /* ContentView.swift in Sources */,
 				1EA5D5052766F132007E0FE1 /* NavigationHeaderSection.swift in Sources */,
 				1E71A7302751FDF200F97169 /* AsyncContentView.swift in Sources */,
+				1E626FD027A8370D00F3554F /* CardStackView.swift in Sources */,
 				1E71A72E2751FDD800F97169 /* LoadableObject.swift in Sources */,
 				1EBCF8B52758081B00195BCA /* SelectedAssetsGridView.swift in Sources */,
 				1EBEF6C9277005130078C60F /* LocationLoader.swift in Sources */,

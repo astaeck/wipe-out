@@ -12,14 +12,17 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                NavigationHeaderSection()
-                .padding(.horizontal)
-                CardsSection()
-                .padding()
-                .zIndex(1.0)
-                FooterSection()
-                Spacer()
+            TabView {
+               CardStackView()
+                 .tabItem {
+                    Image(systemName: "phone.fill")
+                    Text("First Tab")
+               }
+                CardStackView()
+                 .tabItem {
+                    Image(systemName: "tv.fill")
+                    Text("Second Tab")
+              }
             }
         }
         .environmentObject(CardsViewModel())
