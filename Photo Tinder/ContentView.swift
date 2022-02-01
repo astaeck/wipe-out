@@ -15,13 +15,13 @@ struct ContentView: View {
             TabView {
                CardStackView()
                  .tabItem {
-                    Image(systemName: "phone.fill")
-                    Text("First Tab")
+                    Image(systemName: "photo.fill")
+                    Text("All Photos")
                }
-                CardStackView()
+                SimilarAssetGrid()
                  .tabItem {
-                    Image(systemName: "tv.fill")
-                    Text("Second Tab")
+                    Image(systemName: "photo.fill")
+                    Text("Similar Photos")
               }
             }
             .toolbar {
