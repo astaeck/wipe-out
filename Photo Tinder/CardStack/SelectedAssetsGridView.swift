@@ -22,33 +22,8 @@ struct SelectedAssetsGridView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: layout, spacing: 5) {
-                ForEach(viewModel.cards.filter({ $0.isSelected })) { card in
-                    ZStack {
-                        AsyncContentView(source: ImageLoader(asset: card.asset)) { image in
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 150, height: 200)
-                                .clipped()
-                            
-                        }
-                        LinearGradient(gradient: cardGradient, startPoint: .top, endPoint: .bottom)
-                        VStack {
-                            Spacer()
-                            HStack {
-                                Spacer()
-                                Text("☑️")
-                                    .opacity(card.isSelected ? 1.0 : 0.0)
-                            }
-                        }
-                        .padding()
-                        .foregroundColor(.white)
-                    }
-                    .gesture (
-                        TapGesture(count: 1).onEnded {
-                            viewModel.resetSelectedCard(withID: card.id)
-                        }
-                    )
+                ForEach(viewModel.cards.filter({ $0.isSelected }).indices) { index in
+                    AsssetGridItem(index: index)
                 }
                 .cornerRadius(8)
                 .padding(10)

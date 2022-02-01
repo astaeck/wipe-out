@@ -58,15 +58,9 @@ class CardsViewModel: LoadableObject {
         resetSelectedCard(withID: card.id)
     }
     
-    func resetSelectedCard(withID id: UUID) {
-        guard let index = cards.firstIndex(where: { $0.id == id }) else { return }
-        let card = cards[index]
-        card.x = 0
-        card.y = 0
-        card.degree = 0
-        card.isSelected = false
-        cards[index] = card
-        canResetLastCard = false
+    func updateSelection(index: Int) {
+        let isSelected = !cards[index].isSelected
+        cards[index].isSelected = isSelected
     }
     
     func deleteAssets() {
@@ -102,6 +96,17 @@ class CardsViewModel: LoadableObject {
                 self.createCards()
             }
         }
+    }
+    
+    private func resetSelectedCard(withID id: UUID) {
+        guard let index = cards.firstIndex(where: { $0.id == id }) else { return }
+        let card = cards[index]
+        card.x = 0
+        card.y = 0
+        card.degree = 0
+        card.isSelected = false
+        cards[index] = card
+        canResetLastCard = false
     }
     
     private func loadMoreCards() {
