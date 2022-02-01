@@ -13,13 +13,7 @@ struct NavigationHeaderSection: View {
     var body: some View {
         HStack {
             Text("\(viewModel.numberOfAssets)").font(.headline)
-                .padding(.top)
             Spacer()
-        }
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                NavigationLink("🗑", destination: SelectedAssetsGridView())
-            }
         }
         .navigationTitle("All Photos")
     }

@@ -24,6 +24,11 @@ struct ContentView: View {
                     Text("Second Tab")
               }
             }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    NavigationLink("🗑", destination: SelectedAssetsGridView())
+                }
+            }
         }
         .environmentObject(CardsViewModel())
     }
