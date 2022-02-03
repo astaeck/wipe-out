@@ -27,6 +27,26 @@ class CardsViewModel: LoadableObject {
         self.photoLibrary = photoLibrary
     }
     
+    func load() {
+        DispatchQueue.main.async {
+            self.state = .loading
+        }
+
+        getPermissionIfNecessary { granted in
+          guard granted else { return }
+            let allPhotosOptions = PHFetchOptions()
+            allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+
+            let fetchedAssets = PHAsset.fetchAssets(with: allPhotosOptions)
+            fetchedAssets.enumerateObjects { (asset, _, _) -> Void in
+                self.allAssets.append(asset)
+            }
+            DispatchQueue.main.async {
+                self.createCards()
+            }
+        }
+    }
+
     func handleSwipe(forCard card: Card) {
         guard var index = cards.firstIndex(where: { $0.id == card.id }) else { return }
         
@@ -76,26 +96,6 @@ class CardsViewModel: LoadableObject {
                 }
             }
         })
-    }
-
-    func load() {
-        DispatchQueue.main.async {
-            self.state = .loading
-        }
-
-        getPermissionIfNecessary { granted in
-          guard granted else { return }
-            let allPhotosOptions = PHFetchOptions()
-            allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-
-            let fetchedAssets = PHAsset.fetchAssets(with: allPhotosOptions)
-            fetchedAssets.enumerateObjects { (asset, _, _) -> Void in
-                self.allAssets.append(asset)
-            }
-            DispatchQueue.main.async {
-                self.createCards()
-            }
-        }
     }
     
     private func resetSelectedCard(withID id: UUID) {

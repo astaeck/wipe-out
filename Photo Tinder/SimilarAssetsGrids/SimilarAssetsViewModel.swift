@@ -5,14 +5,19 @@
 //  Created by Angelina Staeck on 01.02.22.
 //
 
-import Foundation
+import SwiftUI
 
 class SimilarAssetsViewModel: LoadableObject {
-    typealias Output = [Card]
-    
-    @Published private(set) var state: LoadingState<[Card]> = .idle
+    typealias Output = [SimilarCollection]
+    @Published private(set) var state: LoadingState<[SimilarCollection]> = .idle
 
-    func load() {
-        
+    private let cards: [Card]
+    
+    init(cards: [Card]) {
+        self.cards = cards
+    }
+
+    func load() {        
+        state = .loaded([SimilarCollection(cards: [cards[0], cards[1], cards[2]])])
     }
 }

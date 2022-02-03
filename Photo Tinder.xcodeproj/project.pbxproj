@@ -21,6 +21,8 @@
 		1EBE6EA427A9A91C003A58CD /* AsssetGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EA327A9A91C003A58CD /* AsssetGridItem.swift */; };
 		1EBE6EA827A9B264003A58CD /* SimilarAssetGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EA727A9B264003A58CD /* SimilarAssetGrid.swift */; };
 		1EBE6EAA27A9B30A003A58CD /* SimilarAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EA927A9B30A003A58CD /* SimilarAssetsViewModel.swift */; };
+		1EBE6EAF27AC797D003A58CD /* SimiliarAssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EAE27AC797D003A58CD /* SimiliarAssetsView.swift */; };
+		1EBE6EB127AC79A5003A58CD /* SimilarAssetCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EB027AC79A5003A58CD /* SimilarAssetCollection.swift */; };
 		1EBEF6C9277005130078C60F /* LocationLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEF6C8277005130078C60F /* LocationLoader.swift */; };
 		1EF45ACA274D689D00DB6124 /* Photo_TinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */; };
 		1EF45ACC274D689D00DB6124 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45ACB274D689D00DB6124 /* ContentView.swift */; };
@@ -47,6 +49,8 @@
 		1EBE6EA327A9A91C003A58CD /* AsssetGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsssetGridItem.swift; sourceTree = "<group>"; };
 		1EBE6EA727A9B264003A58CD /* SimilarAssetGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarAssetGrid.swift; sourceTree = "<group>"; };
 		1EBE6EA927A9B30A003A58CD /* SimilarAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarAssetsViewModel.swift; sourceTree = "<group>"; };
+		1EBE6EAE27AC797D003A58CD /* SimiliarAssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimiliarAssetsView.swift; sourceTree = "<group>"; };
+		1EBE6EB027AC79A5003A58CD /* SimilarAssetCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarAssetCollection.swift; sourceTree = "<group>"; };
 		1EBEF6C8277005130078C60F /* LocationLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLoader.swift; sourceTree = "<group>"; };
 		1EF45AC6274D689D00DB6124 /* Photo Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Tinder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_TinderApp.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				1EBE6EA727A9B264003A58CD /* SimilarAssetGrid.swift */,
+				1EBE6EB027AC79A5003A58CD /* SimilarAssetCollection.swift */,
+				1EBE6EAE27AC797D003A58CD /* SimiliarAssetsView.swift */,
 				1EBE6EA927A9B30A003A58CD /* SimilarAssetsViewModel.swift */,
 			);
 			path = SimilarAssetsGrids;
@@ -252,6 +258,7 @@
 				1EBEF6C9277005130078C60F /* LocationLoader.swift in Sources */,
 				1E269BC02753F24800DCD06E /* FooterSection.swift in Sources */,
 				1EBE6EA427A9A91C003A58CD /* AsssetGridItem.swift in Sources */,
+				1EBE6EB127AC79A5003A58CD /* SimilarAssetCollection.swift in Sources */,
 				1E71A72A2751EA7600F97169 /* LoadingState.swift in Sources */,
 				1EF45AD8274F37F300DB6124 /* CardView.swift in Sources */,
 				1E407827274F484000FF8E4F /* CardsViewModel.swift in Sources */,
@@ -261,6 +268,7 @@
 				1E1428582750797000ED0F77 /* ImageLoader.swift in Sources */,
 				1E1C5FA32756BAA900790DDE /* CustomButtonStyle.swift in Sources */,
 				1EF45ADA274F381C00DB6124 /* Card.swift in Sources */,
+				1EBE6EAF27AC797D003A58CD /* SimiliarAssetsView.swift in Sources */,
 				1EBE6EAA27A9B30A003A58CD /* SimilarAssetsViewModel.swift in Sources */,
 				1E71A72C2751F08500F97169 /* ErrorAlertView.swift in Sources */,
 			);
