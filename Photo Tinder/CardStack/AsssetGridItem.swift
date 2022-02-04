@@ -37,11 +37,9 @@ struct AsssetGridItem: View {
             .padding()
             .foregroundColor(.white)
         }
-        .gesture (
-            TapGesture(count: 1).onEnded {
-                isSelected = !isSelected
-                viewModel.updateSelection(index: index)
-            }
-        )
+        .onTapGesture {
+            isSelected = !isSelected
+            viewModel.updateSelection(index: index)
+        }
     }
 }

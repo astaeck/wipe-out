@@ -10,9 +10,6 @@ import Photos
 
 struct SelectedAssetsGridView: View {
     @EnvironmentObject var viewModel: CardsViewModel
-
-    // MARK: - Drawing Constant
-    let cardGradient = Gradient(colors: [Color.black.opacity(0.0), Color.black.opacity(0.5)])
     
     let layout = [
         GridItem(.flexible()),
