@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AsssetGridItem: View {
     @EnvironmentObject var viewModel: CardsViewModel
-    let index: Int
+    let card: Card
     @State var isSelected: Bool = true
 
     // MARK: - Drawing Constant
@@ -17,7 +17,7 @@ struct AsssetGridItem: View {
 
     var body: some View {
         ZStack {
-            AsyncContentView(source: ImageLoader(asset: viewModel.cards[index].asset)) { image in
+            AsyncContentView(source: ImageLoader(asset: card.asset)) { image in
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -39,7 +39,7 @@ struct AsssetGridItem: View {
         }
         .onTapGesture {
             isSelected = !isSelected
-            viewModel.updateSelection(index: index)
+            viewModel.updateSelection(card: card)
         }
     }
 }

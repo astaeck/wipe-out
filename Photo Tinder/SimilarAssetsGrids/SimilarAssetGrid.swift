@@ -18,8 +18,8 @@ struct SimilarAssetGrid: View {
         VStack {
             ScrollView(.horizontal) {
                 LazyHGrid(rows: layout, spacing: 5) {
-                    ForEach(collection.cards.indices) { index in
-                        AsssetGridItem(index: index)
+                    ForEach(collection.cards) { card in
+                        AsssetGridItem(card: card)
                     }
                     .cornerRadius(8)
                     .padding(10)

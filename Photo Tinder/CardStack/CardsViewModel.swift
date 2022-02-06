@@ -78,7 +78,8 @@ class CardsViewModel: LoadableObject {
         resetSelectedCard(withID: card.id)
     }
     
-    func updateSelection(index: Int) {
+    func updateSelection(card: Card) {
+        guard let index = cards.firstIndex(where: { $0.id == card.id }) else { return }
         let isSelected = !cards[index].isSelected
         cards[index].isSelected = isSelected
     }
