@@ -9,41 +9,30 @@ import SwiftUI
 import Photos
 
 class SimilarAssetsViewModel: LoadableObject {
+    @ObservedObject var viewModel: CardsViewModel
+
     typealias Output = [SimilarCollection]
     @Published private(set) var state: LoadingState<[SimilarCollection]> = .idle
-    private let imageManager: PHCachingImageManager
-    private let cards: [Card]
-    var imageData: [Data] = []
-    let group = DispatchGroup()
-
-    init(cards: [Card],
-         imageManager: PHCachingImageManager = PHCachingImageManager()) {
-        self.cards = cards
-        self.imageManager = imageManager
+    private var similarCollection: [SimilarCollection] = []
+    
+    init(viewModel: CardsViewModel) {
+        self.viewModel = viewModel
     }
 
     func load() {
-//        state = .loaded([SimilarCollection(cards: [cards[0], cards[1], cards[2]])])
-        
-        let cards = [cards[0], cards[1], cards[2], cards[3]]
-    
-        cards.forEach { createData($0.asset) }
-        
-        group.notify(queue: DispatchQueue.main, execute: {
-
-            print("Finished all requests.")
-
-        })
+        groupSimilarAssets()
     }
     
-    private func createData(_ asset: PHAsset) {
-        group.enter()
-
-        let resultHandler: (Data?, String?, CGImagePropertyOrientation, [AnyHashable : Any]?) -> Void = { data, _ , _ , _ in
-            guard let data = data  else { return }
-            self.imageData.append(data)
-            self.group.leave()
+    private func groupSimilarAssets() {
+        let groupedAssets = Dictionary(grouping: viewModel.newCards.map { $0.asset }) { asset -> DateComponents in
+            return Calendar.current.dateComponents([.minute, .day, .year, .month], from: (asset.creationDate)!)
         }
-        imageManager.requestImageDataAndOrientation(for: asset, options: nil, resultHandler: resultHandler)
+        let similarGroupedAssets = groupedAssets.values.filter { $0.count > 2 }
+        
+        similarCollection = similarGroupedAssets.map { SimilarCollection(cards: $0.map { Card(asset: $0) }) }
+        DispatchQueue.main.async {
+            self.state = .loaded(self.similarCollection)
+            print(similarGroupedAssets)
+        }
     }
 }

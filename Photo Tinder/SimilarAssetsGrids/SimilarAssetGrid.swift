@@ -22,16 +22,12 @@ struct SimilarAssetGrid: View {
                         AsssetGridItem(card: card)
                     }
                     .cornerRadius(8)
-                    .padding(10)
+                    .padding(5)
                 }
                 .frame(height: 200)
+                .padding(.vertical)
             }
-            Spacer()
         }
-        .padding([.leading, .vertical])
-        .navigationTitle("0 Selected")
-        .toolbar {
-            //            Button("Deselect All", action: viewModel.resetAll)
-        }
+        .padding(.leading)
     }
 }

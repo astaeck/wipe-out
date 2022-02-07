@@ -11,12 +11,14 @@ struct SimilarAssetsView: View {
     @EnvironmentObject var viewModel: CardsViewModel
     
     var body: some View {
-        AsyncContentView(source: viewModel) { cards in
+        AsyncContentView(source: viewModel) { _ in
             ZStack {
-                AsyncContentView(source: SimilarAssetsViewModel(cards: cards)) { collections in
-                    ZStack{
-                        ForEach(collections) { collection in
-                            SimilarAssetGrid(collection: collection)
+                ScrollView {
+                    AsyncContentView(source: SimilarAssetsViewModel(viewModel: viewModel)) { collections in
+                        VStack {
+                            ForEach(collections) { collection in
+                                SimilarAssetGrid(collection: collection)
+                            }
                         }
                     }
                 }
@@ -24,4 +26,3 @@ struct SimilarAssetsView: View {
         }
     }
 }
-
