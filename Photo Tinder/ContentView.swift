@@ -9,6 +9,7 @@ import SwiftUI
 import Photos
 
 struct ContentView: View {
+    private let cardsViewModel: CardsViewModel = CardsViewModel()
 
     var body: some View {
         NavigationView {
@@ -30,7 +31,7 @@ struct ContentView: View {
                 }
             }
         }
-        .environmentObject(CardsViewModel())
+        .environmentObject(cardsViewModel)
     }
 }
 

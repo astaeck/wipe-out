@@ -18,7 +18,6 @@ class CardsViewModel: LoadableObject {
     private var allAssets: [PHAsset] = []
     private let paginationIndex = 25
     private var canResetLastCard = true
-    private(set) var newCards: [Card] = []
     
     var numberOfAssets: Int {
         allAssets.count
@@ -115,7 +114,6 @@ class CardsViewModel: LoadableObject {
         let newCards = (cards.count..<cards.count + paginationIndex).map { Card(asset: self.allAssets[$0]) }
         newCards.first?.isEnabled = true
         cards.append(contentsOf: newCards)
-        self.newCards = newCards
         state = .loaded(newCards.reversed())
     }
     
@@ -126,7 +124,6 @@ class CardsViewModel: LoadableObject {
         } else {
             newCards = (cards.count..<cards.count + paginationIndex).map { Card(asset: self.allAssets[$0]) }
         }
-        self.newCards = newCards
         cards.append(contentsOf: newCards)
         if cards.count <= paginationIndex {
             cards.first?.isEnabled = true

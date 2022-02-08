@@ -9,20 +9,13 @@ import SwiftUI
 
 struct SimilarAssetsView: View {
     @EnvironmentObject var viewModel: CardsViewModel
-    
+    @StateObject var similarAssetsViewModel = SimilarAssetsViewModel()
+        
     var body: some View {
-        AsyncContentView(source: viewModel) { _ in
-            ZStack {
-                ScrollView {
-                    AsyncContentView(source: SimilarAssetsViewModel(viewModel: viewModel)) { collections in
-                        VStack {
-                            ForEach(collections) { collection in
-                                SimilarAssetGrid(collection: collection)
-                            }
-                        }
-                    }
-                }
-            }
+        List(similarAssetsViewModel.groupSimilarAssets(cards: viewModel.cards)) { collection in
+            SimilarAssetGrid(collection: collection)
+                .listRowSeparator(.hidden)
         }
+        .listStyle(.plain)
     }
 }

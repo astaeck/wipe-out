@@ -28,6 +28,5 @@ struct SimilarAssetGrid: View {
                 .padding(.vertical)
             }
         }
-        .padding(.leading)
     }
 }
