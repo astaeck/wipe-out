@@ -9,15 +9,21 @@ import SwiftUI
 
 struct AsssetGridItem: View {
     @EnvironmentObject var viewModel: CardsViewModel
+    let imageLoader: ImageLoader
     let card: Card
     @State var isSelected: Bool = true
+    
+    init(card: Card) {
+        self.card = card
+        self.imageLoader = ImageLoader(asset: card.asset)
+    }
 
     // MARK: - Drawing Constant
     let cardGradient = Gradient(colors: [Color.black.opacity(0.0), Color.black.opacity(0.5)])
 
     var body: some View {
         ZStack {
-            AsyncContentView(source: ImageLoader(asset: card.asset)) { image in
+            AsyncContentView(source: imageLoader) { image in
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)

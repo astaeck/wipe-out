@@ -14,6 +14,7 @@ class ImageLoader: LoadableObject {
     @Published private(set) var state: LoadingState<UIImage> = .idle
     private let imageManager: PHCachingImageManager
     private let asset: PHAsset
+    private var cachedImage: UIImage?
 
     init(asset: PHAsset, imageManager: PHCachingImageManager = PHCachingImageManager()) {
         self.imageManager = imageManager
@@ -28,15 +29,22 @@ class ImageLoader: LoadableObject {
                 //self.state = .failed("Image download failed")
                 return
             }
+            self.cachedImage = image
             DispatchQueue.main.async {
                 self.state = .loaded(image)
             }
         }
         
-        imageManager.requestImage(for: asset,
-               targetSize: CGSize(width: 4032, height: 4032),
-               contentMode: .aspectFit,
-               options: nil,
-               resultHandler: resultHandler)
+        if let image = cachedImage {
+            DispatchQueue.main.async {
+                self.state = .loaded(image)
+            }
+        } else {
+            imageManager.requestImage(for: asset,
+                   targetSize: CGSize(width: 4032, height: 4032),
+                   contentMode: .aspectFit,
+                   options: nil,
+                   resultHandler: resultHandler)
+        }
     }
 }
