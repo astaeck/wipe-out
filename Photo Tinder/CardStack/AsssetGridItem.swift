@@ -10,8 +10,8 @@ import SwiftUI
 struct AsssetGridItem: View {
     @EnvironmentObject var viewModel: CardsViewModel
     let imageLoader: ImageLoader
-    let card: Card
-    @State var isSelected: Bool = true
+    var card: Card
+    @State var isSelected: Bool = false
     
     init(card: Card) {
         self.card = card
@@ -45,6 +45,7 @@ struct AsssetGridItem: View {
         }
         .onTapGesture {
             isSelected = !isSelected
+            card.isSelected = !isSelected
             viewModel.updateSelection(card: card)
         }
     }

@@ -13,12 +13,12 @@ class SimilarAssetsViewModel: ObservableObject {
     @Published private var similarCollection: [SimilarCollection] = []
     
     func groupSimilarAssets(cards: [Card]) -> [SimilarCollection] {
-        let groupedAssets = Dictionary(grouping: cards.map { $0.asset }) { asset -> DateComponents in
-            return Calendar.current.dateComponents([.minute, .day, .year, .month], from: (asset.creationDate)!)
+        let groupedCards = Dictionary(grouping: cards.map { $0 }) { card -> DateComponents in
+            return Calendar.current.dateComponents([.minute, .day, .year, .month], from: (card.asset.creationDate)!)
         }
-        let similarGroupedAssets = groupedAssets.values.filter { $0.count > 2 }
+        let similarGroupedCards = groupedCards.values.filter { $0.count > 2 }
         
-        let similarCollection = similarGroupedAssets.map { SimilarCollection(cards: $0.map { Card(asset: $0) }) }
+        let similarCollection = similarGroupedCards.map { SimilarCollection(cards: $0) }
         return similarCollection
     }
     
