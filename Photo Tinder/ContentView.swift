@@ -12,24 +12,18 @@ struct ContentView: View {
     private let cardsViewModel: CardsViewModel = CardsViewModel()
 
     var body: some View {
-        NavigationView {
-            TabView {
-                CardStackView()
-                    .tabItem {
-                        Image(systemName: "rectangle.on.rectangle")
-                        Text("All Photos")
-                    }
-                SimilarAssetsView()
-                    .tabItem {
-                        Image(systemName: "photo.fill")
-                        Text("Similar Photos")
-                    }
-            }
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    NavigationLink("🗑", destination: SelectedAssetsGridView())
+        
+        TabView {
+            CardStackView()
+                .tabItem {
+                    Image(systemName: "rectangle.on.rectangle")
+                    Text("All Photos")
                 }
-            }
+            SimilarAssetsView()
+                .tabItem {
+                    Image(systemName: "photo.fill")
+                    Text("Similar Photos")
+                }
         }
         .environmentObject(cardsViewModel)
     }

@@ -16,5 +16,10 @@ struct NavigationHeaderSection: View {
             Spacer()
         }
         .navigationTitle("All Photos")
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                NavigationLink("🗑", destination: SelectedAssetsGridView())
+            }
+        }
     }
 }

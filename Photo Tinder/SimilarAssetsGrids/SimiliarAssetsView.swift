@@ -12,10 +12,18 @@ struct SimilarAssetsView: View {
     @StateObject var similarAssetsViewModel = SimilarAssetsViewModel()
         
     var body: some View {
-        List(similarAssetsViewModel.groupSimilarAssets(cards: viewModel.cards)) { collection in
-            SimilarAssetGrid(collection: collection)
-                .listRowSeparator(.hidden)
+        NavigationView {
+            VStack {
+                List(similarAssetsViewModel.groupSimilarAssets(cards: viewModel.cards)) { collection in
+                    SimilarAssetGrid(collection: collection)
+                        .listRowSeparator(.hidden)
+                }
+                .listStyle(.plain)
+                .navigationTitle("Similar Photos")
+                .toolbar {
+                    Button("Delete Selection", action: viewModel.deleteAssets)
+                }
+            }
         }
-        .listStyle(.plain)
     }
 }
