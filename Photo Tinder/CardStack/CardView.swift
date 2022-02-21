@@ -17,7 +17,7 @@ struct CardView: View {
         return formatter
     }()
     @ObservedObject var card: Card
-    @ObservedObject var imageLoader: ImageLoader
+    private let imageLoader: CardImageLoader
     @ObservedObject var videoLoader: VideoLoader
     @ObservedObject var locationLoader: LocationLoader
     @EnvironmentObject var viewModel: CardsViewModel
@@ -26,7 +26,7 @@ struct CardView: View {
     
     init(card: Card) {
         self.card = card
-        self.imageLoader = ImageLoader(asset: card.asset)
+        self.imageLoader = CardImageLoader(card: card)
         self.videoLoader = VideoLoader(asset: card.asset)
         self.locationLoader = LocationLoader(location: card.asset.location)
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SimilarAssetsView: View {
     @EnvironmentObject var viewModel: CardsViewModel
-    @StateObject var similarAssetsViewModel = SimilarAssetsViewModel()
+    private let similarAssetsViewModel = SimilarAssetsViewModel()
         
     var body: some View {
         NavigationView {

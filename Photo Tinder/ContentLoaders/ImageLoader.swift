@@ -8,39 +8,38 @@
 import Photos
 import SwiftUI
 
-class ImageLoader: LoadableObject {
+class ImageLoader {
 
-    typealias Output = UIImage
-    @Published private(set) var state: LoadingState<UIImage> = .idle
+    private let cache = Cache<String, UIImage>()
     private let imageManager: PHCachingImageManager
-    private let asset: PHAsset
-    private var cachedImage: UIImage?
+    typealias Handler = (Result<UIImage, Error>) -> Void
 
-    init(asset: PHAsset, imageManager: PHCachingImageManager = PHCachingImageManager()) {
+    static let shared = ImageLoader()
+
+    init(imageManager: PHCachingImageManager = PHCachingImageManager()) {
         self.imageManager = imageManager
-        self.asset = asset
     }
     
-    func load() {
-        state = .loading
+    func load(card: Card? = nil, completion: @escaping Handler) {
+        guard let card = card else { return }
 
         let resultHandler: (UIImage?, [AnyHashable: Any]?) -> Void = { image, info in
             guard let image = image else {
                 //self.state = .failed("Image download failed")
                 return
             }
-            self.cachedImage = image
+            self.cache[card.id.uuidString] = image
             DispatchQueue.main.async {
-                self.state = .loaded(image)
+                completion(.success(image))
             }
         }
         
-        if let image = cachedImage {
+        if let cachedImage = cache[card.id.uuidString] {
             DispatchQueue.main.async {
-                self.state = .loaded(image)
+                completion(.success(cachedImage))
             }
         } else {
-            imageManager.requestImage(for: asset,
+            imageManager.requestImage(for: card.asset,
                    targetSize: CGSize(width: 4032, height: 4032),
                    contentMode: .aspectFit,
                    options: nil,

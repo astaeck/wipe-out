@@ -28,7 +28,7 @@ class CardsViewModel: LoadableObject {
     }
     
     func load() {
-        guard allAssets.count == 0 else { return }
+        guard allAssets.isEmpty else { return }
         DispatchQueue.main.async {
             self.state = .loading
         }
