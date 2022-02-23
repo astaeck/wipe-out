@@ -8,53 +8,46 @@
 import SwiftUI
 import CoreLocation
 
-class LocationLoader: LoadableObject {
+class LocationLoader {
 
-    typealias Output = String
-    @Published private(set) var state: LoadingState<String> = .idle
     private let geocoder: CLGeocoder
-    private let location: CLLocation?
-    private let userDefaults: UserDefaults
+    private let cache = Cache<String, String>()
+    typealias Handler = (Result<String, Error>) -> Void
 
-    init(location: CLLocation?,
-         geocoder: CLGeocoder = CLGeocoder(),
-         userDefaults: UserDefaults = UserDefaults.standard) {
-        self.location = location
+    init(geocoder: CLGeocoder = CLGeocoder()) {
         self.geocoder = geocoder
-        self.userDefaults = userDefaults
     }
     
-    func load() {
-        state = .loading
-        
-        getLocationName(location: location)
-    }
+    static let shared = LocationLoader()
     
-    private func getLocationName(location: CLLocation?) {
+    func load(location: CLLocation?, completion: @escaping Handler) {
         guard let location = location else { return print("YO") }
 
         reverseGeocodeLocation(location: location) { name in
             DispatchQueue.main.async {
-                self.state = .loaded(name)
+                completion(.success(name))
             }
         }
     }
     
     private func reverseGeocodeLocation(location: CLLocation, completion: @escaping (String) -> Void) {
         let locationKey = "\(location.coordinate.latitude)\(location.coordinate.longitude)"
-        if let cachedLocation = userDefaults.value(forKey: locationKey) as? String {
-            print("cached location")
+        if let cachedLocation = cache[locationKey] {
+            print("cached geocoding")
             return completion(cachedLocation)
         }
         print("reverse geocoding")
         geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
             if let placemark = placemarks?.first?.locality, error == nil {
-                self?.userDefaults.set(placemark, forKey: locationKey)
+                self?.cache[locationKey] = placemark
                 return completion(placemark)
             }
-            completion(" ")
+            return completion(" ")
             // TODO: add recursive or async queue fetching when failes
             // self?.getLocationName(location: location)
         }
     }
 }
+
+
+// make lightweight wrapper for access locationloader and cache singleton for one specific location

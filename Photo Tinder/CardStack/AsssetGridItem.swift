@@ -9,13 +9,13 @@ import SwiftUI
 
 struct AsssetGridItem: View {
     @EnvironmentObject var viewModel: CardsViewModel
-    private let imageLoader: CardImageLoader
+    private let imageLoader: ImageLoadable
     var card: Card
     @State var isSelected: Bool = false
     
     init(card: Card) {
         self.card = card
-        self.imageLoader = CardImageLoader(card: card)
+        self.imageLoader = ImageLoadable(card: card)
     }
 
     // MARK: - Drawing Constant

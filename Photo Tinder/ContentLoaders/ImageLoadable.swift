@@ -1,5 +1,5 @@
 //
-//  CardImageLoader.swift
+//  ImageLoadable.swift
 //  Photo Tinder
 //
 //  Created by Angelina Staeck on 20.02.22.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CardImageLoader: LoadableObject {
+class ImageLoadable: LoadableObject {
     typealias Output = UIImage
     @Published private(set) var state: LoadingState<UIImage> = .idle
     private let imageLoader: ImageLoader

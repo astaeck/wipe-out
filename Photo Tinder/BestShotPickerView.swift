@@ -20,7 +20,7 @@ struct BestShotPickerView: View {
     var body: some View {
         VStack {
             List(viewModel.cardsToCompare(collection: collection)) { card in
-                AsyncContentView(source: CardImageLoader(card: card)) { image in
+                AsyncContentView(source: ImageLoadable(card: card)) { image in
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()

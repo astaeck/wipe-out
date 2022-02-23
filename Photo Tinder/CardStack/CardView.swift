@@ -17,18 +17,18 @@ struct CardView: View {
         return formatter
     }()
     @ObservedObject var card: Card
-    private let imageLoader: CardImageLoader
+    private let imageLoader: ImageLoadable
     @ObservedObject var videoLoader: VideoLoader
-    @ObservedObject var locationLoader: LocationLoader
+    @ObservedObject var locationLoader: LocationLoadable
     @EnvironmentObject var viewModel: CardsViewModel
     @State var labelIsVisible: Bool = true
     @State var scale: CGFloat = 1.0
     
     init(card: Card) {
         self.card = card
-        self.imageLoader = CardImageLoader(card: card)
+        self.imageLoader = ImageLoadable(card: card)
         self.videoLoader = VideoLoader(asset: card.asset)
-        self.locationLoader = LocationLoader(location: card.asset.location)
+        self.locationLoader = LocationLoadable(location: card.asset.location)
     }
 
     var body: some View {

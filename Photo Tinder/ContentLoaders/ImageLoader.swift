@@ -20,8 +20,7 @@ class ImageLoader {
         self.imageManager = imageManager
     }
     
-    func load(card: Card? = nil, completion: @escaping Handler) {
-        guard let card = card else { return }
+    func load(card: Card, completion: @escaping Handler) {
 
         let resultHandler: (UIImage?, [AnyHashable: Any]?) -> Void = { image, info in
             guard let image = image else {
