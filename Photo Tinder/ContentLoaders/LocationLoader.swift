@@ -20,26 +20,26 @@ class LocationLoader {
     
     static let shared = LocationLoader()
     
-    func load(location: CLLocation?, completion: @escaping Handler) {
-        guard let location = location else { return print("YO") }
+    func load(card: Card, completion: @escaping Handler) {
+        guard let location = card.asset.location else { return print("YO") }
 
-        reverseGeocodeLocation(location: location) { name in
+        reverseGeocodeLocation(location: location, card: card) { name in
             DispatchQueue.main.async {
                 completion(.success(name))
             }
         }
     }
     
-    private func reverseGeocodeLocation(location: CLLocation, completion: @escaping (String) -> Void) {
-        let locationKey = "\(location.coordinate.latitude)\(location.coordinate.longitude)"
-        if let cachedLocation = cache[locationKey] {
+    private func reverseGeocodeLocation(location: CLLocation, card: Card, completion: @escaping (String) -> Void) {
+//        let locationKey = "\(location.coordinate.latitude)\(location.coordinate.longitude)"
+        if let cachedLocation = cache[card.asset.localIdentifier] {
             print("cached geocoding")
             return completion(cachedLocation)
         }
         print("reverse geocoding")
         geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
             if let placemark = placemarks?.first?.locality, error == nil {
-                self?.cache[locationKey] = placemark
+                self?.cache[card.asset.localIdentifier] = placemark
                 return completion(placemark)
             }
             return completion(" ")

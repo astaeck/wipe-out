@@ -28,7 +28,7 @@ struct CardView: View {
         self.card = card
         self.imageLoader = ImageLoadable(card: card)
         self.videoLoader = VideoLoader(asset: card.asset)
-        self.locationLoader = LocationLoadable(location: card.asset.location)
+        self.locationLoader = LocationLoadable(card: card)
     }
 
     var body: some View {

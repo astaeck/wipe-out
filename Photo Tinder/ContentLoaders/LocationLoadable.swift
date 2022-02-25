@@ -11,19 +11,19 @@ class LocationLoadable: LoadableObject {
     
     typealias Output = String
     @Published private(set) var state: LoadingState<String> = .idle
-    private let location: CLLocation?
+    private let card: Card
     private let locationLoader: LocationLoader
 
     init(locationLoader: LocationLoader = LocationLoader.shared,
-         location: CLLocation?) {
+         card: Card) {
         self.locationLoader = locationLoader
-        self.location = location
+        self.card = card
     }
     
     func load() {
         state = .loading
         
-        locationLoader.load(location: location) { result in
+        locationLoader.load(card: card) { result in
             guard let locationName = try? result.get() else { return }
             self.state = .loaded(locationName)
         }

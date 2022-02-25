@@ -27,13 +27,14 @@ class ImageLoader {
                 //self.state = .failed("Image download failed")
                 return
             }
-            self.cache[card.id.uuidString] = image
+            self.cache[card.asset.localIdentifier] = image
+            print("asset ID \(card.asset.localIdentifier)")
             DispatchQueue.main.async {
                 completion(.success(image))
             }
         }
         
-        if let cachedImage = cache[card.id.uuidString] {
+        if let cachedImage = cache[card.asset.localIdentifier] {
             DispatchQueue.main.async {
                 completion(.success(cachedImage))
             }
