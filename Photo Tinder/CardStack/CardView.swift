@@ -19,7 +19,6 @@ struct CardView: View {
     @ObservedObject var card: Card
     private let imageLoader: ImageLoadable
     @ObservedObject var videoLoader: VideoLoader
-    @ObservedObject var locationLoader: LocationLoadable
     @EnvironmentObject var viewModel: CardsViewModel
     @State var labelIsVisible: Bool = true
     @State var scale: CGFloat = 1.0
@@ -28,7 +27,6 @@ struct CardView: View {
         self.card = card
         self.imageLoader = ImageLoadable(card: card)
         self.videoLoader = VideoLoader(asset: card.asset)
-        self.locationLoader = LocationLoadable(card: card)
     }
 
     var body: some View {
@@ -82,9 +80,6 @@ struct CardView: View {
                     
                     VStack {
                         VStack {
-                            AsyncContentView(source: locationLoader) { locationName in
-                                Text(locationName)
-                            }
                             if let date = card.asset.creationDate {
                                 Text("\(date, formatter: Self.dateFormat)")
                             }
