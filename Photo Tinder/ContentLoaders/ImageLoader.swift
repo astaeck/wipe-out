@@ -28,14 +28,16 @@ class ImageLoader {
                 return
             }
             self.cache[card.asset.localIdentifier] = image
-            print("asset ID \(card.asset.localIdentifier)")
+            
             DispatchQueue.main.async {
+                print("loaded image")
                 completion(.success(image))
             }
         }
         
         if let cachedImage = cache[card.asset.localIdentifier] {
             DispatchQueue.main.async {
+                print("cached image")
                 completion(.success(cachedImage))
             }
         } else {
