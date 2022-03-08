@@ -6,20 +6,18 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct BestShotPickerView: View {
-    let collection: SimilarCollection
-    private let viewModel: BestShotViewModel
+    @ObservedObject private var viewModel: BestShotViewModel
+    @State private var showDetails = false
 
-    init(collection: SimilarCollection) {
-        self.collection = collection
-        self.viewModel = BestShotViewModel(collection: collection)
+    init(viewModel: BestShotViewModel) {
+        self.viewModel = viewModel
     }
-
+    
     var body: some View {
         VStack {
-            List(viewModel.cardsToCompare(collection: collection)) { card in
+            List(viewModel.cardsToCompare()) { card in
                 AsyncContentView(source: ImageLoadable(card: card)) { image in
                     Image(uiImage: image)
                         .resizable()
@@ -28,7 +26,15 @@ struct BestShotPickerView: View {
                         .cornerRadius(8)
                         .foregroundColor(.white)
                 }
+                .gesture(TapGesture(count: 1).onEnded {
+                    withAnimation(.easeOut) {
+                        viewModel.keepSelectedCard(card)
+                    }
+                })
             }
+        }
+        .onAppear {
+            viewModel.setUp()
         }
     }
 }

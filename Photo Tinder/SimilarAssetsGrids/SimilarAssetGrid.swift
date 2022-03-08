@@ -16,7 +16,7 @@ struct SimilarAssetGrid: View {
     ]
 
     var body: some View {
-        NavigationLink("Pick Best", destination: BestShotPickerView(collection: collection))
+        NavigationLink("Pick Best", destination: BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards)))
         ScrollView(.horizontal) {
             LazyHGrid(rows: layout, spacing: 5) {
                 ForEach(collection.cards) { card in

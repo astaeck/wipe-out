@@ -17,6 +17,7 @@
 		1E71A72E2751FDD800F97169 /* LoadableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72D2751FDD800F97169 /* LoadableObject.swift */; };
 		1E71A7302751FDF200F97169 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72F2751FDF200F97169 /* AsyncContentView.swift */; };
 		1EA5D5052766F132007E0FE1 /* NavigationHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5D5042766F132007E0FE1 /* NavigationHeaderSection.swift */; };
+		1EB6C86127D40D9900206131 /* BestShotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6C86027D40D9900206131 /* BestShotViewModel.swift */; };
 		1EBCF8B52758081B00195BCA /* SelectedAssetsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */; };
 		1EBE6EA427A9A91C003A58CD /* AsssetGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EA327A9A91C003A58CD /* AsssetGridItem.swift */; };
 		1EBE6EA827A9B264003A58CD /* SimilarAssetGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EA727A9B264003A58CD /* SimilarAssetGrid.swift */; };
@@ -47,6 +48,7 @@
 		1E71A72D2751FDD800F97169 /* LoadableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableObject.swift; sourceTree = "<group>"; };
 		1E71A72F2751FDF200F97169 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		1EA5D5042766F132007E0FE1 /* NavigationHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderSection.swift; sourceTree = "<group>"; };
+		1EB6C86027D40D9900206131 /* BestShotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestShotViewModel.swift; sourceTree = "<group>"; };
 		1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAssetsGridView.swift; sourceTree = "<group>"; };
 		1EBE6EA327A9A91C003A58CD /* AsssetGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsssetGridItem.swift; sourceTree = "<group>"; };
 		1EBE6EA727A9B264003A58CD /* SimilarAssetGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarAssetGrid.swift; sourceTree = "<group>"; };
@@ -132,6 +134,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		1EB6C85F27D40D7700206131 /* BestShot */ = {
+			isa = PBXGroup;
+			children = (
+				1ED74E9727C1854600EDEBE6 /* BestShotPickerView.swift */,
+				1EB6C86027D40D9900206131 /* BestShotViewModel.swift */,
+			);
+			path = BestShot;
+			sourceTree = "<group>";
+		};
 		1EBE6EA627A9B243003A58CD /* SimilarAssetsGrids */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +175,7 @@
 			children = (
 				1EF45ACB274D689D00DB6124 /* ContentView.swift */,
 				1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */,
-				1ED74E9727C1854600EDEBE6 /* BestShotPickerView.swift */,
+				1EB6C85F27D40D7700206131 /* BestShot */,
 				1EBE6EA627A9B243003A58CD /* SimilarAssetsGrids */,
 				1E626FD127A83BA500F3554F /* CardStack */,
 				1E626FCE27A836A300F3554F /* ContentLoaders */,
@@ -265,6 +276,7 @@
 				1ED74E9C27C2C4D800EDEBE6 /* ImageLoadable.swift in Sources */,
 				1E269BC02753F24800DCD06E /* FooterSection.swift in Sources */,
 				1EBE6EA427A9A91C003A58CD /* AsssetGridItem.swift in Sources */,
+				1EB6C86127D40D9900206131 /* BestShotViewModel.swift in Sources */,
 				1EBE6EB127AC79A5003A58CD /* SimilarAssetCollection.swift in Sources */,
 				1E71A72A2751EA7600F97169 /* LoadingState.swift in Sources */,
 				1EF45AD8274F37F300DB6124 /* CardView.swift in Sources */,

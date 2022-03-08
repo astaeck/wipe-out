@@ -21,15 +21,3 @@ class SimilarAssetsViewModel: ObservableObject {
         return similarCollection
     }
 }
-
-class BestShotViewModel {
-    private var collection: SimilarCollection
-    
-    init(collection: SimilarCollection) {
-        self.collection = collection
-    }
-
-    func cardsToCompare(collection: SimilarCollection) -> [Card] {
-        return Array(collection.cards.prefix(2))
-    }
-}
