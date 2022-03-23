@@ -8,32 +8,46 @@
 import SwiftUI
 
 struct BestShotPickerView: View {
-    @ObservedObject private var viewModel: BestShotViewModel
-    @State private var showDetails = false
-    
-    init(viewModel: BestShotViewModel) {
-        self.viewModel = viewModel
-    }
+    @ObservedObject var viewModel: BestShotViewModel
+    @Binding var showModal: Bool
     
     var body: some View {
         VStack {
-            List(viewModel.cardsToCompare()) { card in
-                AsyncContentView(source: ImageLoadable(card: card)) { image in
-                    Image(uiImage: image)
+            HStack {
+                Button(action: {
+                    self.showModal.toggle()
+                }, label: {
+                    Image("arrow-down")
                         .resizable()
-                        .scaledToFit()
-                        .clipped()
-                        .cornerRadius(8)
-                        .foregroundColor(.white)
                         .aspectRatio(contentMode: .fit)
-                        .frame(maxHeight: 350)
-                }
-                .gesture(TapGesture(count: 1).onEnded {
-                    withAnimation(.easeOut) {
-                        viewModel.keepSelectedCard(card)
-                    }
                 })
+                    .frame(width: 32, height: 32)
+                    .padding([.leading, .top])
+                Spacer()
             }
+            List(viewModel.cardsToCompare()) { card in
+                HStack {
+                    Spacer()
+                    AsyncContentView(source: ImageLoadable(card: card)) { image in
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .clipped()
+                            .cornerRadius(8)
+                            .foregroundColor(.white)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxHeight: 350)
+                    }
+                    .gesture(TapGesture(count: 1).onEnded {
+                        withAnimation(.easeOut) {
+                            viewModel.keepSelectedCard(card)
+                        }
+                    })
+                    Spacer()
+                }
+                .listRowSeparator(.hidden)
+            }
+            .listStyle(.plain)
         }
         .onAppear {
             viewModel.setUp()

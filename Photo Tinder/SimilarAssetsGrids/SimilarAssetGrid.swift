@@ -21,7 +21,7 @@ struct SimilarAssetGrid: View {
             showingSheet.toggle()
         }
         .sheet(isPresented: $showingSheet) {
-            BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards))
+            BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards), showModal: self.$showingSheet)
         }
         ScrollView(.horizontal) {
             LazyHGrid(rows: layout, spacing: 5) {
