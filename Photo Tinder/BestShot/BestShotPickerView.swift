@@ -10,7 +10,7 @@ import SwiftUI
 struct BestShotPickerView: View {
     @ObservedObject private var viewModel: BestShotViewModel
     @State private var showDetails = false
-
+    
     init(viewModel: BestShotViewModel) {
         self.viewModel = viewModel
     }
@@ -25,6 +25,8 @@ struct BestShotPickerView: View {
                         .clipped()
                         .cornerRadius(8)
                         .foregroundColor(.white)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxHeight: 350)
                 }
                 .gesture(TapGesture(count: 1).onEnded {
                     withAnimation(.easeOut) {

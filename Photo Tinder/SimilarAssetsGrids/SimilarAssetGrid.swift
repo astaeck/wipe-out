@@ -10,13 +10,19 @@ import SwiftUI
 struct SimilarAssetGrid: View {
     @State var collection: SimilarCollection
     @EnvironmentObject var viewModel: CardsViewModel
-        
+    @State private var showingSheet = false
+    
     let layout = [
         GridItem(.flexible())
     ]
-
+    
     var body: some View {
-        NavigationLink("Pick Best", destination: BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards)))
+        Button("Pick Best") {
+            showingSheet.toggle()
+        }
+        .sheet(isPresented: $showingSheet) {
+            BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards))
+        }
         ScrollView(.horizontal) {
             LazyHGrid(rows: layout, spacing: 5) {
                 ForEach(collection.cards) { card in
@@ -28,5 +34,6 @@ struct SimilarAssetGrid: View {
             .frame(height: 200)
             .padding(.vertical)
         }
+        
     }
 }
