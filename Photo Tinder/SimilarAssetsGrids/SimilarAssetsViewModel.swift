@@ -10,14 +10,14 @@ import Photos
 
 
 class SimilarAssetsViewModel: ObservableObject {
-    
-    func groupSimilarAssets(cards: [Card]) -> [SimilarCollection] {
+    @Published var collections: [SimilarCollection] = []
+
+    func fetchData(cards: [Card]) async {
         let groupedCards = Dictionary(grouping: cards.map { $0 }) { card -> DateComponents in
             return Calendar.current.dateComponents([.minute, .day, .year, .month], from: (card.asset.creationDate)!)
         }
         let similarGroupedCards = groupedCards.values.filter { $0.count > 2 }
         
-        let similarCollection = similarGroupedCards.map { SimilarCollection(cards: $0) }
-        return similarCollection
+        collections = similarGroupedCards.map { SimilarCollection(cards: $0) }
     }
 }
