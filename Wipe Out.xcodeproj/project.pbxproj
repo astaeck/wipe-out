@@ -58,7 +58,7 @@
 		1ED74E9727C1854600EDEBE6 /* BestShotPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestShotPickerView.swift; sourceTree = "<group>"; };
 		1ED74E9927C19C2E00EDEBE6 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		1ED74E9B27C2C4D800EDEBE6 /* ImageLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadable.swift; sourceTree = "<group>"; };
-		1EF45AC6274D689D00DB6124 /* Photo Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Tinder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EF45AC6274D689D00DB6124 /* Wipe Out.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wipe Out.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_TinderApp.swift; sourceTree = "<group>"; };
 		1EF45ACB274D689D00DB6124 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1EF45ACD274D689E00DB6124 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 		1EF45ABD274D689D00DB6124 = {
 			isa = PBXGroup;
 			children = (
-				1EF45AC8274D689D00DB6124 /* Photo Tinder */,
+				1EF45AC8274D689D00DB6124 /* Wipe Out */,
 				1EF45AC7274D689D00DB6124 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,12 +165,12 @@
 		1EF45AC7274D689D00DB6124 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1EF45AC6274D689D00DB6124 /* Photo Tinder.app */,
+				1EF45AC6274D689D00DB6124 /* Wipe Out.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1EF45AC8274D689D00DB6124 /* Photo Tinder */ = {
+		1EF45AC8274D689D00DB6124 /* Wipe Out */ = {
 			isa = PBXGroup;
 			children = (
 				1EF45ACB274D689D00DB6124 /* ContentView.swift */,
@@ -184,7 +184,7 @@
 				1E71A7322751FE5E00F97169 /* Resources */,
 				1E626FD227A83C6000F3554F /* Styling */,
 			);
-			path = "Photo Tinder";
+			path = "Wipe Out";
 			sourceTree = "<group>";
 		};
 		1EF45ACF274D689E00DB6124 /* Preview Content */ = {
@@ -198,9 +198,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1EF45AC5274D689D00DB6124 /* Photo Tinder */ = {
+		1EF45AC5274D689D00DB6124 /* Wipe Out */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1EF45AD4274D689E00DB6124 /* Build configuration list for PBXNativeTarget "Photo Tinder" */;
+			buildConfigurationList = 1EF45AD4274D689E00DB6124 /* Build configuration list for PBXNativeTarget "Wipe Out" */;
 			buildPhases = (
 				1EF45AC2274D689D00DB6124 /* Sources */,
 				1EF45AC3274D689D00DB6124 /* Frameworks */,
@@ -210,9 +210,9 @@
 			);
 			dependencies = (
 			);
-			name = "Photo Tinder";
+			name = "Wipe Out";
 			productName = "Photo Tinder";
-			productReference = 1EF45AC6274D689D00DB6124 /* Photo Tinder.app */;
+			productReference = 1EF45AC6274D689D00DB6124 /* Wipe Out.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -230,7 +230,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1EF45AC1274D689D00DB6124 /* Build configuration list for PBXProject "Photo Tinder" */;
+			buildConfigurationList = 1EF45AC1274D689D00DB6124 /* Build configuration list for PBXProject "Wipe Out" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -243,7 +243,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1EF45AC5274D689D00DB6124 /* Photo Tinder */,
+				1EF45AC5274D689D00DB6124 /* Wipe Out */,
 			);
 		};
 /* End PBXProject section */
@@ -421,7 +421,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Photo Tinder/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Wipe Out/Preview Content\"";
 				DEVELOPMENT_TEAM = 97ZTE25D2E;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -437,7 +437,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Angelina.Photo-Tinder";
+				PRODUCT_BUNDLE_IDENTIFIER = "Angelina.Wipe-Out";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -454,7 +454,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Photo Tinder/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Wipe Out/Preview Content\"";
 				DEVELOPMENT_TEAM = 97ZTE25D2E;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -470,7 +470,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Angelina.Photo-Tinder";
+				PRODUCT_BUNDLE_IDENTIFIER = "Angelina.Wipe-Out";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -482,7 +482,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1EF45AC1274D689D00DB6124 /* Build configuration list for PBXProject "Photo Tinder" */ = {
+		1EF45AC1274D689D00DB6124 /* Build configuration list for PBXProject "Wipe Out" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1EF45AD2274D689E00DB6124 /* Debug */,
@@ -491,7 +491,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1EF45AD4274D689E00DB6124 /* Build configuration list for PBXNativeTarget "Photo Tinder" */ = {
+		1EF45AD4274D689E00DB6124 /* Build configuration list for PBXNativeTarget "Wipe Out" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1EF45AD5274D689E00DB6124 /* Debug */,
