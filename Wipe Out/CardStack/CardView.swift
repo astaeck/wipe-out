@@ -16,18 +16,12 @@ struct CardView: View {
         formatter.dateStyle = .medium
         return formatter
     }()
-    @ObservedObject var card: Card
-    private let imageLoader: ImageLoadable
-    @ObservedObject var videoLoader: VideoLoader
+    @StateObject var card: Card
+    let imageLoader: ImageLoadable
+    let videoLoader: VideoLoader
     @EnvironmentObject var viewModel: CardsViewModel
     @State var labelIsVisible: Bool = true
     @State var scale: CGFloat = 1.0
-    
-    init(card: Card) {
-        self.card = card
-        self.imageLoader = ImageLoadable(card: card)
-        self.videoLoader = VideoLoader(asset: card.asset)
-    }
 
     var body: some View {
         let swipeGesture = DragGesture()

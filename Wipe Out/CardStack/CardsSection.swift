@@ -14,7 +14,9 @@ struct CardsSection: View {
         AsyncContentView(source: viewModel) { cards in
             ZStack{
                 ForEach(cards) { card in
-                    CardView(card: card)
+                    CardView(card: card,
+                             imageLoader: ImageLoadable(card: card),
+                             videoLoader: VideoLoader(asset: card.asset))
                 }
             }
         }
