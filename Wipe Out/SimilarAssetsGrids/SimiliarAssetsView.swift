@@ -9,21 +9,21 @@ import SwiftUI
 
 struct SimilarAssetsView: View {
     @EnvironmentObject var viewModel: CardsViewModel
+    let similarAssetsLoader: SimilarAssetsLoader
     
     var body: some View {
         NavigationView {
             VStack {
-                List(viewModel.collections) { collection in
-                    SimilarAssetGrid(collection: collection)
-                        .listRowSeparator(.hidden)
-                }
-                .listStyle(.plain)
-                .navigationTitle("Similar Photos")
-                .toolbar {
-                    Button("Delete Selection", action: viewModel.deleteAssets)
-                }
-                .task {
-                    await viewModel.fetchData()
+                AsyncContentView(source: SimilarAssetsLoader(cards: viewModel.cards)) { collections in
+                    List(collections) { collection in
+                        SimilarAssetGrid(collection: collection)
+                            .listRowSeparator(.hidden)
+                    }
+                    .listStyle(.plain)
+                    .navigationTitle("Similar Photos")
+                    .toolbar {
+                        Button("Delete Selection", action: viewModel.deleteAssets)
+                    }
                 }
             }
         }
