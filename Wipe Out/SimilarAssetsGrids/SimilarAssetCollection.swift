@@ -1,6 +1,6 @@
 //
 //  SimilarAssetCollection.swift
-//  Photo Tinder
+//  Wipe Out
 //
 //  Created by Angelina Staeck on 03.02.22.
 //

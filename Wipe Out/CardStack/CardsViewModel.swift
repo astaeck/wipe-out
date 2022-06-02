@@ -1,6 +1,6 @@
 //
 //  CardsViewModel.swift
-//  Photo Tinder
+//  Wipe Out
 //
 //  Created by Angelina Staeck on 24.11.21.
 //

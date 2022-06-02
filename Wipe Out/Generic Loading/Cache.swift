@@ -1,6 +1,6 @@
 //
 //  Cache.swift
-//  Photo Tinder
+//  Wipe Out
 //
 //  Created by Angelina Staeck on 19.02.22.
 //

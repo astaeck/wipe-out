@@ -1,6 +1,6 @@
 //
 //  CustomButtonStyle.swift
-//  Photo Tinder
+//  Wipe Out
 //
 //  Created by Angelina Staeck on 30.11.21.
 //

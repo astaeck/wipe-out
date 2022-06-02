@@ -1,6 +1,6 @@
 //
 //  FooterSection.swift
-//  Photo Tinder
+//  Wipe Out
 //
 //  Created by Angelina Staeck on 28.11.21.
 //

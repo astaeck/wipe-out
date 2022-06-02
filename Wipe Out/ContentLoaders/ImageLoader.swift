@@ -1,6 +1,6 @@
 //
 //  ImageLoader.swift
-//  Photo Tinder
+//  Wipe Out
 //
 //  Created by Angelina Staeck on 25.11.21.
 //

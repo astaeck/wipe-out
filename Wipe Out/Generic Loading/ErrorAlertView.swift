@@ -1,6 +1,6 @@
 //
 //  ErrorAlertView.swift
-//  Photo Tinder
+//  Wipe Out
 //
 //  Created by Angelina Staeck on 26.11.21.
 //

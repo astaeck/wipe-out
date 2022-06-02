@@ -1,6 +1,6 @@
 //
 //  SelectedAssetsGridView.swift
-//  Photo Tinder
+//  Wipe Out
 //
 //  Created by Angelina Staeck on 01.12.21.
 //

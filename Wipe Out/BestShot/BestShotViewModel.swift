@@ -1,6 +1,6 @@
 //
 //  BestShotViewModel.swift
-//  Photo Tinder
+//  Wipe Out
 //
 //  Created by Angelina Staeck on 05.03.22.
 //

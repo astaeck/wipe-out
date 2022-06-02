@@ -1,6 +1,6 @@
 //
 //  AsssetGridItem.swift
-//  Photo Tinder
+//  Wipe Out
 //
 //  Created by Angelina Staeck on 01.02.22.
 //
