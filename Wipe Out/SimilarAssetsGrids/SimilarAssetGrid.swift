@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SimilarAssetGrid: View {
     @State var collection: SimilarCollection
-    @EnvironmentObject var viewModel: CardsViewModel
     @State private var showingSheet = false
     
     let layout = [
@@ -34,6 +33,5 @@ struct SimilarAssetGrid: View {
             .frame(height: 200)
             .padding(.vertical)
         }
-        
     }
 }

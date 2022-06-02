@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct AssetGridItem: View {
-    @EnvironmentObject var viewModel: CardsViewModel
     let imageLoader: ImageLoadable
-    @State var card: Card
+    @ObservedObject var card: Card
 
     // MARK: - Drawing Constant
     let cardGradient = Gradient(colors: [Color.black.opacity(0.0), Color.black.opacity(0.5)])
