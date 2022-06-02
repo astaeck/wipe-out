@@ -25,7 +25,7 @@ struct BestShotPickerView: View {
                     .padding([.leading, .top])
                 Spacer()
             }
-            List(viewModel.cardsToCompare()) { card in
+            List(viewModel.compareCards()) { card in
                 HStack {
                     Spacer()
                     AsyncContentView(source: ImageLoadable(card: card)) { image in
@@ -48,9 +48,6 @@ struct BestShotPickerView: View {
                 .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
-        }
-        .onAppear {
-            viewModel.setUp()
         }
     }
 }

@@ -7,16 +7,10 @@
 
 import SwiftUI
 
-struct AsssetGridItem: View {
+struct AssetGridItem: View {
     @EnvironmentObject var viewModel: CardsViewModel
-    private let imageLoader: ImageLoadable
-    var card: Card
-    @State var isSelected: Bool = false
-    
-    init(card: Card) {
-        self.card = card
-        self.imageLoader = ImageLoadable(card: card)
-    }
+    let imageLoader: ImageLoadable
+    @State var card: Card
 
     // MARK: - Drawing Constant
     let cardGradient = Gradient(colors: [Color.black.opacity(0.0), Color.black.opacity(0.5)])
@@ -37,16 +31,14 @@ struct AsssetGridItem: View {
                 HStack {
                     Spacer()
                     Text("☑️")
-                        .opacity(isSelected ? 1.0 : 0.0)
+                        .opacity(card.isSelected ? 1.0 : 0.0)
                 }
             }
             .padding()
             .foregroundColor(.white)
         }
         .onTapGesture {
-            isSelected = !isSelected
-            card.isSelected = !isSelected
-            viewModel.updateSelection(card: card)
+            card.isSelected.toggle()
         }
     }
 }

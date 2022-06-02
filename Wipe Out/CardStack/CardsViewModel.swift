@@ -18,7 +18,8 @@ class CardsViewModel: LoadableObject {
     private var allAssets: [PHAsset] = []
     private let paginationIndex = 25
     private var canResetLastCard = true
-    
+    @Published var collections: [SimilarCollection] = []
+
     var numberOfAssets: Int {
         allAssets.count
     }
@@ -79,12 +80,6 @@ class CardsViewModel: LoadableObject {
         resetSelectedCard(withID: card.id)
     }
     
-    func updateSelection(card: Card) {
-        guard let index = cards.firstIndex(where: { $0.id == card.id }) else { return }
-        let isSelected = !cards[index].isSelected
-        cards[index].isSelected = isSelected
-    }
-    
     func deleteAssets() {
         let cardsToDelete = cards.filter { $0.isSelected }
         guard cardsToDelete.count != 0 else { return }
@@ -98,6 +93,15 @@ class CardsViewModel: LoadableObject {
                 }
             }
         })
+    }
+    
+    func fetchData() async {
+        let groupedCards = Dictionary(grouping: cards.map { $0 }) { card -> DateComponents in
+            return Calendar.current.dateComponents([.minute, .day, .year, .month], from: (card.asset.creationDate)!)
+        }
+        let similarGroupedCards = groupedCards.values.filter { $0.count > 2 }
+        
+        collections = similarGroupedCards.map { SimilarCollection(cards: $0) }
     }
     
     private func resetSelectedCard(withID id: UUID) {

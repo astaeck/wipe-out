@@ -9,12 +9,11 @@ import SwiftUI
 
 struct SimilarAssetsView: View {
     @EnvironmentObject var viewModel: CardsViewModel
-    @StateObject var similarAssetsViewModel = SimilarAssetsViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
-                List(similarAssetsViewModel.collections) { collection in
+                List(viewModel.collections) { collection in
                     SimilarAssetGrid(collection: collection)
                         .listRowSeparator(.hidden)
                 }
@@ -24,7 +23,7 @@ struct SimilarAssetsView: View {
                     Button("Delete Selection", action: viewModel.deleteAssets)
                 }
                 .task {
-                    await similarAssetsViewModel.fetchData(cards: viewModel.cards)
+                    await viewModel.fetchData()
                 }
             }
         }

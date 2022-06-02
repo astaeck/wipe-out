@@ -26,7 +26,7 @@ struct SimilarAssetGrid: View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: layout, spacing: 5) {
                 ForEach(collection.cards) { card in
-                    AsssetGridItem(card: card)
+                    AssetGridItem(imageLoader: ImageLoadable(card: card), card: card)
                 }
                 .cornerRadius(8)
                 .padding(5)

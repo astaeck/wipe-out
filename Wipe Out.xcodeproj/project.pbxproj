@@ -19,9 +19,8 @@
 		1EA5D5052766F132007E0FE1 /* NavigationHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5D5042766F132007E0FE1 /* NavigationHeaderSection.swift */; };
 		1EB6C86127D40D9900206131 /* BestShotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6C86027D40D9900206131 /* BestShotViewModel.swift */; };
 		1EBCF8B52758081B00195BCA /* SelectedAssetsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */; };
-		1EBE6EA427A9A91C003A58CD /* AsssetGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EA327A9A91C003A58CD /* AsssetGridItem.swift */; };
+		1EBE6EA427A9A91C003A58CD /* AssetGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EA327A9A91C003A58CD /* AssetGridItem.swift */; };
 		1EBE6EA827A9B264003A58CD /* SimilarAssetGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EA727A9B264003A58CD /* SimilarAssetGrid.swift */; };
-		1EBE6EAA27A9B30A003A58CD /* SimilarAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EA927A9B30A003A58CD /* SimilarAssetsViewModel.swift */; };
 		1EBE6EAF27AC797D003A58CD /* SimiliarAssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EAE27AC797D003A58CD /* SimiliarAssetsView.swift */; };
 		1EBE6EB127AC79A5003A58CD /* SimilarAssetCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EB027AC79A5003A58CD /* SimilarAssetCollection.swift */; };
 		1ED74E9827C1854600EDEBE6 /* BestShotPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED74E9727C1854600EDEBE6 /* BestShotPickerView.swift */; };
@@ -50,9 +49,8 @@
 		1EA5D5042766F132007E0FE1 /* NavigationHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderSection.swift; sourceTree = "<group>"; };
 		1EB6C86027D40D9900206131 /* BestShotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestShotViewModel.swift; sourceTree = "<group>"; };
 		1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAssetsGridView.swift; sourceTree = "<group>"; };
-		1EBE6EA327A9A91C003A58CD /* AsssetGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsssetGridItem.swift; sourceTree = "<group>"; };
+		1EBE6EA327A9A91C003A58CD /* AssetGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetGridItem.swift; sourceTree = "<group>"; };
 		1EBE6EA727A9B264003A58CD /* SimilarAssetGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarAssetGrid.swift; sourceTree = "<group>"; };
-		1EBE6EA927A9B30A003A58CD /* SimilarAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarAssetsViewModel.swift; sourceTree = "<group>"; };
 		1EBE6EAE27AC797D003A58CD /* SimiliarAssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimiliarAssetsView.swift; sourceTree = "<group>"; };
 		1EBE6EB027AC79A5003A58CD /* SimilarAssetCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarAssetCollection.swift; sourceTree = "<group>"; };
 		1ED74E9727C1854600EDEBE6 /* BestShotPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestShotPickerView.swift; sourceTree = "<group>"; };
@@ -101,7 +99,7 @@
 				1EF45AD7274F37F300DB6124 /* CardView.swift */,
 				1EA5D5042766F132007E0FE1 /* NavigationHeaderSection.swift */,
 				1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */,
-				1EBE6EA327A9A91C003A58CD /* AsssetGridItem.swift */,
+				1EBE6EA327A9A91C003A58CD /* AssetGridItem.swift */,
 			);
 			path = CardStack;
 			sourceTree = "<group>";
@@ -149,7 +147,6 @@
 				1EBE6EA727A9B264003A58CD /* SimilarAssetGrid.swift */,
 				1EBE6EB027AC79A5003A58CD /* SimilarAssetCollection.swift */,
 				1EBE6EAE27AC797D003A58CD /* SimiliarAssetsView.swift */,
-				1EBE6EA927A9B30A003A58CD /* SimilarAssetsViewModel.swift */,
 			);
 			path = SimilarAssetsGrids;
 			sourceTree = "<group>";
@@ -275,7 +272,7 @@
 				1EBCF8B52758081B00195BCA /* SelectedAssetsGridView.swift in Sources */,
 				1ED74E9C27C2C4D800EDEBE6 /* ImageLoadable.swift in Sources */,
 				1E269BC02753F24800DCD06E /* FooterSection.swift in Sources */,
-				1EBE6EA427A9A91C003A58CD /* AsssetGridItem.swift in Sources */,
+				1EBE6EA427A9A91C003A58CD /* AssetGridItem.swift in Sources */,
 				1EB6C86127D40D9900206131 /* BestShotViewModel.swift in Sources */,
 				1EBE6EB127AC79A5003A58CD /* SimilarAssetCollection.swift in Sources */,
 				1E71A72A2751EA7600F97169 /* LoadingState.swift in Sources */,
@@ -289,7 +286,6 @@
 				1EF45ADA274F381C00DB6124 /* Card.swift in Sources */,
 				1ED74E9A27C19C2E00EDEBE6 /* Cache.swift in Sources */,
 				1EBE6EAF27AC797D003A58CD /* SimiliarAssetsView.swift in Sources */,
-				1EBE6EAA27A9B30A003A58CD /* SimilarAssetsViewModel.swift in Sources */,
 				1E71A72C2751F08500F97169 /* ErrorAlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

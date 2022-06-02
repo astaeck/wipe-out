@@ -7,35 +7,23 @@
 import SwiftUI
 
 class BestShotViewModel: ObservableObject {
-    private let similarCards: [Card]
     @Published private var cardToKeep: Card?
-    @Published private var leftCards: [Card] = []
+    private var cardsToCompare: [Card] = []
+    private let similarCards: [Card]
     
     init(similarCards: [Card]) {
         self.similarCards = similarCards
     }
     
-    func cardsToCompare() -> [Card] {
-        if let cardToKeep = cardToKeep {
-            guard !leftCards.isEmpty,
-                  let firstCard = leftCards.first else { return [cardToKeep] }
-            return [cardToKeep, firstCard]
-        }
-        return Array(similarCards.prefix(2))
+    func compareCards() -> [Card] {
+        cardsToCompare = Array(similarCards.filter({ $0.isSelected == false }).prefix(2))
+        return cardsToCompare
     }
     
     func keepSelectedCard(_ card: Card) {
-        guard !leftCards.isEmpty else { return }
+        cardsToCompare.first(where: { $0.id != card.id })?.isSelected = true
+        card.isSelected = false
         cardToKeep = card
-        if let index = leftCards.firstIndex(where: { $0.id == card.id }) {
-            leftCards.remove(at: index)
-        }
-        guard !leftCards.isEmpty else { return }
-        leftCards.removeFirst()
     }
     
-    func setUp() {
-        cardToKeep = nil
-        leftCards = similarCards
-    }
 }
