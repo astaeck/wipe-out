@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-class Card: ObservableObject, Identifiable {
+class Card: ObservableObject, Identifiable, Equatable {
     
     let id = UUID()
     let asset: PHAsset
@@ -30,5 +30,9 @@ class Card: ObservableObject, Identifiable {
         self.degree = degree
         self.isSelected = isSelected
         self.isEnabled = isEnabled
+    }
+    
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id
     }
 }

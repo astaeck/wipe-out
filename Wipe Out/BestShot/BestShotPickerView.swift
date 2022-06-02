@@ -39,14 +39,13 @@ struct BestShotPickerView: View {
                             .frame(maxHeight: 350)
                     }
                     .gesture(TapGesture(count: 1).onEnded {
-                        withAnimation(.easeOut) {
-                            viewModel.keepSelectedCard(card)
-                        }
+                        viewModel.keepSelectedCard(card)
                     })
                     Spacer()
                 }
                 .listRowSeparator(.hidden)
             }
+            .animation(.default, value: viewModel.compareCards())
             .listStyle(.plain)
         }
     }
