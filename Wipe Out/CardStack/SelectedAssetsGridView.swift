@@ -17,7 +17,7 @@ struct SelectedAssetsGridView: View {
     ]
 
     var body: some View {
-        ScrollView {
+        List {
             LazyVGrid(columns: layout, spacing: 5) {
                 ForEach(viewModel.cards.filter({ $0.isSelected })) { card in
                     AssetGridItem(imageLoader: ImageLoadable(card: card), card: card)
@@ -25,11 +25,14 @@ struct SelectedAssetsGridView: View {
                 .cornerRadius(8)
                 .padding(10)
             }
+            .listRowSeparator(.hidden)
         }
+        .animation(.default, value: viewModel.cards.filter({ $0.isSelected }))
+        .listStyle(.plain)
         .padding([.horizontal, .top])
         .navigationTitle("\(viewModel.cards.filter({ $0.isSelected }).count) Selected")
         .toolbar {
-            Button("Deselect All", action: viewModel.resetAll)
+            Button("Wipe out all", action: viewModel.deleteAssets)
         }
     }
 }

@@ -89,6 +89,7 @@ class CardsViewModel: LoadableObject {
             if success {
                 DispatchQueue.main.async {
                     self.cards = self.cards.filter { $0.isSelected == false }
+                    self.state = .loaded(self.cards)
                 }
             }
         })
