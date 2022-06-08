@@ -106,7 +106,7 @@ class CardsViewModel: LoadableObject {
         let newCards = (cards.count..<cards.count + paginationIndex).map { Card(asset: self.allAssets[$0]) }
         newCards.first?.isEnabled = true
         cards.append(contentsOf: newCards)
-        state = .loaded(newCards.reversed())
+        state = .loaded(cards.reversed())
     }
     
     private func createCards() {
