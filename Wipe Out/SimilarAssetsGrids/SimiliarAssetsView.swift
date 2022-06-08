@@ -10,20 +10,40 @@ import SwiftUI
 struct SimilarAssetsView: View {
     @EnvironmentObject var viewModel: CardsViewModel
     let similarAssetsLoader: SimilarAssetsLoader
-    
+    @State private var showingSheet = false
+
     var body: some View {
         NavigationView {
             VStack {
-                AsyncContentView(source: SimilarAssetsLoader(cards: viewModel.cards)) { collections in
-                    List(collections) { collection in
-                        SimilarAssetGrid(collection: collection)
-                            .listRowSeparator(.hidden)
+                
+                List {
+                    Section(header: Text("Screenshots")) {
+                        AsyncContentView(source: ScreenshotLoader(cards: viewModel.cards)) { collections in
+                            ForEach(collections) { collection in
+                                AssetGrid(collection: collection)
+                            }
+                        }
                     }
-                    .listStyle(.plain)
-                    .navigationTitle("Similar Photos")
-                    .toolbar {
-                        Button("Delete Selection", action: viewModel.deleteAssets)
+                    .listRowSeparator(.hidden)
+                    Section(header: Text("Similar Photos")) {
+                        AsyncContentView(source: SimilarAssetsLoader(cards: viewModel.cards)) { collections in
+                            ForEach(collections) { collection in
+                                Button("Pick Best") {
+                                    showingSheet.toggle()
+                                }
+                                .sheet(isPresented: $showingSheet) {
+                                    BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards), showModal: self.$showingSheet)
+                                }
+                                AssetGrid(collection: collection)
+                            }
+                        }
                     }
+                    .listRowSeparator(.hidden)
+                }
+                .listStyle(.plain)
+                .navigationTitle("Clean up!")
+                .toolbar {
+                    Button("Delete Selection", action: viewModel.deleteAssets)
                 }
             }
         }

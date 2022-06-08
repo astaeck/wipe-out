@@ -24,6 +24,21 @@ class SimilarAssetsLoader: LoadableObject {
         }
         let similarGroupedCards = groupedCards.values.filter { $0.count > 2 }
         
-        state = .loaded(similarGroupedCards.map { SimilarCollection(cards: $0) })
+        state = .loaded(similarGroupedCards.map { SimilarCollection(cards: $0.filter({ !$0.asset.mediaSubtypes.contains(.photoScreenshot) })) })
+    }
+}
+
+class ScreenshotLoader: LoadableObject {
+    private let cards: [Card]
+    typealias Output = [SimilarCollection]
+    @Published private(set) var state: LoadingState<[SimilarCollection]> = .idle
+
+    init(cards: [Card]) {
+        self.cards = cards
+    }
+
+    func load() {
+        let screenshots = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
+        state = .loaded([SimilarCollection(cards: screenshots)])
     }
 }
