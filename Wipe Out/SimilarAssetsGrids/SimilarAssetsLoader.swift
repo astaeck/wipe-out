@@ -38,7 +38,8 @@ class ScreenshotLoader: LoadableObject {
     }
 
     func load() {
-        let screenshots = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
+        let screenshots: [Card] = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
+        screenshots.forEach { $0.isSelected = true }
         state = .loaded([SimilarCollection(cards: screenshots)])
     }
 }
