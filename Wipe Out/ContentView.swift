@@ -19,7 +19,7 @@ struct ContentView: View {
                     Image(systemName: "rectangle.on.rectangle")
                     Text("All Photos")
                 }
-            SimilarAssetsView(similarAssetsLoader: SimilarAssetsLoader(cards: cardsViewModel.cards))
+            SimilarAssetsView()
                 .tabItem {
                     Image(systemName: "photo.fill")
                     Text("Similar Photos")

@@ -19,12 +19,12 @@ class SimilarAssetsLoader: LoadableObject {
     }
 
     func load() {
-        let groupedCards = Dictionary(grouping: cards.map { $0 }) { card -> DateComponents in
+        let cardsWithoutScreenshots = cards.filter { !$0.asset.mediaSubtypes.contains(.photoScreenshot) }
+        let groupedCards = Dictionary(grouping: cardsWithoutScreenshots.map { $0 }) { card -> DateComponents in
             return Calendar.current.dateComponents([.minute, .day, .year, .month], from: (card.asset.creationDate)!)
         }
         let similarGroupedCards = groupedCards.values.filter { $0.count > 2 }
-        
-        state = .loaded(similarGroupedCards.map { SimilarCollection(cards: $0.filter({ !$0.asset.mediaSubtypes.contains(.photoScreenshot) })) })
+        state = .loaded(similarGroupedCards.map { SimilarCollection(cards: $0) })
     }
 }
 

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SimilarAssetsView: View {
     @EnvironmentObject var viewModel: CardsViewModel
-    let similarAssetsLoader: SimilarAssetsLoader
     @State private var showingSheet = false
 
     var body: some View {
