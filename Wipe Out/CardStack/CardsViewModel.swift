@@ -16,7 +16,7 @@ class CardsViewModel: LoadableObject {
     private(set) var cards: [Card] = []
     private let photoLibrary: PHPhotoLibrary
     private var allAssets: [PHAsset] = []
-    private let paginationIndex = 25
+    private var paginationIndex = 25
 
     var numberOfAssets: Int {
         allAssets.count
@@ -42,7 +42,7 @@ class CardsViewModel: LoadableObject {
                 self.allAssets.append(asset)
             }
             DispatchQueue.main.async {
-                self.createCards()
+                self.createInitialCardView()
             }
         }
     }
@@ -56,7 +56,7 @@ class CardsViewModel: LoadableObject {
         }
         index += 1
         
-        guard index < cards.count else {
+        guard index < paginationIndex else {
             loadMoreCards()
             return
         }
@@ -99,30 +99,27 @@ class CardsViewModel: LoadableObject {
         card.y = 0
         card.degree = 0
         card.isSelected = false
-        cards[index] = card
     }
     
     private func loadMoreCards() {
-        let newCards = (cards.count..<cards.count + paginationIndex).map { Card(asset: self.allAssets[$0]) }
+        let newCards = (paginationIndex..<paginationIndex + 25).map { cards[$0] }
+        paginationIndex += 25
         newCards.first?.isEnabled = true
-        cards.append(contentsOf: newCards)
-        state = .loaded(cards.reversed())
+        state = .loaded(newCards.reversed())
     }
     
-    private func createCards() {
+    private func createInitialCardView() {
         var newCards: [Card] = []
         if allAssets.count < paginationIndex {
             newCards = allAssets.map { Card(asset: $0) }
         } else {
             newCards = (cards.count..<cards.count + paginationIndex).map { Card(asset: self.allAssets[$0]) }
         }
-        cards.append(contentsOf: newCards)
-        if cards.count <= paginationIndex {
-            cards.first?.isEnabled = true
-        } else {
-            cards[paginationIndex].isEnabled = true
-        }
+        cards = newCards
+        cards.first?.isEnabled = true
         state = .loaded(cards.reversed())
+
+        cards.append(contentsOf: (paginationIndex..<allAssets.count).map { Card(asset: self.allAssets[$0]) })
     }
 
     private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {
