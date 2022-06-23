@@ -9,8 +9,7 @@ import SwiftUI
 
 struct SimilarAssetsView: View {
     @EnvironmentObject var viewModel: CardsViewModel
-    @State private var showingSheet = false
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -27,13 +26,7 @@ struct SimilarAssetsView: View {
                     Section(header: Text("Similar Photos")) {
                         AsyncContentView(source: SimilarAssetsLoader(cards: viewModel.cards)) { collections in
                             ForEach(collections) { collection in
-                                Button("Pick Best") {
-                                    showingSheet.toggle()
-                                }
-                                .sheet(isPresented: $showingSheet) {
-                                    BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards), showModal: self.$showingSheet)
-                                }
-                                AssetGrid(collection: collection)
+                                SimilarAssetsGridView(collection: collection)
                             }
                         }
                     }
