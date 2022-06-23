@@ -58,11 +58,13 @@ struct CardView: View {
             }
             .onEnded { val in
                 withAnimation {
+                    card.x = 0; card.degree = 0; card.y = 0
+                    labelIsVisible = true
                     self.scale = 1.0
                 }
             }
         
-        let swipeBeforeMagnificationGesture = swipeGesture.exclusively(before: magnificationGesture)
+        let swipeBeforeMagnificationGesture = swipeGesture.simultaneously(with: magnificationGesture)
         
         VStack {
             GeometryReader { geometry in
