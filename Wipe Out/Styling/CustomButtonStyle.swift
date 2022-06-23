@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomButtonStyle: ButtonStyle {
   func makeBody(configuration: Configuration) -> some View {
     configuration.label
-      .font(.headline)
+      .font(.subheadline)
       .frame(width: 80, height: 45)
       .foregroundColor(.white)
       .background(Color.blue)

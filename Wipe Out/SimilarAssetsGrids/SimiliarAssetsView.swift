@@ -15,15 +15,19 @@ struct SimilarAssetsView: View {
             VStack {
                 
                 List {
-                    Section(header: Text("Screenshots")) {
+                    Section(header: Text("Screenshots").font(.headline)) {
                         AsyncContentView(source: ScreenshotLoader(cards: viewModel.cards)) { collections in
                             ForEach(collections) { collection in
                                 AssetGrid(collection: collection)
+                                Button("Deselect All") {
+                                    _ = collection.cards.map({ $0.isSelected = false })
+                                }
+                                .buttonStyle(.bordered)
                             }
                         }
                     }
                     .listRowSeparator(.hidden)
-                    Section(header: Text("Similar Photos")) {
+                    Section(header: Text("Similar Photos").font(.headline)) {
                         AsyncContentView(source: SimilarAssetsLoader(cards: viewModel.cards)) { collections in
                             ForEach(collections) { collection in
                                 SimilarAssetsGridView(collection: collection)

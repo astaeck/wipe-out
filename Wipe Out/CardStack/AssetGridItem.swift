@@ -36,6 +36,8 @@ struct AssetGridItem: View {
             .padding()
             .foregroundColor(.white)
         }
+        .cornerRadius(8)
+        .padding(5)
         .onTapGesture {
             card.isSelected.toggle()
         }

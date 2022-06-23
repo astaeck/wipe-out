@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct SimilarAssetsGridView: View {
-    @State private var showingSheet = false
     let collection: SimilarCollection
     
     var body: some View {
-        VStack {
-            Button("Pick Best") {
-                showingSheet.toggle()
-            }
-            .sheet(isPresented: $showingSheet) {
-                BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards), showModal: self.$showingSheet)
-            }
+        NavigationLink(destination: BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards))) {
             AssetGrid(collection: collection)
         }
+        Button("Deselect All") {
+            _ = collection.cards.map({ $0.isSelected = false })
+        }
+        .buttonStyle(.bordered)
+        Spacer()
     }
 }

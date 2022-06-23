@@ -20,8 +20,6 @@ struct AssetGrid: View {
                 ForEach(collection.cards) { card in
                     AssetGridItem(imageLoader: ImageLoadable(card: card), card: card)
                 }
-                .cornerRadius(8)
-                .padding(5)
             }
             .frame(height: 200)
             .padding(.vertical)
