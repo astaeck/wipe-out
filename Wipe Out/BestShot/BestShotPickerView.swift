@@ -35,5 +35,7 @@ struct BestShotPickerView: View {
             .animation(.default, value: viewModel.compareCards())
             .listStyle(.plain)
         }
+        .navigationTitle("Pick the best shot")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

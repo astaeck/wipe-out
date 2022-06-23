@@ -13,7 +13,6 @@ struct SimilarAssetsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                
                 List {
                     Section(header: Text("Screenshots").font(.headline)) {
                         AsyncContentView(source: ScreenshotLoader(cards: viewModel.cards)) { collections in
