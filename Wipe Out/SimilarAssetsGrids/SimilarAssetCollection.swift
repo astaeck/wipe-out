@@ -6,7 +6,11 @@
 //
 import SwiftUI
 
-struct SimilarCollection: Identifiable {
+class SimilarCollection: ObservableObject, Identifiable {
     let id = UUID()
     let cards: [Card]
+    
+    init(cards: [Card]) {
+        self.cards = cards
+    }
 }

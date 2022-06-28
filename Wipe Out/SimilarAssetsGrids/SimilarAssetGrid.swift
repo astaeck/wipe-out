@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AssetGrid: View {
-    @State var collection: SimilarCollection
+    @StateObject var collection: SimilarCollection
     
     let layout = [
         GridItem(.flexible())
@@ -21,6 +21,7 @@ struct AssetGrid: View {
                     AssetGridItem(imageLoader: ImageLoadable(card: card), card: card)
                 }
             }
+            .animation(.default, value: collection.cards.filter({ $0.isSelected }))
             .frame(height: 200)
             .padding(.vertical)
         }

@@ -9,37 +9,31 @@ import SwiftUI
 import Photos
 
 
-class SimilarAssetsLoader: LoadableObject {
-    private let cards: [Card]
-    typealias Output = [SimilarCollection]
-    @Published private(set) var state: LoadingState<[SimilarCollection]> = .idle
-
-    init(cards: [Card]) {
-        self.cards = cards
-    }
-
-    func load() {
+class SimilarAssetsLoader {
+    
+    class func collectionsWith(_ cards: [Card]) -> [SimilarCollection] {
         let cardsWithoutScreenshots = cards.filter { !$0.asset.mediaSubtypes.contains(.photoScreenshot) }
         let groupedCards = Dictionary(grouping: cardsWithoutScreenshots.map { $0 }) { card -> DateComponents in
             return Calendar.current.dateComponents([.minute, .day, .year, .month], from: (card.asset.creationDate)!)
         }
         let similarGroupedCards = groupedCards.values.filter { $0.count > 2 }
-        state = .loaded(similarGroupedCards.map { SimilarCollection(cards: $0) })
+        return similarGroupedCards.map { SimilarCollection(cards: $0) }
     }
 }
 
-class ScreenshotLoader: LoadableObject {
-    private let cards: [Card]
-    typealias Output = [SimilarCollection]
-    @Published private(set) var state: LoadingState<[SimilarCollection]> = .idle
-
-    init(cards: [Card]) {
-        self.cards = cards
-    }
-
-    func load() {
+class ScreenshotLoader {
+    private var setSelected: Bool = true
+    
+    func collectionsWith(_ cards: [Card]) -> [SimilarCollection] {
         let screenshots: [Card] = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
-        screenshots.forEach { $0.isSelected = true }
-        state = .loaded([SimilarCollection(cards: screenshots)])
+        if setSelected {
+            screenshots.forEach { $0.isSelected = true }
+        }
+        return [SimilarCollection(cards: screenshots)]
+    }
+    
+    func deselectCardsIn(_ collection: SimilarCollection)  {
+        setSelected = false
+        _ = collection.cards.map({ $0.isSelected = false })
     }
 }

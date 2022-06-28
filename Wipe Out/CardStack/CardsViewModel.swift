@@ -82,11 +82,12 @@ class CardsViewModel: LoadableObject {
         let assetsToDelete = cardsToDelete.map { $0.asset }
         photoLibrary.performChanges({
             PHAssetChangeRequest.deleteAssets(assetsToDelete as NSArray)
-        }, completionHandler: {success, _ in
+        }, completionHandler: { success, _ in
             if success {
                 DispatchQueue.main.async {
                     self.cards = self.cards.filter { $0.isSelected == false }
-                    self.state = .loaded(self.cards)
+                    let newCards = (self.paginationIndex - 25..<self.paginationIndex).map { self.cards[$0] }
+                    self.state = .loaded(newCards.reversed())
                 }
             }
         })
