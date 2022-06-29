@@ -50,6 +50,7 @@ struct CardView: View {
                     labelIsVisible = true
                 }
                 viewModel.handleSwipe(forCard: card)
+                videoLoader.pause()
             }
         
         let magnificationGesture = MagnificationGesture()
@@ -84,8 +85,8 @@ struct CardView: View {
                         
                         ZStack {
                             if card.asset.mediaType == .video {
-                                AsyncContentView(source: videoLoader) { videoURL in
-                                    VideoPlayer(player: AVPlayer(url: videoURL.url))
+                                AsyncContentView(source: videoLoader) { player in
+                                    VideoPlayer(player: player)
                                         .clipped()
                                         .cornerRadius(8)
                                         .foregroundColor(.white)
