@@ -26,7 +26,7 @@ struct SimilarAssetsView: View {
                     }
                     .listRowSeparator(.hidden)
                     Section(header: Text("Similar Photos").font(.headline)) {
-                        ForEach(SimilarAssetsLoader.collectionsWith(viewModel.cards)) { collection in
+                        ForEach(viewModel.similarCollections) { collection in
                             SimilarAssetsGridView(collection: collection)
                         }
                     }

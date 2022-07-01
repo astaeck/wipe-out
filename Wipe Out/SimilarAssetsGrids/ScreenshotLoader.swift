@@ -10,13 +10,21 @@ import Photos
 
 class ScreenshotLoader {
     private var setSelected: Bool = true
+    private var collections: [SimilarCollection] = []
     
-    func collectionsWith(_ cards: [Card]) -> [SimilarCollection] {
-        let screenshots: [Card] = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
-        if setSelected {
-            screenshots.forEach { $0.isSelected = true }
+    func collectionsWith(_ newCards: [Card]) -> [SimilarCollection] {
+        
+        if collections.isEmpty == false {
+            collections.forEach({ $0.cards = $0.cards.filter({ card in newCards.contains(card) }) })
+        } else {
+            let screenshots: [Card] = newCards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
+            if setSelected {
+                screenshots.forEach { $0.isSelected = true }
+            }
+            collections = [SimilarCollection(cards: screenshots)]
         }
-        return [SimilarCollection(cards: screenshots)]
+        
+        return collections
     }
     
     func deselectCardsIn(_ collection: SimilarCollection)  {

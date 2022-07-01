@@ -14,6 +14,7 @@ class CardsViewModel: LoadableObject {
     typealias Output = [Card]
     @Published private(set) var state: LoadingState<[Card]> = .idle
     private(set) var cards: [Card] = []
+    private(set) var similarCollections: [SimilarCollection] = []
     private let photoLibrary: PHPhotoLibrary
     private var allAssets: [PHAsset] = []
     private var paginationIndex = 25
@@ -85,12 +86,29 @@ class CardsViewModel: LoadableObject {
         }, completionHandler: { success, _ in
             if success {
                 DispatchQueue.main.async {
+                    self.updateSimilarCollectionsWith(cardsToDelete)
                     self.cards = self.cards.filter { $0.isSelected == false }
                     let newCards = (self.paginationIndex - 25..<self.paginationIndex).map { self.cards[$0] }
                     self.state = .loaded(newCards.reversed())
                 }
             }
         })
+    }
+    
+    private func loadSimilarCollections() {
+        let cardsWithoutVideos = cards.filter { $0.asset.mediaType != .video }
+        let cardsWithoutScreenshots = cardsWithoutVideos.filter { !$0.asset.mediaSubtypes.contains(.photoScreenshot) }
+        let groupedCards = Dictionary(grouping: cardsWithoutScreenshots.map { $0 }) { card -> DateComponents in
+            return Calendar.current.dateComponents([.minute, .day, .year, .month], from: (card.asset.creationDate)!)
+        }
+        
+        
+        let similarGroupedCards = groupedCards.values.filter { $0.count > 2 }
+        similarCollections = similarGroupedCards.map { SimilarCollection(cards: $0) }
+    }
+    
+    func updateSimilarCollectionsWith(_ deletedCards: [Card]) {
+        similarCollections.forEach({ $0.cards = $0.cards.filter({ card in !deletedCards.contains(card) }) })
     }
     
     private func resetSelectedCard(withID id: UUID) {
@@ -121,6 +139,7 @@ class CardsViewModel: LoadableObject {
         state = .loaded(cards.reversed())
 
         cards.append(contentsOf: (paginationIndex..<allAssets.count).map { Card(asset: self.allAssets[$0]) })
+        loadSimilarCollections()
     }
 
     private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {

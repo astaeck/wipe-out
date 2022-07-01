@@ -8,7 +8,7 @@ import SwiftUI
 
 class SimilarCollection: ObservableObject, Identifiable {
     let id = UUID()
-    let cards: [Card]
+    @Published var cards: [Card]
     
     init(cards: [Card]) {
         self.cards = cards
