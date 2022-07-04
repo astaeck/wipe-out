@@ -9,17 +9,16 @@ import SwiftUI
 
 struct SimilarAssetsView: View {
     @EnvironmentObject var viewModel: CardsViewModel
-    private let screenshotLoader = ScreenshotLoader()
 
     var body: some View {
         NavigationView {
             VStack {
                 List {
                     Section(header: Text("Screenshots").font(.headline)) {
-                        ForEach(screenshotLoader.collectionsWith(viewModel.cards)) { collection in
+                        ForEach(viewModel.screenshotCollections) { collection in
                             AssetGrid(collection: collection)
                             Button("Deselect All") {
-                                screenshotLoader.deselectCardsIn(collection)
+                                _ = collection.cards.map({ $0.isSelected = false })
                             }
                             .buttonStyle(.bordered)
                         }

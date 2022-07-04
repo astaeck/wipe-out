@@ -12,10 +12,13 @@ import AVKit
 class CardsViewModel: LoadableObject {
     
     typealias Output = [Card]
+    private let photoLibrary: PHPhotoLibrary
+
     @Published private(set) var state: LoadingState<[Card]> = .idle
     private(set) var cards: [Card] = []
     private(set) var similarCollections: [SimilarCollection] = []
-    private let photoLibrary: PHPhotoLibrary
+    private(set) var screenshotCollections: [SimilarCollection] = []
+
     private var allAssets: [PHAsset] = []
     private var paginationIndex = 25
 
@@ -86,7 +89,7 @@ class CardsViewModel: LoadableObject {
         }, completionHandler: { success, _ in
             if success {
                 DispatchQueue.main.async {
-                    self.updateSimilarCollectionsWith(cardsToDelete)
+                    self.updateCollectionsWith(cardsToDelete)
                     self.cards = self.cards.filter { $0.isSelected == false }
                     let newCards = (self.paginationIndex - 25..<self.paginationIndex).map { self.cards[$0] }
                     self.state = .loaded(newCards.reversed())
@@ -95,6 +98,12 @@ class CardsViewModel: LoadableObject {
         })
     }
     
+    private func loadScreenshotCollections() {
+        let screenshots: [Card] = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
+        screenshots.forEach { $0.isSelected = true }
+        screenshotCollections = [SimilarCollection(cards: screenshots)]
+    }
+
     private func loadSimilarCollections() {
         let cardsWithoutVideos = cards.filter { $0.asset.mediaType != .video }
         let cardsWithoutScreenshots = cardsWithoutVideos.filter { !$0.asset.mediaSubtypes.contains(.photoScreenshot) }
@@ -107,8 +116,9 @@ class CardsViewModel: LoadableObject {
         similarCollections = similarGroupedCards.map { SimilarCollection(cards: $0) }
     }
     
-    func updateSimilarCollectionsWith(_ deletedCards: [Card]) {
+    func updateCollectionsWith(_ deletedCards: [Card]) {
         similarCollections.forEach({ $0.cards = $0.cards.filter({ card in !deletedCards.contains(card) }) })
+        screenshotCollections.forEach({ $0.cards = $0.cards.filter({ card in !deletedCards.contains(card) }) })
     }
     
     private func resetSelectedCard(withID id: UUID) {
@@ -140,6 +150,7 @@ class CardsViewModel: LoadableObject {
 
         cards.append(contentsOf: (paginationIndex..<allAssets.count).map { Card(asset: self.allAssets[$0]) })
         loadSimilarCollections()
+        loadScreenshotCollections()
     }
 
     private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {

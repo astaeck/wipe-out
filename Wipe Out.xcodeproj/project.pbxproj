@@ -12,9 +12,7 @@
 		1E269BC02753F24800DCD06E /* FooterSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E269BBF2753F24800DCD06E /* FooterSection.swift */; };
 		1E407827274F484000FF8E4F /* CardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E407826274F484000FF8E4F /* CardsViewModel.swift */; };
 		1E43E1222864C26F00EC7D4B /* SimilarAssetsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E43E1212864C26F00EC7D4B /* SimilarAssetsGridView.swift */; };
-		1E43E124286B715000EC7D4B /* ScreenshotLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E43E123286B715000EC7D4B /* ScreenshotLoader.swift */; };
 		1E626FD027A8370D00F3554F /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E626FCF27A8370D00F3554F /* CardStackView.swift */; };
-		1E704E64284904110069AF43 /* SimilarAssetsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E704E63284904110069AF43 /* SimilarAssetsLoader.swift */; };
 		1E71A72A2751EA7600F97169 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A7292751EA7600F97169 /* LoadingState.swift */; };
 		1E71A72C2751F08500F97169 /* ErrorAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72B2751F08500F97169 /* ErrorAlertView.swift */; };
 		1E71A72E2751FDD800F97169 /* LoadableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72D2751FDD800F97169 /* LoadableObject.swift */; };
@@ -45,9 +43,7 @@
 		1E269BBF2753F24800DCD06E /* FooterSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterSection.swift; sourceTree = "<group>"; };
 		1E407826274F484000FF8E4F /* CardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewModel.swift; sourceTree = "<group>"; };
 		1E43E1212864C26F00EC7D4B /* SimilarAssetsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarAssetsGridView.swift; sourceTree = "<group>"; };
-		1E43E123286B715000EC7D4B /* ScreenshotLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotLoader.swift; sourceTree = "<group>"; };
 		1E626FCF27A8370D00F3554F /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
-		1E704E63284904110069AF43 /* SimilarAssetsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarAssetsLoader.swift; sourceTree = "<group>"; };
 		1E71A7292751EA7600F97169 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		1E71A72B2751F08500F97169 /* ErrorAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertView.swift; sourceTree = "<group>"; };
 		1E71A72D2751FDD800F97169 /* LoadableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableObject.swift; sourceTree = "<group>"; };
@@ -150,9 +146,7 @@
 		1EBE6EA627A9B243003A58CD /* SimilarAssetsGrids */ = {
 			isa = PBXGroup;
 			children = (
-				1E43E123286B715000EC7D4B /* ScreenshotLoader.swift */,
 				1EBE6EA727A9B264003A58CD /* SimilarAssetGrid.swift */,
-				1E704E63284904110069AF43 /* SimilarAssetsLoader.swift */,
 				1EBE6EB027AC79A5003A58CD /* SimilarAssetCollection.swift */,
 				1EBE6EAE27AC797D003A58CD /* SimiliarAssetsView.swift */,
 				1E43E1212864C26F00EC7D4B /* SimilarAssetsGridView.swift */,
@@ -281,10 +275,8 @@
 				1E71A72E2751FDD800F97169 /* LoadableObject.swift in Sources */,
 				1EBCF8B52758081B00195BCA /* SelectedAssetsGridView.swift in Sources */,
 				1ED74E9C27C2C4D800EDEBE6 /* ImageLoadable.swift in Sources */,
-				1E43E124286B715000EC7D4B /* ScreenshotLoader.swift in Sources */,
 				1E269BC02753F24800DCD06E /* FooterSection.swift in Sources */,
 				1EBE6EA427A9A91C003A58CD /* AssetGridItem.swift in Sources */,
-				1E704E64284904110069AF43 /* SimilarAssetsLoader.swift in Sources */,
 				1EB6C86127D40D9900206131 /* BestShotViewModel.swift in Sources */,
 				1EBE6EB127AC79A5003A58CD /* SimilarAssetCollection.swift in Sources */,
 				1E71A72A2751EA7600F97169 /* LoadingState.swift in Sources */,
