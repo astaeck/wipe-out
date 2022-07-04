@@ -100,7 +100,7 @@ class CardsViewModel: LoadableObject {
     
     private func loadScreenshotCollections() {
         let screenshots: [Card] = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
-        screenshots.forEach { $0.isSelected = true }
+        screenshots.forEach { $0.isPreSelected = true }
         screenshotCollections = [SimilarCollection(cards: screenshots)]
     }
 
@@ -116,9 +116,15 @@ class CardsViewModel: LoadableObject {
         similarCollections = similarGroupedCards.map { SimilarCollection(cards: $0) }
     }
     
-    func updateCollectionsWith(_ deletedCards: [Card]) {
+    private func updateCollectionsWith(_ deletedCards: [Card]) {
         similarCollections.forEach({ $0.cards = $0.cards.filter({ card in !deletedCards.contains(card) }) })
         screenshotCollections.forEach({ $0.cards = $0.cards.filter({ card in !deletedCards.contains(card) }) })
+    }
+    
+    func moveCardToTrashFrom(_ collection: SimilarCollection) {
+        let cards = collection.cards.filter({ $0.isPreSelected })
+        cards.forEach { $0.isSelected = true }
+        
     }
     
     private func resetSelectedCard(withID id: UUID) {

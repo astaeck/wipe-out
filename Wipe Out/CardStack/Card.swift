@@ -16,6 +16,7 @@ class Card: ObservableObject, Identifiable, Equatable {
     @Published var y: CGFloat
     @Published var degree: Double
     @Published var isSelected: Bool
+    @Published var isPreSelected: Bool
     @Published var isEnabled: Bool
 
     init(asset: PHAsset,
@@ -23,12 +24,14 @@ class Card: ObservableObject, Identifiable, Equatable {
          y: CGFloat = 0.0,
          degree: CGFloat = 0.0,
          isSelected: Bool = false,
+         isPreSelected: Bool = false,
          isEnabled: Bool = false) {
         self.asset = asset
         self.x = x
         self.y = y
         self.degree = degree
         self.isSelected = isSelected
+        self.isPreSelected = isPreSelected
         self.isEnabled = isEnabled
     }
     

@@ -30,7 +30,7 @@ struct AssetGridItem: View {
                 HStack {
                     Spacer()
                     Text("☑️")
-                        .opacity(card.isSelected ? 1.0 : 0.0)
+                        .opacity(card.isPreSelected ? 1.0 : 0.0)
                 }
             }
             .padding()
@@ -39,7 +39,7 @@ struct AssetGridItem: View {
         .cornerRadius(8)
         .padding(5)
         .onTapGesture {
-            card.isSelected.toggle()
+            card.isPreSelected.toggle()
         }
     }
 }
