@@ -16,32 +16,21 @@ struct SimilarAssetsView: View {
                 List {
                     Section(header: Text("Screenshots").font(.headline)) {
                         ForEach(viewModel.screenshotCollections) { collection in
-                            AssetGrid(collection: collection)
-                            HStack {
-                                Button("Deselect All") {
-                                    _ = collection.cards.map({ $0.isPreSelected = false })
-                                }
-                                .buttonStyle(.bordered)
-                                Button("Move to trash") {
-                                    let cards = viewModel.screenshotCollections.first(where: { $0.id == collection.id })?.cards.filter({ $0.isPreSelected })
-                                    cards?.forEach { $0.isSelected = true }
-                                    viewModel.screenshotCollections.forEach({ $0.cards = $0.cards.filter({ !$0.isSelected }) })
-
-                                }
-                                .buttonStyle(.bordered)
-                            }
+                            SimilarAssetsGridView(collection: collection)
                         }
                     }
                     .listRowSeparator(.hidden)
                     Section(header: Text("Similar Photos").font(.headline)) {
                         ForEach(viewModel.similarCollections) { collection in
-                            SimilarAssetsGridView(collection: collection)
+                            NavigationLink(destination: BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards))) {
+                                SimilarAssetsGridView(collection: collection)
+                            }
                         }
                     }
                     .listRowSeparator(.hidden)
                 }
                 .listStyle(.plain)
-                .navigationTitle("Clean up!")
+                .navigationTitle("Clean Up!")
                 .toolbar {
                     Button("Delete Selection", action: viewModel.deleteAssets)
                 }

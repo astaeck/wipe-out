@@ -16,12 +16,12 @@ class BestShotViewModel: ObservableObject {
     }
     
     func compareCards() -> [Card] {
-        cardsToCompare = Array(similarCards.filter({ $0.isSelected == false }).prefix(2))
+        cardsToCompare = Array(similarCards.filter({ $0.isPreSelected == false }).prefix(2))
         return cardsToCompare
     }
     
     func keepSelectedCard(_ card: Card) {
-        cardsToCompare.first(where: { $0.id != card.id })?.isSelected = true
+        cardsToCompare.first(where: { $0.id != card.id })?.isPreSelected = true
         card.isSelected = false
         cardToKeep = card
     }
