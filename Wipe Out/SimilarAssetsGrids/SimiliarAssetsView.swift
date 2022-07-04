@@ -23,9 +23,10 @@ struct SimilarAssetsView: View {
                                 }
                                 .buttonStyle(.bordered)
                                 Button("Move to trash") {
-                                    let cards = collections.first(where: { $0.id == collection.id }).cards.filter({ $0.isPreSelected })
-                                    cards.forEach { $0.isSelected = true }
-                                    collections.forEach({ $0.cards = $0.cards.filter({ $0.isSelected }) })
+                                    let cards = viewModel.screenshotCollections.first(where: { $0.id == collection.id })?.cards.filter({ $0.isPreSelected })
+                                    cards?.forEach { $0.isSelected = true }
+                                    viewModel.screenshotCollections.forEach({ $0.cards = $0.cards.filter({ !$0.isSelected }) })
+
                                 }
                                 .buttonStyle(.bordered)
                             }
