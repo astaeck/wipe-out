@@ -40,6 +40,7 @@ struct AssetGridItem: View {
         .padding(5)
         .onTapGesture {
             card.isPreSelected.toggle()
+            card.isSelected = false
         }
     }
 }

@@ -57,6 +57,7 @@ class CardsViewModel: LoadableObject {
         if card.x < 0 {
             let card = cards[index]
             card.isSelected = true
+            card.isPreSelected = true
         }
         index += 1
         
@@ -134,6 +135,7 @@ class CardsViewModel: LoadableObject {
         card.y = 0
         card.degree = 0
         card.isSelected = false
+        card.isPreSelected = false
     }
     
     private func loadMoreCards() {

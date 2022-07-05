@@ -27,7 +27,6 @@ struct SelectedAssetsGridView: View {
             }
             .listRowSeparator(.hidden)
         }
-        .animation(.default, value: viewModel.cards.filter({ $0.isSelected }))
         .listStyle(.plain)
         .padding([.horizontal, .top])
         .navigationTitle("\(viewModel.cards.filter({ $0.isSelected }).count) Selected")
