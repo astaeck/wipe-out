@@ -58,6 +58,7 @@ class CardsViewModel: LoadableObject {
             let card = cards[index]
             card.isSelected = true
             card.isPreSelected = true
+            updateCollectionsWith(card)
         }
         index += 1
         
@@ -70,10 +71,6 @@ class CardsViewModel: LoadableObject {
             let nextCard = cards[index]
             nextCard.isEnabled = true
         }
-    }
-    
-    func resetAll() {
-        cards.forEach { resetSelectedCard(withID: $0.id) }
     }
     
     func resetLast() {
@@ -90,7 +87,7 @@ class CardsViewModel: LoadableObject {
         }, completionHandler: { success, _ in
             if success {
                 DispatchQueue.main.async {
-                    self.updateCollectionsWith(cardsToDelete)
+                    self.removeCardFromCollections(cardsToDelete)
                     self.cards = self.cards.filter { $0.isSelected == false }
                     let newCards = (self.paginationIndex - 25..<self.paginationIndex).map { self.cards[$0] }
                     self.state = .loaded(newCards.reversed())
@@ -102,7 +99,7 @@ class CardsViewModel: LoadableObject {
     private func loadScreenshotCollections() {
         let screenshots: [Card] = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
         screenshots.forEach { $0.isPreSelected = true }
-        screenshotCollections = [SimilarCollection(cards: screenshots)]
+        screenshotCollections = [SimilarCollection(cards: screenshots, collectionType: .screenshot)]
     }
 
     private func loadSimilarCollections() {
@@ -112,14 +109,17 @@ class CardsViewModel: LoadableObject {
             return Calendar.current.dateComponents([.minute, .day, .year, .month], from: (card.asset.creationDate)!)
         }
         
-        
         let similarGroupedCards = groupedCards.values.filter { $0.count > 2 }
-        similarCollections = similarGroupedCards.map { SimilarCollection(cards: $0) }
+        similarCollections = similarGroupedCards.map { SimilarCollection(cards: $0, collectionType: .similar) }
     }
     
-    private func updateCollectionsWith(_ deletedCards: [Card]) {
-        similarCollections.forEach({ $0.cards = $0.cards.filter({ card in !deletedCards.contains(card) }) })
-        screenshotCollections.forEach({ $0.cards = $0.cards.filter({ card in !deletedCards.contains(card) }) })
+    private func removeCardFromCollections(_ deletedCards: [Card]) {
+        similarCollections.forEach({ $0.removeCardsFromCollections(deletedCards) })
+        screenshotCollections.forEach({ $0.removeCardsFromCollections(deletedCards) })
+    }
+    
+    private func updateCollectionsWith(_ card: Card) {
+        screenshotCollections.forEach({ $0.cards = $0.cards })
     }
     
     func moveCardToTrashFrom(_ collection: SimilarCollection) {
@@ -136,6 +136,7 @@ class CardsViewModel: LoadableObject {
         card.degree = 0
         card.isSelected = false
         card.isPreSelected = false
+        updateCollectionsWith(card)
     }
     
     private func loadMoreCards() {

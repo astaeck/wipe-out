@@ -22,7 +22,6 @@ struct AssetGridItem: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 150, height: 200)
                     .clipped()
-                
             }
             LinearGradient(gradient: cardGradient, startPoint: .top, endPoint: .bottom)
             VStack {

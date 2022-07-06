@@ -16,14 +16,14 @@ struct SimilarAssetsView: View {
                 List {
                     Section(header: Text("Screenshots").font(.headline)) {
                         ForEach(viewModel.screenshotCollections) { collection in
-                            SimilarAssetsGridView(collection: collection)
+                            AssetGridView(collection: collection)
                         }
                     }
                     .listRowSeparator(.hidden)
                     Section(header: Text("Similar Photos").font(.headline)) {
                         ForEach(viewModel.similarCollections) { collection in
                             NavigationLink(destination: BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards))) {
-                                SimilarAssetsGridView(collection: collection)
+                                AssetGridView(collection: collection)
                             }
                         }
                     }
