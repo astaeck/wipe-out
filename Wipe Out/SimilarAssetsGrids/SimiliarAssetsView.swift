@@ -15,13 +15,13 @@ struct SimilarAssetsView: View {
             VStack {
                 List {
                     Section(header: Text("Screenshots").font(.headline)) {
-                        ForEach(viewModel.screenshotCollections) { collection in
+                        ForEach(viewModel.collections.filter({ $0.collectionType == .screenshot })) { collection in
                             AssetGridView(collection: collection)
                         }
                     }
                     .listRowSeparator(.hidden)
                     Section(header: Text("Similar Photos").font(.headline)) {
-                        ForEach(viewModel.similarCollections) { collection in
+                        ForEach(viewModel.collections.filter({ $0.collectionType == .similar })) { collection in
                             NavigationLink(destination: BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards))) {
                                 AssetGridView(collection: collection)
                             }

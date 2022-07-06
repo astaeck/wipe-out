@@ -17,7 +17,6 @@ class CardsViewModel: LoadableObject {
     @Published private(set) var state: LoadingState<[Card]> = .idle
     private(set) var cards: [Card] = []
     private(set) var similarCollections: [SimilarCollection] = []
-    private(set) var screenshotCollections: [SimilarCollection] = []
 
     private var allAssets: [PHAsset] = []
     private var paginationIndex = 25
@@ -99,7 +98,7 @@ class CardsViewModel: LoadableObject {
     private func loadScreenshotCollections() {
         let screenshots: [Card] = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
         screenshots.forEach { $0.isPreSelected = true }
-        screenshotCollections = [SimilarCollection(cards: screenshots, collectionType: .screenshot)]
+        similarCollections.append(contentsOf: [SimilarCollection(cards: screenshots, collectionType: .screenshot)])
     }
 
     private func loadSimilarCollections() {
@@ -110,16 +109,15 @@ class CardsViewModel: LoadableObject {
         }
         
         let similarGroupedCards = groupedCards.values.filter { $0.count > 2 }
-        similarCollections = similarGroupedCards.map { SimilarCollection(cards: $0, collectionType: .similar) }
+        similarCollections.append(contentsOf: similarGroupedCards.map { SimilarCollection(cards: $0, collectionType: .similar) })
     }
     
     private func removeCardFromCollections(_ deletedCards: [Card]) {
         similarCollections.forEach({ $0.removeCardsFromCollections(deletedCards) })
-        screenshotCollections.forEach({ $0.removeCardsFromCollections(deletedCards) })
     }
     
     private func updateCollectionsWith(_ card: Card) {
-        screenshotCollections.forEach({ $0.cards = $0.cards })
+        similarCollections.forEach({ $0.cards = $0.cards })
     }
     
     func moveCardToTrashFrom(_ collection: SimilarCollection) {
