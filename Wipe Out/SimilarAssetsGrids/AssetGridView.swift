@@ -20,6 +20,7 @@ struct AssetGridView: View {
                 LazyHGrid(rows: layout, spacing: 5) {
                     ForEach(collection.cards.filter({ !$0.isSelected })) { card in
                         AssetGridItem(imageLoader: ImageLoadable(card: card), card: card)
+                            .transition(.scale)
                     }
                 }
                 .frame(height: 200)
@@ -31,9 +32,11 @@ struct AssetGridView: View {
                 }
                 .buttonStyle(.bordered)
                 Button("Move to Trash") {
-                    let cards = collection.cards.filter({ $0.isPreSelected })
-                    cards.forEach { $0.isSelected = true }
-                    collection.cards = collection.cards
+                    withAnimation {
+                        let cards = collection.cards.filter({ $0.isPreSelected })
+                        cards.forEach { $0.isSelected = true }
+                        collection.cards = collection.cards
+                    }
                 }
                 .buttonStyle(.bordered)
             }

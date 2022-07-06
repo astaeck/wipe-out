@@ -20,10 +20,12 @@ struct AssetGridItem: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 150, height: 200)
-                    .clipped()
+                LinearGradient(gradient: cardGradient, startPoint: .top, endPoint: .bottom)
             }
-            LinearGradient(gradient: cardGradient, startPoint: .top, endPoint: .bottom)
+            .frame(width: 150, height: 200)
+            .clipped()
+            .cornerRadius(8)
+            .padding(5)
             VStack {
                 Spacer()
                 HStack {
@@ -35,8 +37,6 @@ struct AssetGridItem: View {
             .padding()
             .foregroundColor(.white)
         }
-        .cornerRadius(8)
-        .padding(5)
         .onTapGesture {
             card.isPreSelected.toggle()
             card.isSelected = false
