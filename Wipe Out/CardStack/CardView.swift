@@ -36,13 +36,13 @@ struct CardView: View {
             .onEnded { (value) in
                 withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
                     switch value.translation.width {
-                    case 0...100:
+                    case 0...50:
                         card.x = 0; card.degree = 0; card.y = 0
-                    case let x where x > 100:
+                    case let x where x > 50:
                         card.x = 500; card.degree = 12
-                    case (-100)...(-1):
+                    case (-50)...(-1):
                         card.x = 0; card.degree = 0; card.y = 0
-                    case let x where x < -100:
+                    case let x where x < -50:
                         card.x  = -500; card.degree = -12
                     default:
                         card.x = 0; card.y = 0
