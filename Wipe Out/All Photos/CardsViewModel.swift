@@ -95,6 +95,14 @@ class CardsViewModel: LoadableObject {
         })
     }
     
+    func moveCardToTrashFrom(_ collection: SimilarCollection) {
+        let cards = collection.cards.filter({ $0.isPreSelected })
+        cards.forEach { $0.isSelected = true }
+        
+    }
+    
+    // MARK: - Private
+    
     private func loadScreenshotCollections() {
         let screenshots: [Card] = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
         screenshots.forEach { $0.isPreSelected = true }
@@ -118,12 +126,6 @@ class CardsViewModel: LoadableObject {
     
     private func updateCollectionsWith(_ card: Card) {
         similarCollections.forEach({ $0.cards = $0.cards })
-    }
-    
-    func moveCardToTrashFrom(_ collection: SimilarCollection) {
-        let cards = collection.cards.filter({ $0.isPreSelected })
-        cards.forEach { $0.isSelected = true }
-        
     }
     
     private func resetSelectedCard(withID id: UUID) {
