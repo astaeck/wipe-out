@@ -14,14 +14,15 @@ struct SimilarAssetsView: View {
         NavigationView {
             VStack {
                 List {
-                    Section(header: Text("Screenshots").font(.headline)) {
-                        ForEach(viewModel.similarCollections.filter({ $0.collectionType == .screenshot })) { collection in
+                    Text("Screenshots").font(.headline)
+                    ForEach(viewModel.similarCollections.filter({ $0.collectionType == .screenshot })) { collection in
+                        Section {
                             AssetGridView(collection: collection)
                         }
                     }
-                    .listRowSeparator(.hidden)
-                    Section(header: Text("Similar Photos").font(.headline)) {
-                        ForEach(viewModel.similarCollections.filter({ $0.collectionType == .similar })) { collection in
+                    Text("Similar Photos").font(.headline)
+                    ForEach(viewModel.similarCollections.filter({ $0.collectionType == .similar })) { collection in
+                        Section {
                             NavigationLink(destination: BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards))) {
                                 AssetGridView(collection: collection)
                             }
@@ -29,11 +30,12 @@ struct SimilarAssetsView: View {
                     }
                     .listRowSeparator(.hidden)
                 }
-                .listStyle(.plain)
-                .navigationTitle("Clean Up!")
-                .toolbar {
-                    Button("Delete Selection", action: viewModel.deleteAssets)
-                }
+            }
+            .listStyle(.insetGrouped)
+            .background(Color(UIColor.clear))
+            .navigationTitle("Clean Up!")
+            .toolbar {
+                Button("Delete Selection", action: viewModel.deleteAssets)
             }
         }
     }

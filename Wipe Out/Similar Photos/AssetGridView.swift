@@ -16,21 +16,22 @@ struct AssetGridView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            Spacer()
             ScrollView(.horizontal) {
-                LazyHGrid(rows: layout, spacing: 5) {
+                LazyHGrid(rows: layout, spacing: 10) {
                     ForEach(collection.cards.filter({ !$0.isSelected })) { card in
                         AssetGridItem(imageLoader: ImageLoadable(card: card), card: card)
                             .transition(.scale)
                     }
                 }
                 .frame(height: 200)
-                .padding(.vertical)
             }
             HStack {
                 Button("Deselect All") {
                     _ = collection.cards.map({ $0.isPreSelected = false })
                 }
                 .buttonStyle(.bordered)
+                Spacer()
                 Button("Move to Trash") {
                     withAnimation {
                         let cards = collection.cards.filter({ $0.isPreSelected })

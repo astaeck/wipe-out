@@ -22,7 +22,7 @@ struct ContentView: View {
             SimilarAssetsView()
                 .tabItem {
                     Image(systemName: "photo.fill")
-                    Text("Similar Photos")
+                    Text("Clean Up")
                 }
         }
         .environmentObject(cardsViewModel)
