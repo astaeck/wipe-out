@@ -12,7 +12,7 @@ struct CardsSection: View {
 
     var body: some View {
         AsyncContentView(source: viewModel) { cards in
-            ZStack{
+            ZStack {
                 ForEach(cards) { card in
                     CardView(card: card,
                              imageLoader: ImageLoadable(card: card),

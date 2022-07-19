@@ -16,9 +16,13 @@ struct NavigationHeaderSection: View {
             Spacer()
         }
         .navigationTitle("All Photos")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 NavigationLink("🗑", destination: SelectedAssetsGridView())
+            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Text("\(viewModel.numberOfAssets)").font(.headline)
             }
         }
     }

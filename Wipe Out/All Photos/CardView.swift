@@ -76,13 +76,6 @@ struct CardView: View {
                         .opacity(labelIsVisible ? 1.0 : 0.0)
                     
                     VStack {
-                        VStack {
-                            if let date = card.asset.creationDate {
-                                Text("\(date, formatter: Self.dateFormat)")
-                            }
-                        }
-                        .opacity(labelIsVisible ? 1.0 : 0.0)
-                        
                         ZStack {
                             if card.asset.mediaType == .video {
                                 AsyncContentView(source: videoLoader) { player in
@@ -102,19 +95,22 @@ struct CardView: View {
                                     .opacity(labelIsVisible && card.asset.mediaType == .video ? 0.0 : 1.0)
                             }
                         }
+                        ZStack {
+                            if let date = card.asset.creationDate {
+                                Text("\(date, formatter: Self.dateFormat)").font(.subheadline).bold()
+                                    .opacity(labelIsVisible ? 1.0 : 0.0)
+                            }
+                            Text("✅")
+                                .opacity(Double(card.x/10 - 1))
+                            Spacer()
+                            Text("❌")
+                                .opacity(Double(card.x/10 * -1 - 1))
+                        }
                     }
                 }
             }
             .scaleEffect(scale)
             .zIndex(1.0)
-            
-            ZStack {
-                Text("✅")
-                    .opacity(Double(card.x/10 - 1))
-                Spacer()
-                Text("❌")
-                    .opacity(Double(card.x/10 * -1 - 1))
-            }
         }
         .offset(x: card.x, y: card.y)
         .rotationEffect(.init(degrees: card.degree))
