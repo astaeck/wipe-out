@@ -18,7 +18,6 @@
 		1E71A72E2751FDD800F97169 /* LoadableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72D2751FDD800F97169 /* LoadableObject.swift */; };
 		1E71A7302751FDF200F97169 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72F2751FDF200F97169 /* AsyncContentView.swift */; };
 		1E77E7842886F77C00FA285E /* TimePeriodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77E7832886F77C00FA285E /* TimePeriodPicker.swift */; };
-		1EA5D5052766F132007E0FE1 /* NavigationHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5D5042766F132007E0FE1 /* NavigationHeaderSection.swift */; };
 		1EB6C86127D40D9900206131 /* BestShotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6C86027D40D9900206131 /* BestShotViewModel.swift */; };
 		1EBCF8B52758081B00195BCA /* SelectedAssetsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */; };
 		1EBE6EA427A9A91C003A58CD /* AssetGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EA327A9A91C003A58CD /* AssetGridItem.swift */; };
@@ -49,7 +48,6 @@
 		1E71A72D2751FDD800F97169 /* LoadableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableObject.swift; sourceTree = "<group>"; };
 		1E71A72F2751FDF200F97169 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		1E77E7832886F77C00FA285E /* TimePeriodPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriodPicker.swift; sourceTree = "<group>"; };
-		1EA5D5042766F132007E0FE1 /* NavigationHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderSection.swift; sourceTree = "<group>"; };
 		1EB6C86027D40D9900206131 /* BestShotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestShotViewModel.swift; sourceTree = "<group>"; };
 		1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAssetsGridView.swift; sourceTree = "<group>"; };
 		1EBE6EA327A9A91C003A58CD /* AssetGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetGridItem.swift; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 				1E407826274F484000FF8E4F /* CardsViewModel.swift */,
 				1E77E7832886F77C00FA285E /* TimePeriodPicker.swift */,
 				1EF45AD7274F37F300DB6124 /* CardView.swift */,
-				1EA5D5042766F132007E0FE1 /* NavigationHeaderSection.swift */,
 				1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */,
 				1EBE6EA327A9A91C003A58CD /* AssetGridItem.swift */,
 			);
@@ -275,7 +272,6 @@
 			files = (
 				1ED74E9827C1854600EDEBE6 /* BestShotPickerView.swift in Sources */,
 				1EF45ACC274D689D00DB6124 /* ContentView.swift in Sources */,
-				1EA5D5052766F132007E0FE1 /* NavigationHeaderSection.swift in Sources */,
 				1E3442562875C52B00881EAE /* AssetGridView.swift in Sources */,
 				1E71A7302751FDF200F97169 /* AsyncContentView.swift in Sources */,
 				1E626FD027A8370D00F3554F /* CardStackView.swift in Sources */,
