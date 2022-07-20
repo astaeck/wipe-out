@@ -12,7 +12,8 @@ struct TimePeriodPicker: View {
     @State var currentDate: Date = Date()
 
     var body: some View {
-        DatePicker("", selection: $currentDate)
+        DatePicker("", selection: $currentDate, displayedComponents: [.date])
             .datePickerStyle(.compact)
+            .labelsHidden()
     }
 }

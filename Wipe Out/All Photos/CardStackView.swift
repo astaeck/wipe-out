@@ -12,11 +12,11 @@ struct CardStackView: View {
     var body: some View {
         NavigationView {
             VStack {
+                Spacer()
+                TimePeriodPicker()
                 CardsSection()
-                .padding()
                 .zIndex(1.0)
                 FooterSection()
-                Spacer()
             }
             .navigationTitle("All Photos")
             .navigationBarTitleDisplayMode(.inline)

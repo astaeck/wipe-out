@@ -95,6 +95,7 @@ struct CardView: View {
                                     .opacity(labelIsVisible && card.asset.mediaType == .video ? 0.0 : 1.0)
                             }
                         }
+                        .padding(5)
                         ZStack {
                             if let date = card.asset.creationDate {
                                 Text("\(date, formatter: Self.dateFormat)").font(.subheadline).bold()
