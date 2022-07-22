@@ -46,6 +46,8 @@ class CardsViewModel: LoadableObject {
             }
             DispatchQueue.main.async {
                 self.createInitialCardView()
+                self.loadSimilarCollections()
+                self.loadScreenshotCollections()
             }
         }
     }
@@ -66,7 +68,7 @@ class CardsViewModel: LoadableObject {
             return
         }
         
-        if card.x < 0 || card.x > 0 {
+        if index < cards.count && (card.x < 0 || card.x > 0) {
             let nextCard = cards[index]
             nextCard.isEnabled = true
         }
@@ -147,19 +149,16 @@ class CardsViewModel: LoadableObject {
     }
     
     private func createInitialCardView() {
-        var newCards: [Card] = []
+        var allCards = [Card]()
         if allAssets.count < paginationIndex {
-            newCards = allAssets.map { Card(asset: $0) }
+            cards = allAssets.map { Card(asset: $0) }
         } else {
-            newCards = (cards.count..<cards.count + paginationIndex).map { Card(asset: self.allAssets[$0]) }
+            cards = (0..<paginationIndex).map { Card(asset: allAssets[$0]) }
+            allCards = (paginationIndex..<allAssets.count).map { Card(asset: allAssets[$0]) }
         }
-        cards = newCards
         cards.first?.isEnabled = true
         state = .loaded(cards.reversed())
-
-        cards.append(contentsOf: (paginationIndex..<allAssets.count).map { Card(asset: self.allAssets[$0]) })
-        loadSimilarCollections()
-        loadScreenshotCollections()
+        cards.append(contentsOf: allCards)
     }
 
     private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {
