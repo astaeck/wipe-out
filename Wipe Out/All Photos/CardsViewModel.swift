@@ -103,6 +103,13 @@ class CardsViewModel: LoadableObject {
         
     }
     
+    func setCardStackToDate(with date: Date) {
+        guard let indexFromDate = cards.firstIndex(where: { Calendar.current.isDate($0.asset.creationDate!, equalTo: date, toGranularity: .day) }) else { return }
+        
+        paginationIndex = indexFromDate
+        loadMoreCards()
+    }
+    
     // MARK: - Private
     
     private func loadScreenshotCollections() {

@@ -12,8 +12,11 @@ struct TimePeriodPicker: View {
     @State var currentDate: Date = Date()
 
     var body: some View {
-        DatePicker("", selection: $currentDate, displayedComponents: [.date])
+        DatePicker("", selection: $currentDate, in: ...Date(), displayedComponents: [.date])
             .datePickerStyle(.compact)
             .labelsHidden()
+            .onChange(of: currentDate) { newValue in
+                viewModel.setCardStackToDate(with: newValue)
+            }
     }
 }
