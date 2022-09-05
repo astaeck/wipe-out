@@ -23,9 +23,14 @@ class ImageLoadable: LoadableObject {
     func load() {
         state = .loading
         
-        imageLoader.load(card: card) { result in
-            guard let image = try? result.get() else { return }
-            self.state = .loaded(image)
+        Task {
+            do {
+                let image = try await imageLoader.load(card: card)
+                state = .loaded(image)
+            }
+            catch {
+                state = .failed("Image download failed")
+            }
         }
     }
 }
