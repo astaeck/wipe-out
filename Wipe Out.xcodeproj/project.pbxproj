@@ -24,7 +24,6 @@
 		1EBE6EAF27AC797D003A58CD /* SimiliarAssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EAE27AC797D003A58CD /* SimiliarAssetsView.swift */; };
 		1EBE6EB127AC79A5003A58CD /* SimilarCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EB027AC79A5003A58CD /* SimilarCollection.swift */; };
 		1ED74E9827C1854600EDEBE6 /* BestShotPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED74E9727C1854600EDEBE6 /* BestShotPickerView.swift */; };
-		1ED74E9A27C19C2E00EDEBE6 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED74E9927C19C2E00EDEBE6 /* Cache.swift */; };
 		1ED74E9C27C2C4D800EDEBE6 /* ImageLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED74E9B27C2C4D800EDEBE6 /* ImageLoadable.swift */; };
 		1EF45ACA274D689D00DB6124 /* Photo_TinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */; };
 		1EF45ACC274D689D00DB6124 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45ACB274D689D00DB6124 /* ContentView.swift */; };
@@ -54,7 +53,6 @@
 		1EBE6EAE27AC797D003A58CD /* SimiliarAssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimiliarAssetsView.swift; sourceTree = "<group>"; };
 		1EBE6EB027AC79A5003A58CD /* SimilarCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarCollection.swift; sourceTree = "<group>"; };
 		1ED74E9727C1854600EDEBE6 /* BestShotPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestShotPickerView.swift; sourceTree = "<group>"; };
-		1ED74E9927C19C2E00EDEBE6 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		1ED74E9B27C2C4D800EDEBE6 /* ImageLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadable.swift; sourceTree = "<group>"; };
 		1EF45AC6274D689D00DB6124 /* Wipe Out.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wipe Out.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_TinderApp.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				1E71A72B2751F08500F97169 /* ErrorAlertView.swift */,
 				1E71A7292751EA7600F97169 /* LoadingState.swift */,
 				1E71A72D2751FDD800F97169 /* LoadableObject.swift */,
-				1ED74E9927C19C2E00EDEBE6 /* Cache.swift */,
 			);
 			path = "Generic Loading";
 			sourceTree = "<group>";
@@ -292,7 +289,6 @@
 				1E1428582750797000ED0F77 /* ImageLoader.swift in Sources */,
 				1E1C5FA32756BAA900790DDE /* CustomButtonStyle.swift in Sources */,
 				1EF45ADA274F381C00DB6124 /* Card.swift in Sources */,
-				1ED74E9A27C19C2E00EDEBE6 /* Cache.swift in Sources */,
 				1EBE6EAF27AC797D003A58CD /* SimiliarAssetsView.swift in Sources */,
 				1E71A72C2751F08500F97169 /* ErrorAlertView.swift in Sources */,
 			);

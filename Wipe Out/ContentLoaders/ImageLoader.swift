@@ -12,9 +12,8 @@ enum ImageLoaderError: Error {
     case notLoaded
 }
 
-class ImageLoader {
+final class ImageLoader {
     
-    private let cache = Cache<String, UIImage>()
     private let imageManager: PHCachingImageManager
     typealias Handler = (Result<UIImage, Error>) -> Void
     
@@ -25,36 +24,28 @@ class ImageLoader {
     }
     
     @MainActor
-    func load(card: Card) async throws -> UIImage {
+    func loadImage(for card: Card) async throws -> UIImage {
         return try await withCheckedThrowingContinuation { continuation in
-            load(card: card) { result in
+            loadImage(for: card) { result in
                 continuation.resume(with: result)
             }
         }
     }
     
-    private func load(card: Card, completion: @escaping Handler) {
+    private func loadImage(for card: Card, completion: @escaping Handler) {
         
         let resultHandler: (UIImage?, [AnyHashable: Any]?) -> Void = { image, info in
             if let image = image,
                let isDegraded = info?[PHImageResultIsDegradedKey] as? Bool,
                isDegraded == false {
-                self.cache[card.asset.localIdentifier] = image
-                completion(.success(image))
-                return
+                return completion(.success(image))
             }
         }
         
-        if let cachedImage = cache[card.asset.localIdentifier] {
-            print("cached image")
-            completion(.success(cachedImage))
-            return
-        } else {
-            imageManager.requestImage(for: card.asset,
-                                      targetSize: CGSize(width: 4032, height: 4032),
-                                      contentMode: .aspectFit,
-                                      options: nil,
-                                      resultHandler: resultHandler)
-        }
+        imageManager.requestImage(for: card.asset,
+                                  targetSize: CGSize(width: 4032, height: 4032),
+                                  contentMode: .aspectFit,
+                                  options: nil,
+                                  resultHandler: resultHandler)
     }
 }

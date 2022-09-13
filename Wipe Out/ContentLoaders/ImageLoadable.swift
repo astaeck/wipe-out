@@ -25,7 +25,7 @@ class ImageLoadable: LoadableObject {
         
         Task {
             do {
-                let image = try await imageLoader.load(card: card)
+                let image = try await imageLoader.loadImage(for: card)
                 state = .loaded(image)
             }
             catch {
