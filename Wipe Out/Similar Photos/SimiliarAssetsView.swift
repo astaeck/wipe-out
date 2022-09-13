@@ -14,24 +14,29 @@ struct SimilarAssetsView: View {
         NavigationView {
             VStack {
                 List {
-                    Text("Screenshots").font(.headline)
-                    ForEach(viewModel.similarCollections.filter({ $0.collectionType == .screenshot })) { collection in
-                        Section {
+                    Section {
+                        Text("Screenshots").font(.headline)
+                            .padding([.top])
+                        ForEach(viewModel.similarCollections.filter({ $0.collectionType == .screenshot })) { collection in
                             AssetGridView(collection: collection)
                         }
                     }
-                    Text("Similar Photos").font(.headline)
-                    ForEach(viewModel.similarCollections.filter({ $0.collectionType == .similar })) { collection in
-                        Section {
+                    .listRowSeparator(.hidden)
+
+                    Section {
+                        Text("Similar Photos").font(.headline)
+                            .padding([.top])
+                        ForEach(viewModel.similarCollections.filter({ $0.collectionType == .similar })) { collection in
                             NavigationLink(destination: BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards))) {
                                 AssetGridView(collection: collection)
                             }
+                            .padding([.top])
                         }
                     }
                     .listRowSeparator(.hidden)
                 }
             }
-            .listStyle(.insetGrouped)
+            .listStyle(.plain)
             .background(Color(UIColor.clear))
             .navigationTitle("Clean Up!")
             .toolbar {
