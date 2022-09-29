@@ -22,8 +22,7 @@ final class ImageLoader {
     init(imageManager: PHCachingImageManager = PHCachingImageManager()) {
         self.imageManager = imageManager
     }
-    
-    @MainActor
+
     func loadImage(for card: Card) async throws -> UIImage {
         return try await withCheckedThrowingContinuation { continuation in
             loadImage(for: card) { result in
