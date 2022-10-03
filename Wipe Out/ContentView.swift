@@ -14,24 +14,24 @@ struct ContentView: View {
     var body: some View {
         
         TabView {
-            CardStackView()
-                .tabItem {
-                    Image(systemName: "rectangle.on.rectangle")
-                    Text("All Photos")
-                }
-            SimilarAssetsView()
-                .tabItem {
-                    Image(systemName: "photo.fill")
-                    Text("Clean Up")
-                }
+            AsyncContentView(source: cardsViewModel) { cards in
+                CardStackView(viewModel: CardStackViewModel(cards: cards))
+                    .tabItem {
+                        Image(systemName: "rectangle.on.rectangle")
+                        Text("All Photos")
+                    }
+                SimilarAssetsView(viewModel: SimilarAssetsViewModel(cards: cards))
+                    .tabItem {
+                        Image(systemName: "photo.fill")
+                        Text("Clean Up")
+                    }
+            }
         }
-        .environmentObject(cardsViewModel)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(CardsViewModel())
     }
 }

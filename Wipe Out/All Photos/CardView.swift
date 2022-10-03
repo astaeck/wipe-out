@@ -19,7 +19,7 @@ struct CardView: View {
     @StateObject var card: Card
     let imageLoader: ImageLoadable
     let videoLoader: VideoLoader
-    @EnvironmentObject var viewModel: CardsViewModel
+    @ObservedObject var viewModel: CardStackViewModel
     @State var labelIsVisible: Bool = true
     @State var scale: CGFloat = 1.0
 

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SimilarAssetsView: View {
-    @EnvironmentObject var viewModel: CardsViewModel
-
+    @ObservedObject var viewModel: SimilarAssetsViewModel
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -17,8 +17,10 @@ struct SimilarAssetsView: View {
                     Section {
                         Text("Screenshots").font(.headline)
                             .padding([.top])
-                        ForEach(viewModel.similarCollections.filter({ $0.collectionType == .screenshot })) { collection in
-                            AssetGridView(collection: collection)
+                        AsyncContentView(source: viewModel) { collections in
+                            ForEach(collections.filter({ $0.collectionType == .screenshot })) { collection in
+                                AssetGridView(collection: collection)
+                            }
                         }
                     }
                     .listRowSeparator(.hidden)
@@ -26,11 +28,13 @@ struct SimilarAssetsView: View {
                     Section {
                         Text("Similar Photos").font(.headline)
                             .padding([.top])
-                        ForEach(viewModel.similarCollections.filter({ $0.collectionType == .similar })) { collection in
-                            NavigationLink(destination: BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards))) {
-                                AssetGridView(collection: collection)
+                        AsyncContentView(source: viewModel) { collections in
+                            ForEach(collections.filter({ $0.collectionType == .similar })) { collection in
+                                NavigationLink(destination: BestShotPickerView(viewModel: BestShotViewModel(similarCards: collection.cards))) {
+                                    AssetGridView(collection: collection)
+                                }
+                                .padding([.top])
                             }
-                            .padding([.top])
                         }
                     }
                     .listRowSeparator(.hidden)
@@ -40,7 +44,8 @@ struct SimilarAssetsView: View {
             .background(Color(UIColor.clear))
             .navigationTitle("Clean Up!")
             .toolbar {
-                Button("Delete Selection", action: viewModel.deleteAssets)
+                // TODO: Replace later
+                //                Button("Delete Selection", action: viewModel.deleteAssets)
             }
         }
     }

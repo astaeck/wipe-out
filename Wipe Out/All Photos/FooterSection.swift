@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FooterSection: View {
-    @EnvironmentObject var viewModel: CardsViewModel
+    @ObservedObject var viewModel: CardStackViewModel
 
     var body: some View {
         HStack() {
@@ -18,13 +18,5 @@ struct FooterSection: View {
             Button("Reset last", action: viewModel.resetLast)
               .buttonStyle(CustomButtonStyle())
         }.padding([.horizontal, .bottom])
-    }
-}
-
-struct FooterSection_Previews: PreviewProvider {
-    static var previews: some View {
-        FooterSection()
-            .environmentObject(CardsViewModel())
-
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimePeriodPicker: View {
-    @EnvironmentObject var viewModel: CardsViewModel
+    @ObservedObject var viewModel: CardStackViewModel
     @State var currentDate: Date = Date()
 
     var body: some View {

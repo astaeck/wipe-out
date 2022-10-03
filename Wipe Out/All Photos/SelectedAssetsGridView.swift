@@ -9,8 +9,8 @@ import SwiftUI
 import Photos
 
 struct SelectedAssetsGridView: View {
-    @EnvironmentObject var viewModel: CardsViewModel
-    
+    @ObservedObject var viewModel: CardStackViewModel
+
     let layout = [
         GridItem(.flexible()),
         GridItem(.flexible())

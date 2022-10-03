@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardsSection: View {
-    @EnvironmentObject var viewModel: CardsViewModel
+    @ObservedObject var viewModel: CardStackViewModel
 
     var body: some View {
         AsyncContentView(source: viewModel) { cards in
@@ -16,7 +16,8 @@ struct CardsSection: View {
                 ForEach(cards) { card in
                     CardView(card: card,
                              imageLoader: ImageLoadable(card: card),
-                             videoLoader: VideoLoader(asset: card.asset))
+                             videoLoader: VideoLoader(asset: card.asset),
+                             viewModel: viewModel)
                 }
             }
         }

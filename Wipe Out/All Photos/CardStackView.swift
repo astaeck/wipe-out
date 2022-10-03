@@ -7,22 +7,22 @@
 import SwiftUI
 
 struct CardStackView: View {
-    @EnvironmentObject var viewModel: CardsViewModel
+    @ObservedObject var viewModel: CardStackViewModel
 
     var body: some View {
         NavigationView {
             VStack {
                 Spacer()
-                TimePeriodPicker()
-                CardsSection()
+                TimePeriodPicker(viewModel: viewModel)
+                CardsSection(viewModel: viewModel)
                 .zIndex(1.0)
-                FooterSection()
+                FooterSection(viewModel: viewModel)
             }
             .navigationTitle("All Photos")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    NavigationLink("🗑", destination: SelectedAssetsGridView())
+                    NavigationLink("🗑", destination: SelectedAssetsGridView(viewModel: viewModel))
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("\(viewModel.numberOfAssets)").font(.headline)
