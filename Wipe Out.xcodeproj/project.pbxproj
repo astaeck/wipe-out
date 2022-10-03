@@ -25,7 +25,7 @@
 		1EBE6EB127AC79A5003A58CD /* SimilarCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE6EB027AC79A5003A58CD /* SimilarCollection.swift */; };
 		1ED74E9827C1854600EDEBE6 /* BestShotPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED74E9727C1854600EDEBE6 /* BestShotPickerView.swift */; };
 		1ED74E9C27C2C4D800EDEBE6 /* ImageLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED74E9B27C2C4D800EDEBE6 /* ImageLoadable.swift */; };
-		1EF45ACA274D689D00DB6124 /* Photo_TinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */; };
+		1EF45ACA274D689D00DB6124 /* Wipe_OutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45AC9274D689D00DB6124 /* Wipe_OutApp.swift */; };
 		1EF45ACC274D689D00DB6124 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF45ACB274D689D00DB6124 /* ContentView.swift */; };
 		1EF45ACE274D689E00DB6124 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF45ACD274D689E00DB6124 /* Assets.xcassets */; };
 		1EF45AD1274D689E00DB6124 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF45AD0274D689E00DB6124 /* Preview Assets.xcassets */; };
@@ -55,7 +55,7 @@
 		1ED74E9727C1854600EDEBE6 /* BestShotPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestShotPickerView.swift; sourceTree = "<group>"; };
 		1ED74E9B27C2C4D800EDEBE6 /* ImageLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadable.swift; sourceTree = "<group>"; };
 		1EF45AC6274D689D00DB6124 /* Wipe Out.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wipe Out.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_TinderApp.swift; sourceTree = "<group>"; };
+		1EF45AC9274D689D00DB6124 /* Wipe_OutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wipe_OutApp.swift; sourceTree = "<group>"; };
 		1EF45ACB274D689D00DB6124 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1EF45ACD274D689E00DB6124 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EF45AD0274D689E00DB6124 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 			children = (
 				1EECAADB28798B8600CE437E /* Models */,
 				1EF45ACB274D689D00DB6124 /* ContentView.swift */,
-				1EF45AC9274D689D00DB6124 /* Photo_TinderApp.swift */,
+				1EF45AC9274D689D00DB6124 /* Wipe_OutApp.swift */,
 				1EBE6EA627A9B243003A58CD /* Similar Photos */,
 				1E626FD127A83BA500F3554F /* All Photos */,
 				1E626FCE27A836A300F3554F /* ContentLoaders */,
@@ -283,7 +283,7 @@
 				1E71A72A2751EA7600F97169 /* LoadingState.swift in Sources */,
 				1EF45AD8274F37F300DB6124 /* CardView.swift in Sources */,
 				1E407827274F484000FF8E4F /* CardsViewModel.swift in Sources */,
-				1EF45ACA274D689D00DB6124 /* Photo_TinderApp.swift in Sources */,
+				1EF45ACA274D689D00DB6124 /* Wipe_OutApp.swift in Sources */,
 				1EF9D428275178C600F75C12 /* VideoLoader.swift in Sources */,
 				1EF45ADC274F38B300DB6124 /* CardsSection.swift in Sources */,
 				1E1428582750797000ED0F77 /* ImageLoader.swift in Sources */,
