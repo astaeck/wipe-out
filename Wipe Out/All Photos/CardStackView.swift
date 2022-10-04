@@ -15,8 +15,8 @@ struct CardStackView: View {
                 Spacer()
                 TimePeriodPicker(viewModel: viewModel)
                 CardsSection(viewModel: viewModel)
-                .zIndex(1.0)
-                FooterSection(viewModel: viewModel)
+                    .zIndex(1.0)
+                FooterSection()
             }
             .navigationTitle("All Photos")
             .navigationBarTitleDisplayMode(.inline)

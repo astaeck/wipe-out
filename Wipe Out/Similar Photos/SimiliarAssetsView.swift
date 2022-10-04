@@ -43,10 +43,6 @@ struct SimilarAssetsView: View {
             .listStyle(.plain)
             .background(Color(UIColor.clear))
             .navigationTitle("Clean Up!")
-            .toolbar {
-                // TODO: Replace later
-                //                Button("Delete Selection", action: viewModel.deleteAssets)
-            }
         }
     }
 }

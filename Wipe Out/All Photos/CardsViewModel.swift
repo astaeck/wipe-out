@@ -5,57 +5,75 @@
 //  Created by Angelina Staeck on 24.11.21.
 //
 
-import Photos
-import AVKit
+import SwiftUI
 
 final class CardsViewModel: LoadableObject {
     
     typealias Output = [Card]
     @Published private(set) var state: LoadingState<[Card]> = .idle
 
-    private let photoLibrary: PHPhotoLibrary
-    private var allAssets: [PHAsset] = []
+    private let assetLoader: AssetLoader
+    private var cards: [Card] = []
 
-    init(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.shared()) {
-        self.photoLibrary = photoLibrary
+    init(assetLoader: AssetLoader = AssetLoader()) {
+        self.assetLoader = assetLoader
     }
     
     func load() {
-        guard allAssets.isEmpty else { return }
-        DispatchQueue.main.async {
-            self.state = .loading
-        }
-
-        getPermissionIfNecessary { granted in
-          guard granted else { return }
-            let allPhotosOptions = PHFetchOptions()
-            allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-
-            let fetchedAssets = PHAsset.fetchAssets(with: allPhotosOptions)
-            fetchedAssets.enumerateObjects { (asset, _, _) -> Void in
-                self.allAssets.append(asset)
+        state = .loading
+        
+        Task {
+            do {
+                let assets = try await assetLoader.fetch()
+                cards = assets.map { Card(asset: $0) }
+                await MainActor.run {
+                    state = .loaded(cards)
+                }
             }
-            DispatchQueue.main.async {
-                self.createInitialCardView()
+            catch {
+                await MainActor.run {
+                    state = .failed("Couldn't load cards")
+                }
             }
         }
+    }
+    
+    func deleteCards() {
+        let cardsToDelete = cards.filter { $0.isSelected }
+        guard cardsToDelete.count != 0 else { return }
+        let assetsToDelete = cardsToDelete.map { $0.asset }
+        Task {
+            do {
+                let success = try await assetLoader.delete(assets: assetsToDelete)
+                if success {
+                    await MainActor.run {
+                        cards = cards.filter { !cardsToDelete.contains($0) }
+                        state = .loaded(cards)
+                    }
+                }
+            }
+            catch {
+                await MainActor.run {
+                    state = .failed("Couldn't delete cards")
+                }
+            }
+        }
+    }
+    
+    func resetLast() {
+        guard let card = cards.reversed().first(where: { $0.x != 0 }) else { return }
+        resetSelectedCard(withID: card.id)
     }
     
     // MARK: - Private
     
-    private func createInitialCardView() {
-        let cards = allAssets.map { Card(asset: $0) }
-        state = .loaded(cards)
-    }
-
-    private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {
-        guard PHPhotoLibrary.authorizationStatus() != .authorized else {
-            completionHandler(true)
-            return
-        }
-        
-        PHPhotoLibrary.requestAuthorization { status in
-            completionHandler(status == .authorized ? true : false)
-        }
+    private func resetSelectedCard(withID id: UUID) {
+        guard let index = cards.firstIndex(where: { $0.id == id }) else { return }
+        let card = cards[index]
+        card.x = 0
+        card.y = 0
+        card.degree = 0
+        card.isSelected = false
+        card.isPreSelected = false
     }
 }

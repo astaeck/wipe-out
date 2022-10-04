@@ -19,6 +19,7 @@
 		1E71A72E2751FDD800F97169 /* LoadableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72D2751FDD800F97169 /* LoadableObject.swift */; };
 		1E71A7302751FDF200F97169 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A72F2751FDF200F97169 /* AsyncContentView.swift */; };
 		1E77E7842886F77C00FA285E /* TimePeriodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77E7832886F77C00FA285E /* TimePeriodPicker.swift */; };
+		1E90263F28ECBC04007E5BB6 /* AssetLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E90263E28ECBC04007E5BB6 /* AssetLoader.swift */; };
 		1E959FAE28E5C76100AF7E8A /* CardStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E959FAD28E5C76100AF7E8A /* CardStackViewModel.swift */; };
 		1EB6C86127D40D9900206131 /* BestShotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6C86027D40D9900206131 /* BestShotViewModel.swift */; };
 		1EBCF8B52758081B00195BCA /* SelectedAssetsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */; };
@@ -50,6 +51,7 @@
 		1E71A72D2751FDD800F97169 /* LoadableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableObject.swift; sourceTree = "<group>"; };
 		1E71A72F2751FDF200F97169 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		1E77E7832886F77C00FA285E /* TimePeriodPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriodPicker.swift; sourceTree = "<group>"; };
+		1E90263E28ECBC04007E5BB6 /* AssetLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetLoader.swift; sourceTree = "<group>"; };
 		1E959FAD28E5C76100AF7E8A /* CardStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackViewModel.swift; sourceTree = "<group>"; };
 		1EB6C86027D40D9900206131 /* BestShotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestShotViewModel.swift; sourceTree = "<group>"; };
 		1EBCF8B42758081B00195BCA /* SelectedAssetsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAssetsGridView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				1EF45ADB274F38B300DB6124 /* CardsSection.swift */,
 				1E626FCF27A8370D00F3554F /* CardStackView.swift */,
 				1E407826274F484000FF8E4F /* CardsViewModel.swift */,
+				1E90263E28ECBC04007E5BB6 /* AssetLoader.swift */,
 				1E959FAD28E5C76100AF7E8A /* CardStackViewModel.swift */,
 				1E77E7832886F77C00FA285E /* TimePeriodPicker.swift */,
 				1EF45AD7274F37F300DB6124 /* CardView.swift */,
@@ -284,6 +287,7 @@
 				1EBCF8B52758081B00195BCA /* SelectedAssetsGridView.swift in Sources */,
 				1ED74E9C27C2C4D800EDEBE6 /* ImageLoadable.swift in Sources */,
 				1E269BC02753F24800DCD06E /* FooterSection.swift in Sources */,
+				1E90263F28ECBC04007E5BB6 /* AssetLoader.swift in Sources */,
 				1EBE6EA427A9A91C003A58CD /* AssetGridItem.swift in Sources */,
 				1EB6C86127D40D9900206131 /* BestShotViewModel.swift in Sources */,
 				1EBE6EB127AC79A5003A58CD /* SimilarCollection.swift in Sources */,

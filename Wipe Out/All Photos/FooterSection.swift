@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct FooterSection: View {
-    @ObservedObject var viewModel: CardStackViewModel
+    @EnvironmentObject var cardsViewModel: CardsViewModel
 
     var body: some View {
         HStack() {
-            Button("Delete", action: viewModel.deleteAssets)
+            Button("Delete", action: cardsViewModel.deleteCards)
                 .buttonStyle(CustomButtonStyle())
             Spacer()
-            Button("Reset last", action: viewModel.resetLast)
+            Button("Reset last", action: cardsViewModel.resetLast)
               .buttonStyle(CustomButtonStyle())
         }.padding([.horizontal, .bottom])
     }

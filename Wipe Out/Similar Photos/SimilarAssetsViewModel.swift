@@ -25,13 +25,13 @@ final class SimilarAssetsViewModel: LoadableObject {
     func load() {
         loadScreenshotCollections()
         loadSimilarCollections()
+        state = .loaded(similarCollections)
     }
     
     private func loadScreenshotCollections() {
         let screenshots: [Card] = cards.filter { $0.asset.mediaSubtypes.contains(.photoScreenshot) }
         screenshots.forEach { $0.isPreSelected = true }
         similarCollections.append(contentsOf: [SimilarCollection(cards: screenshots, collectionType: .screenshot)])
-        state = .loaded(similarCollections)
     }
 
     private func loadSimilarCollections() {
@@ -43,15 +43,5 @@ final class SimilarAssetsViewModel: LoadableObject {
         
         let similarGroupedCards = groupedCards.values.filter { $0.count > 2 }
         similarCollections.append(contentsOf: similarGroupedCards.map { SimilarCollection(cards: $0, collectionType: .similar) })
-        state = .loaded(similarCollections)
     }
-    
-    private func removeCardFromCollections(_ deletedCards: [Card]) {
-        similarCollections.forEach({ $0.removeCardsFromCollections(deletedCards) })
-    }
-    
-    private func updateCollectionsWith(_ card: Card) {
-        similarCollections.forEach({ $0.cards = $0.cards })
-    }
-    
 }

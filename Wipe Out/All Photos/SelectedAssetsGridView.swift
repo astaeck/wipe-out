@@ -10,6 +10,7 @@ import Photos
 
 struct SelectedAssetsGridView: View {
     @ObservedObject var viewModel: CardStackViewModel
+    @EnvironmentObject var cardsViewModel: CardsViewModel
 
     let layout = [
         GridItem(.flexible()),
@@ -31,7 +32,7 @@ struct SelectedAssetsGridView: View {
         .padding([.horizontal, .top])
         .navigationTitle("\(viewModel.cards.filter({ $0.isSelected }).count) Selected")
         .toolbar {
-            Button("Wipe out all", action: viewModel.deleteAssets)
+            Button("Wipe out all", action: cardsViewModel.deleteCards)
         }
     }
 }
